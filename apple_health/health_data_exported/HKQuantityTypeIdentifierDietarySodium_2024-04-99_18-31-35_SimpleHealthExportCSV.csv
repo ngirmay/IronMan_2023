@@ -1,0 +1,25 @@
+sep=,
+type,sourceName,sourceVersion,productType,device,startDate,endDate,unit,value,meal,Meal
+HKQuantityTypeIdentifierDietarySodium,MyFitnessPal,48368,"iPhone11,8",,2024-01-20 19:25:00 +0000,2024-01-20 19:25:00 +0000,mg,782.2991013526917,Breakfast,Breakfast
+HKQuantityTypeIdentifierDietarySodium,MyFitnessPal,48368,"iPhone11,8",,2024-01-20 19:27:00 +0000,2024-01-20 19:27:00 +0000,mg,455.00001311302185,Snacks,Snacks
+HKQuantityTypeIdentifierDietarySodium,MyFitnessPal,48368,"iPhone11,8",,2024-01-20 19:27:00 +0000,2024-01-20 19:27:00 +0000,mg,77.50000059604645,Lunch,Lunch
+HKQuantityTypeIdentifierDietarySodium,MyFitnessPal,48368,"iPhone11,8",,2024-01-24 17:15:00 +0000,2024-01-24 17:15:00 +0000,mg,222.4999964237213,Breakfast,Breakfast
+HKQuantityTypeIdentifierDietarySodium,MyFitnessPal,48368,"iPhone11,8",,2024-01-24 17:16:00 +0000,2024-01-24 17:16:00 +0000,mg,449.9501883983612,Lunch,Lunch
+HKQuantityTypeIdentifierDietarySodium,MyFitnessPal,48368,"iPhone11,8",,2024-01-24 22:19:00 +0000,2024-01-24 22:19:00 +0000,mg,890.1660442352295,Dinner,Dinner
+HKQuantityTypeIdentifierDietarySodium,MyFitnessPal,48368,"iPhone11,8",,2024-01-24 22:20:00 +0000,2024-01-24 22:20:00 +0000,mg,270.00001072883606,Snacks,Snacks
+HKQuantityTypeIdentifierDietarySodium,MyFitnessPal,48368,"iPhone11,8",,2024-01-25 16:39:00 +0000,2024-01-25 16:39:00 +0000,mg,282.169371843338,Breakfast,Breakfast
+HKQuantityTypeIdentifierDietarySodium,MyFitnessPal,48368,"iPhone11,8",,2024-01-25 16:41:00 +0000,2024-01-25 16:41:00 +0000,mg,490.00000953674316,Lunch,Lunch
+HKQuantityTypeIdentifierDietarySodium,MyFitnessPal,48368,"iPhone11,8",,2024-01-25 16:44:00 +0000,2024-01-25 16:44:00 +0000,mg,150.00000596046448,Snacks,Snacks
+HKQuantityTypeIdentifierDietarySodium,MyFitnessPal,48368,"iPhone11,8",,2024-01-26 01:53:00 +0000,2024-01-26 01:53:00 +0000,mg,0.0,Dinner,Dinner
+HKQuantityTypeIdentifierDietarySodium,MyFitnessPal,48940,"iPhone11,8",,2024-02-11 02:24:00 +0000,2024-02-11 02:24:00 +0000,mg,174.99999701976776,Lunch,Lunch
+HKQuantityTypeIdentifierDietarySodium,MyFitnessPal,48940,"iPhone11,8",,2024-02-11 02:24:00 +0000,2024-02-11 02:24:00 +0000,mg,720.0000286102295,Breakfast,Breakfast
+HKQuantityTypeIdentifierDietarySodium,MyFitnessPal,48940,"iPhone11,8",,2024-02-11 02:25:00 +0000,2024-02-11 02:25:00 +0000,mg,908.2175493240356,Dinner,Dinner
+HKQuantityTypeIdentifierDietarySodium,MyFitnessPal,48940,"iPhone11,8",,2024-02-11 02:26:00 +0000,2024-02-11 02:26:00 +0000,mg,519.9999809265137,Snacks,Snacks
+HKQuantityTypeIdentifierDietarySodium,MyFitnessPal,48940,"iPhone11,8",,2024-02-13 20:52:00 +0000,2024-02-13 20:52:00 +0000,mg,720.0000286102295,Breakfast,Breakfast
+HKQuantityTypeIdentifierDietarySodium,MyFitnessPal,48940,"iPhone11,8",,2024-02-13 20:52:00 +0000,2024-02-13 20:52:00 +0000,mg,1309.999942779541,Lunch,Lunch
+HKQuantityTypeIdentifierDietarySodium,MyFitnessPal,48940,"iPhone11,8",,2024-02-13 20:53:00 +0000,2024-02-13 20:53:00 +0000,mg,300.00001192092896,Snacks,Snacks
+HKQuantityTypeIdentifierDietarySodium,MyFitnessPal,48940,"iPhone11,8",,2024-02-14 21:48:00 +0000,2024-02-14 21:48:00 +0000,mg,933.0000281333923,Breakfast,Breakfast
+HKQuantityTypeIdentifierDietarySodium,MyFitnessPal,48940,"iPhone11,8",,2024-02-14 21:50:00 +0000,2024-02-14 21:50:00 +0000,mg,596.0000157356262,Lunch,Lunch
+HKQuantityTypeIdentifierDietarySodium,MyFitnessPal,48940,"iPhone11,8",,2024-02-14 21:50:00 +0000,2024-02-14 21:50:00 +0000,mg,460.00000834465027,Snacks,Snacks
+HKQuantityTypeIdentifierDietarySodium,MyFitnessPal,49496,"iPhone11,8",,2024-03-21 12:25:00 +0000,2024-03-21 12:25:00 +0000,mg,460.00000834465027,Breakfast,Breakfast
+HKQuantityTypeIdentifierDietarySodium,MyFitnessPal,49496,"iPhone11,8",,2024-03-21 12:25:00 +0000,2024-03-21 12:25:00 +0000,mg,1671.4000701904297,Dinner,Dinner

@@ -1,0 +1,25 @@
+sep=,
+type,sourceName,sourceVersion,productType,device,startDate,endDate,unit,value,meal,Meal
+HKQuantityTypeIdentifierDietaryFatSaturated,MyFitnessPal,48368,"iPhone11,8",,2024-01-20 19:25:00 +0000,2024-01-20 19:25:00 +0000,g,16.084468841552734,Breakfast,Breakfast
+HKQuantityTypeIdentifierDietaryFatSaturated,MyFitnessPal,48368,"iPhone11,8",,2024-01-20 19:27:00 +0000,2024-01-20 19:27:00 +0000,g,1.5,Snacks,Snacks
+HKQuantityTypeIdentifierDietaryFatSaturated,MyFitnessPal,48368,"iPhone11,8",,2024-01-20 19:27:00 +0000,2024-01-20 19:27:00 +0000,g,3.25,Lunch,Lunch
+HKQuantityTypeIdentifierDietaryFatSaturated,MyFitnessPal,48368,"iPhone11,8",,2024-01-24 17:15:00 +0000,2024-01-24 17:15:00 +0000,g,0.25,Breakfast,Breakfast
+HKQuantityTypeIdentifierDietaryFatSaturated,MyFitnessPal,48368,"iPhone11,8",,2024-01-24 17:16:00 +0000,2024-01-24 17:16:00 +0000,g,4.0,Lunch,Lunch
+HKQuantityTypeIdentifierDietaryFatSaturated,MyFitnessPal,48368,"iPhone11,8",,2024-01-24 22:19:00 +0000,2024-01-24 22:19:00 +0000,g,16.27560043334961,Dinner,Dinner
+HKQuantityTypeIdentifierDietaryFatSaturated,MyFitnessPal,48368,"iPhone11,8",,2024-01-24 22:20:00 +0000,2024-01-24 22:20:00 +0000,g,0.0,Snacks,Snacks
+HKQuantityTypeIdentifierDietaryFatSaturated,MyFitnessPal,48368,"iPhone11,8",,2024-01-25 16:39:00 +0000,2024-01-25 16:39:00 +0000,g,5.536432266235352,Breakfast,Breakfast
+HKQuantityTypeIdentifierDietaryFatSaturated,MyFitnessPal,48368,"iPhone11,8",,2024-01-25 16:41:00 +0000,2024-01-25 16:41:00 +0000,g,8.0,Lunch,Lunch
+HKQuantityTypeIdentifierDietaryFatSaturated,MyFitnessPal,48368,"iPhone11,8",,2024-01-25 16:44:00 +0000,2024-01-25 16:44:00 +0000,g,1.5,Snacks,Snacks
+HKQuantityTypeIdentifierDietaryFatSaturated,MyFitnessPal,48368,"iPhone11,8",,2024-01-26 01:53:00 +0000,2024-01-26 01:53:00 +0000,g,0.0,Dinner,Dinner
+HKQuantityTypeIdentifierDietaryFatSaturated,MyFitnessPal,48940,"iPhone11,8",,2024-02-11 02:24:00 +0000,2024-02-11 02:24:00 +0000,g,7.0,Lunch,Lunch
+HKQuantityTypeIdentifierDietaryFatSaturated,MyFitnessPal,48940,"iPhone11,8",,2024-02-11 02:24:00 +0000,2024-02-11 02:24:00 +0000,g,7.0,Breakfast,Breakfast
+HKQuantityTypeIdentifierDietaryFatSaturated,MyFitnessPal,48940,"iPhone11,8",,2024-02-11 02:25:00 +0000,2024-02-11 02:25:00 +0000,g,10.057829856872559,Dinner,Dinner
+HKQuantityTypeIdentifierDietaryFatSaturated,MyFitnessPal,48940,"iPhone11,8",,2024-02-11 02:26:00 +0000,2024-02-11 02:26:00 +0000,g,0.0,Snacks,Snacks
+HKQuantityTypeIdentifierDietaryFatSaturated,MyFitnessPal,48940,"iPhone11,8",,2024-02-13 20:52:00 +0000,2024-02-13 20:52:00 +0000,g,7.0,Breakfast,Breakfast
+HKQuantityTypeIdentifierDietaryFatSaturated,MyFitnessPal,48940,"iPhone11,8",,2024-02-13 20:52:00 +0000,2024-02-13 20:52:00 +0000,g,3.0,Lunch,Lunch
+HKQuantityTypeIdentifierDietaryFatSaturated,MyFitnessPal,48940,"iPhone11,8",,2024-02-13 20:53:00 +0000,2024-02-13 20:53:00 +0000,g,13.0,Snacks,Snacks
+HKQuantityTypeIdentifierDietaryFatSaturated,MyFitnessPal,48940,"iPhone11,8",,2024-02-14 21:48:00 +0000,2024-02-14 21:48:00 +0000,g,5.77400016784668,Breakfast,Breakfast
+HKQuantityTypeIdentifierDietaryFatSaturated,MyFitnessPal,48940,"iPhone11,8",,2024-02-14 21:50:00 +0000,2024-02-14 21:50:00 +0000,g,1.0,Lunch,Lunch
+HKQuantityTypeIdentifierDietaryFatSaturated,MyFitnessPal,48940,"iPhone11,8",,2024-02-14 21:50:00 +0000,2024-02-14 21:50:00 +0000,g,3.0,Snacks,Snacks
+HKQuantityTypeIdentifierDietaryFatSaturated,MyFitnessPal,49496,"iPhone11,8",,2024-03-21 12:25:00 +0000,2024-03-21 12:25:00 +0000,g,3.0,Breakfast,Breakfast
+HKQuantityTypeIdentifierDietaryFatSaturated,MyFitnessPal,49496,"iPhone11,8",,2024-03-21 12:25:00 +0000,2024-03-21 12:25:00 +0000,g,15.927800178527832,Dinner,Dinner

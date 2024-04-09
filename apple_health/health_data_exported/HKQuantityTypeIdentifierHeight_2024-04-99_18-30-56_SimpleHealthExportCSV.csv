@@ -1,0 +1,4 @@
+sep=,
+type,sourceName,sourceVersion,productType,device,startDate,endDate,unit,value
+HKQuantityTypeIdentifierHeight,iPhone (91),15.3.1,"iPhone11,8",,2022-03-07 19:02:01 +0000,2022-03-07 19:02:01 +0000,ft,5.833333333333333
+HKQuantityTypeIdentifierHeight,Renpho,1,"iPhone11,8",,2022-08-17 01:03:26 +0000,2022-08-17 01:03:26 +0000,ft,5.807086551596173

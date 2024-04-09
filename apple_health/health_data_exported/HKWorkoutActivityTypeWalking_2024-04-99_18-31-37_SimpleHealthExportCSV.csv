@@ -1,0 +1,4 @@
+sep=,
+type,sourceName,sourceVersion,productType,device,startDate,endDate,activityType,duration,durationUnit,totalEnergyBurned,totalDistance,totalSwimmingStrokeCount,totalFlightsClimbed,HKIndoorWorkout,HKAverageMETs,HKTimeZone,HKWeatherHumidity,HKWeatherTemperature
+HKWorkoutTypeIdentifier,Nobel’s Apple Watch,8.3,"Watch6,9","<<HKDevice: 0x283cad270>, name:Apple Watch, manufacturer:Apple Inc., model:Watch, hardware:Watch6,9, software:8.3>",2022-03-15 21:49:38 +0000,2022-03-15 22:21:53 +0000,Walking,1934.9833869934082,sec,126.588 kcal,2522.59 m,,,0,4.31109 kcal/hr·kg,America/New_York,,
+HKWorkoutTypeIdentifier,Nobel’s Apple Watch,8.3,"Watch6,9","<<HKDevice: 0x283cad270>, name:Apple Watch, manufacturer:Apple Inc., model:Watch, hardware:Watch6,9, software:8.3>",2022-08-22 21:51:48 +0000,2022-08-22 22:28:02 +0000,Walking,2174.8381620645523,sec,172.604 kcal,3035.51 m,,,0,5.0157 kcal/hr·kg,America/New_York,6400 %,84.2 degF

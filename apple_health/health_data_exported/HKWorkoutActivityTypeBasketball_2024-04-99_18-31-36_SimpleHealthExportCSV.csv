@@ -1,0 +1,4 @@
+sep=,
+type,sourceName,sourceVersion,productType,device,startDate,endDate,activityType,duration,durationUnit,totalEnergyBurned,totalDistance,totalSwimmingStrokeCount,totalFlightsClimbed,HKTimeZone,HKWeatherTemperature,HKWeatherHumidity,HKIndoorWorkout,HKAverageMETs
+HKWorkoutTypeIdentifier,Nobel’s Apple Watch,8.3,"Watch6,9","<<HKDevice: 0x283cad3b0>, name:Apple Watch, manufacturer:Apple Inc., model:Watch, hardware:Watch6,9, software:8.3>",2022-08-31 01:03:42 +0000,2022-08-31 02:12:23 +0000,Basketball,4116.637917041779,sec,756.687 kcal,4639.89 m,,,America/New_York,75.2 degF,9000 %,0,9.26086 kcal/hr·kg
+HKWorkoutTypeIdentifier,Nobel’s Apple Watch,8.3,"Watch6,9","<<HKDevice: 0x283cad3b0>, name:Apple Watch, manufacturer:Apple Inc., model:Watch, hardware:Watch6,9, software:8.3>",2022-11-10 23:16:04 +0000,2022-11-10 23:37:01 +0000,Basketball,1257.1553699970245,sec,222.099 kcal,1164.87 m,,,America/New_York,62.6 degF,6600 %,0,9.45525 kcal/hr·kg
