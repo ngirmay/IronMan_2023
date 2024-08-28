@@ -7,7 +7,6 @@ The aim here will be to create a database that can be used for future analysis f
 I will extract data from the following apps used during my training period: 
 - Apple Health
 - MyfitnessPal
-- Renpho
 - Wahoo
 - FORM 
 
