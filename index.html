@@ -3,50 +3,141 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ironman 2023 Data Analysis</title>
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Ironman 2023 Project</title>
     <style>
-        body {
-            font-family: Arial, sans-serif;
+        /* General Styles */
+        body, html {
             margin: 0;
             padding: 0;
-            background-color: #f4f4f4;
+            font-family: 'Arial', sans-serif;
+            box-sizing: border-box;
+            scroll-behavior: smooth;
+            color: #333;
         }
-        header {
-            background-color: #333;
-            color: #fff;
-            padding: 10px 0;
+        h1, h2, h3, p {
+            margin: 0;
+            padding: 0;
+        }
+        a {
+            text-decoration: none;
+            color: white;
+            font-weight: bold;
+        }
+
+        /* Hero Section */
+        .hero {
+            height: 100vh;
+            background: url('https://source.unsplash.com/1600x900/?triathlon,ironman') center center/cover no-repeat;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            color: white;
             text-align: center;
         }
-        main {
-            margin: 20px;
+        .hero h1 {
+            font-size: 4em;
+            letter-spacing: 2px;
         }
+        .hero p {
+            font-size: 1.5em;
+            margin-top: 10px;
+        }
+        .hero .button {
+            padding: 15px 30px;
+            margin-top: 20px;
+            background-color: #ff5e57;
+            border: none;
+            border-radius: 30px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+        .hero .button:hover {
+            background-color: #ff4740;
+        }
+
+        /* Section */
+        section {
+            padding: 60px 10%;
+        }
+        section h2 {
+            text-align: center;
+            font-size: 2.5em;
+            margin-bottom: 40px;
+        }
+        .section-content {
+            display: flex;
+            justify-content: space-around;
+            flex-wrap: wrap;
+        }
+        .section-content div {
+            width: 30%;
+            margin: 20px 0;
+            padding: 20px;
+            border-radius: 10px;
+            background-color: #f9f9f9;
+            text-align: center;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease;
+        }
+        .section-content div:hover {
+            transform: translateY(-5px);
+        }
+        .section-content img {
+            max-width: 100%;
+            border-radius: 10px;
+        }
+        .section-content h3 {
+            margin: 20px 0;
+            font-size: 1.5em;
+        }
+
+        /* Footer */
         footer {
             background-color: #333;
             color: white;
+            padding: 20px;
             text-align: center;
-            padding: 10px 0;
-            position: fixed;
-            bottom: 0;
-            width: 100%;
         }
     </style>
 </head>
 <body>
-    <header>
-        <h1>Ironman 2023 Data Analysis</h1>
-    </header>
-    <main>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <h1>Ironman 2023 Project</h1>
+        <p>Tracking My Triathlon Journey</p>
+        <a href="#about"><button class="button">Learn More</button></a>
+    </section>
+
+    <!-- About Section -->
+    <section id="about">
         <h2>About the Project</h2>
-        <p>This project showcases the analysis of my Ironman training data collected via Apple Health. Below are some of the key metrics analyzed:</p>
-        <ul>
-            <li>VO2 Max</li>
-            <li>Heart Rate</li>
-            <li>Body Composition</li>
-        </ul>
-        <p>More analysis results to come!</p>
-    </main>
+        <div class="section-content">
+            <div>
+                <img src="https://source.unsplash.com/800x600/?run" alt="Running">
+                <h3>Running Metrics</h3>
+                <p>Analyze my VO2 Max, heart rate, and pace over time to see progress.</p>
+            </div>
+            <div>
+                <img src="https://source.unsplash.com/800x600/?swim" alt="Swimming">
+                <h3>Swimming Data</h3>
+                <p>Track lap times, strokes, and distance to optimize swimming performance.</p>
+            </div>
+            <div>
+                <img src="https://source.unsplash.com/800x600/?bike" alt="Cycling">
+                <h3>Cycling Stats</h3>
+                <p>Monitor speed, power, and endurance during cycling training.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
     <footer>
-        <p>&copy; 2024 Nobel Girmay</p>
+        <p>&copy; 2024 Nobel Girmay. All Rights Reserved.</p>
     </footer>
+
 </body>
 </html>
+
