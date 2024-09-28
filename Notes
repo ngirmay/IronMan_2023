@@ -1,0 +1,7 @@
+06/19/2024 
+- updated Docker to create container and postgresql database 
+- remember I am using virtual environment so packages might need too be used there (activation: source venv/bin/activate )
+- edited requirnments file 
+- edited __init__.py file 
+- edited /apps directory to add data sources/visualizations
+- web app location: http://localhost:5085/index 
