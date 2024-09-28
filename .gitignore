@@ -4,3 +4,4 @@ venv/
 *wahoo_data.csv*
 *2016-03*
 *WorldRankingsElite*
+*.DS_Store*
