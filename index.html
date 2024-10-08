@@ -70,6 +70,17 @@
             border-radius: 10px;
         }
 
+        .description-box {
+            background-color: #A8DADC;
+            color: #1D3557;
+            padding: 20px;
+            border-radius: 10px;
+            margin-bottom: 20px;
+            text-align: left;
+            font-size: 1.1em;
+            line-height: 1.5;
+        }
+
         footer {
             background-color: #1D3557;
             color: #F1FAEE;
@@ -97,6 +108,17 @@
     <div id="swimming" class="content active">
         <h2>Swimming Analysis</h2>
         <p>Visualizations and insights on swimming performance.</p>
+        
+        <!-- Description Box -->
+        <div class="description-box">
+            <h3>Visualization 1: Duration vs Stroke Count Over Time</h3>
+            <p>This chart provides a detailed breakdown of your swim stroke count over time, allowing you to analyze how your stroke technique evolves throughout the session. It's a great way to assess consistency and efficiency in swimming.</p>
+
+            <h3>Visualization 2: Calories Burned vs Distance Over Time</h3>
+            <p>This visualization highlights the relationship between calories burned and distance covered. It helps you track energy expenditure over your swims and see how distance and intensity contribute to your total calorie burn.</p>
+        </div>
+
+        <!-- Embedded Visualizations -->
         <iframe src="swim_visualizations_gh/duration_stroke_count_over_time.html"></iframe>
         <iframe src="swim_visualizations_gh/calories_distance_over_time.html"></iframe>
     </div>
