@@ -1,0 +1,38 @@
+Swim Analysis Results
+=====================
+
+Swim 1:
+  Stroke Rate: 94.05 strokes/min
+  Average Body Angle: 129.66 degrees
+  Duration Analyzed: 13.62 seconds
+
+Swim 2:
+  Stroke Rate: 84.47 strokes/min
+  Average Body Angle: 130.04 degrees
+  Duration Analyzed: 13.28 seconds
+
+Pro Swim:
+  Stroke Rate: 74.56 strokes/min
+  Average Body Angle: 162.82 degrees
+  Duration Analyzed: 30.00 seconds
+
+Comparison and Areas for Improvement
+====================================
+
+1. Stroke Rate:
+   Your average: 89.26 strokes/min
+   Pro's rate: 74.56 strokes/min
+   Difference: 14.70 strokes/min
+   Action: Focus on adjusting your stroke rate to match the pro's rhythm.
+   Try to slow down your strokes and increase your glide.
+
+2. Body Position:
+   Your average angle: 129.85 degrees
+   Pro's angle: 162.82 degrees
+   Difference: 32.97 degrees
+   Action: Work on adjusting your body position to be more streamlined.
+   Focus on pressing your chest down slightly to lift your hips.
+
+Prioritized Improvements:
+1. Body Position: Difference of 32.97
+2. Stroke Rate: Difference of 14.70
