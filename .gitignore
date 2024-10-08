@@ -1,0 +1,14 @@
+venv/
+*.fit.gz*
+*.csv*
+*.gpx*
+*frame_00*
+*.zip*
+*.rtf*
+*.mov*
+*.log*
+.DS_Store*
+*structure*
+*.mp4*
+*WorldRankingsEliteMen*
+*Rhistory*

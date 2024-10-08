@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ironman 2023 Project</title>
+    <style>
+        body, html {
+            margin: 0;
+            padding: 0;
+            font-family: 'Arial', sans-serif;
+            background-color: #F1FAEE; /* Light cream background */
+            color: #1D3557; /* Dark blue text */
+        }
+
+        /* Header Styling */
+        header {
+            background-color: #1D3557; /* Dark blue header */
+            color: #F1FAEE; /* Light cream text */
+            padding: 20px;
+            text-align: center;
+            letter-spacing: 2px;
+        }
+
+        header h1 {
+            margin: 0;
+            font-size: 2.5em;
+        }
+
+        /* Tab Navigation */
+        .tabs {
+            display: flex;
+            justify-content: center;
+            background-color: #E63946; /* Red for tabs */
+            padding: 15px 0;
+        }
+
+        .tabs button {
+            background-color: #E63946; /* Red */
+            color: #F1FAEE; /* Light cream text */
+            padding: 15px 30px;
+            cursor: pointer;
+            border: none;
+            outline: none;
+            transition: background-color 0.3s ease;
+            font-size: 1.2em;
+            text-transform: uppercase;
+        }
+
+        .tabs button:hover {
+            background-color: #457B9D; /* Hover with steel blue */
+        }
+
+        .tabs button.active {
+            background-color: #1D3557; /* Active tab: Dark blue */
+        }
+
+        /* Content Section */
+        .content {
+            display: none;
+            padding: 40px;
+            text-align: center;
+        }
+
+        .content.active {
+            display: block;
+        }
+
+        .content img {
+            max-width: 100%;
+            height: auto;
+            margin-top: 20px;
+            border: 3px solid #A8DADC; /* Light teal border for images */
+            border-radius: 10px;
+        }
+
+        footer {
+            background-color: #1D3557; /* Dark blue footer */
+            color: #F1FAEE; /* Light cream text */
+            text-align: center;
+            padding: 20px;
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+        }
+
+        footer p {
+            margin: 0;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Header -->
+    <header>
+        <h1> Lake Placid Ironman 2023 </h1>
+        <p> Swim | Bike | Run </p>
+    </header>
+
+    <!-- Tab Navigation -->
+    <div class="tabs">
+        <button class="tablink active" onclick="openTab(event, 'swimming')">Swimming</button>
+        <button class="tablink" onclick="openTab(event, 'biking')">Biking</button>
+        <button class="tablink" onclick="openTab(event, 'running')">Running</button>
+    </div>
+
+    <!-- Content Section for Swimming -->
+    <div id="swimming" class="content active">
+        <h2>Swimming Analysis</h2>
+        <p>Visualizations and insights on swimming performance.</p>
+        <img src="images/swimming-image.jpg" alt="Swimming Visualization">
+        <img src="images/swimming-graph.png" alt="Swimming Graph">
+    </div>
+
+    <!-- Content Section for Biking -->
+    <div id="biking" class="content">
+        <h2>Biking Analysis</h2>
+        <p>Visualizations and insights on biking performance.</p>
+        <img src="images/biking-image.jpg" alt="Biking Visualization">
+        <img src="images/biking-graph.png" alt="Biking Graph">
+    </div>
+
+    <!-- Content Section for Running -->
+    <div id="running" class="content">
+        <h2>Running Analysis</h2>
+        <p>Visualizations and insights on running performance.</p>
+        <img src="images/running-image.jpg" alt="Running Visualization">
+        <img src="images/running-graph.png" alt="Running Graph">
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2024 Nobel Girmay - Ironman 2023</p>
+    </footer>
+
+    <!-- JavaScript for Tab Navigation -->
+    <script>
+        function openTab(evt, tabName) {
+            // Hide all content sections
+            var i, content, tablinks;
+            content = document.getElementsByClassName("content");
+            for (i = 0; i < content.length; i++) {
+                content[i].style.display = "none";
+            }
+
+            // Remove the active class from all buttons
+            tablinks = document.getElementsByClassName("tablink");
+            for (i = 0; i < tablinks.length; i++) {
+                tablinks[i].className = tablinks[i].className.replace(" active", "");
+            }
+
+            // Show the selected tab and add the active class to the clicked button
+            document.getElementById(tabName).style.display = "block";
+            evt.currentTarget.className += " active";
+        }
+
+        // Set the default tab to display
+        document.getElementById("swimming").style.display = "block";
+    </script>
+
+</body>
+</html>
