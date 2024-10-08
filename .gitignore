@@ -16,3 +16,4 @@ venv/
 *.fit*
 *.zip*
 *project_structure*
+*.gpx*
