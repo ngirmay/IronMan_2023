@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Ironman 2023 Project</title>
-    <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;700&display=swap" rel="stylesheet">
     <style>
         body, html {
             margin: 0;
@@ -16,7 +16,6 @@
             overflow-x: hidden;
         }
 
-        /* Smooth transitions */
         * {
             transition: all 0.3s ease;
         }
@@ -39,7 +38,6 @@
             font-size: 2.5em;
         }
 
-        /* Menu Button as Circle */
         .open-btn {
             font-size: 20px;
             cursor: pointer;
@@ -65,7 +63,7 @@
         }
 
         .sidebar {
-            height: 120%;
+            height: 100%;
             width: 250px;
             position: fixed;
             top: 0;
@@ -75,15 +73,19 @@
             transition: 0.5s;
             padding-top: 60px;
             font-family: 'Oswald', sans-serif;
+            z-index: 3;
         }
 
         .sidebar a {
-            padding: 10px 20px;
+            padding: 15px 20px;
             text-decoration: none;
-            font-size: 1.4em;
+            font-size: 1.8em;
             color: #F1FAEE;
             display: block;
             transition: 0.3s;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
         }
 
         .sidebar a:hover {
@@ -91,18 +93,19 @@
             padding-left: 25px;
         }
 
-        /* Move the close button lower */
         .sidebar a.close-btn {
             position: absolute;
-            bottom: 10px;
-            left: 20px;
+            top: 10px;
+            right: 10px;
+            font-size: 1.8em;
+            padding: 5px 10px;
         }
 
         .main-content {
             margin-left: 0;
             padding: 40px;
             transition: margin-left 0.5s ease;
-            min-height: calc(100vh - 80px); /* Ensure content fills the screen */
+            min-height: calc(100vh - 160px);
         }
 
         .content {
@@ -111,11 +114,13 @@
             transform: translateY(20px);
             padding: 40px 0;
             text-align: center;
+            display: none;
         }
 
         .content.active {
             opacity: 1;
             transform: translateY(0);
+            display: block;
         }
 
         .content h2 {
@@ -139,26 +144,12 @@
             color: #F1FAEE;
             text-align: center;
             padding: 20px;
-            position: absolute;
+            position: fixed;
             bottom: 0;
             width: 100%;
+            z-index: 2;
         }
 
-        /* Fixing the gap between red sidebar and blue footer */
-        #main {
-            margin-bottom: 0;
-        }
-
-        /* Small touch of animation */
-        .content iframe {
-            width: 100%;
-            height: 600px;
-            border: 3px solid #A8DADC;
-            border-radius: 10px;
-            margin-top: 20px;
-        }
-        
-        /* Dynamic Sidebar Slide */
         #mySidebar.show {
             left: 0;
         }
@@ -167,7 +158,6 @@
             margin-left: 250px;
         }
 
-        /* Add in a simple media query for mobile */
         @media screen and (max-width: 768px) {
             .sidebar {
                 width: 200px;
@@ -185,11 +175,10 @@
         <h1>Lake Placid Ironman 2023</h1>
     </header>
 
-    <!-- Menu Button -->
     <button class="open-btn" onclick="openNav()">&#9776;</button>
 
     <div id="mySidebar" class="sidebar">
-        <a href="javascript:void(0)" class="close-btn" onclick="closeNav()">&#10006; Close</a>
+        <a href="javascript:void(0)" class="close-btn" onclick="closeNav()">&#10006;</a>
         <a href="javascript:void(0)" onclick="openTab(event, 'intro')">Intro</a>
         <a href="javascript:void(0)" onclick="openTab(event, 'body_composition')">Body Composition</a>
         <a href="javascript:void(0)" onclick="openTab(event, 'swim')">Swim</a>
@@ -204,14 +193,16 @@
         <!-- Intro Section -->
         <div id="intro" class="content active">
             <h2>Introduction</h2>
-            <p>Welcome to my journey through the Lake Placid Ironman 2023. This project captures my insights and performance across different aspects like swim, bike, run, diet, sleep, and body composition.</p>
+            <div class="description-box">
+                <p>Welcome to my journey through the Lake Placid Ironman 2023. This project captures my insights and performance across different aspects like swim, bike, run, diet, sleep, and body composition.</p>
+            </div>
         </div>
 
         <!-- Body Composition Section -->
         <div id="body_composition" class="content">
             <h2>Body Composition Analysis</h2>
             <div class="description-box">
-                <p>Body composition details and visualizations will be updated here.</p>
+                <p>Tracking changes in body composition throughout the training process and its impact on performance.</p>
             </div>
         </div>
 
@@ -219,7 +210,7 @@
         <div id="swim" class="content">
             <h2>Swim Analysis</h2>
             <div class="description-box">
-                <p>Details and insights on swim performance will be updated here.</p>
+                <p>Detailed analysis of swim training, techniques, and performance improvements over time.</p>
             </div>
         </div>
 
@@ -227,7 +218,7 @@
         <div id="bike" class="content">
             <h2>Bike Analysis</h2>
             <div class="description-box">
-                <p>Details and insights on biking performance will be updated here.</p>
+                <p>Comprehensive look at cycling training, including distance, speed, and endurance metrics.</p>
             </div>
         </div>
 
@@ -235,7 +226,7 @@
         <div id="run" class="content">
             <h2>Run Analysis</h2>
             <div class="description-box">
-                <p>Details and insights on running performance will be updated here.</p>
+                <p>Exploration of running performance, including pace improvements and endurance building.</p>
             </div>
         </div>
 
@@ -243,7 +234,7 @@
         <div id="diet" class="content">
             <h2>Diet Analysis</h2>
             <div class="description-box">
-                <p>Details about diet and nutrition will be updated here.</p>
+                <p>Overview of nutritional strategies and their impact on training and race day performance.</p>
             </div>
         </div>
 
@@ -251,7 +242,7 @@
         <div id="sleep" class="content">
             <h2>Sleep Analysis</h2>
             <div class="description-box">
-                <p>Sleep data analysis and insights will be updated here.</p>
+                <p>Examination of sleep patterns and their correlation with training intensity and recovery.</p>
             </div>
         </div>
 
@@ -259,14 +250,14 @@
         <div id="final_thoughts" class="content">
             <h2>Final Thoughts</h2>
             <div class="description-box">
-                <p>Final reflections and learnings from this journey will be updated here.</p>
+                <p>Reflections on the entire Ironman journey, lessons learned, and future aspirations.</p>
             </div>
         </div>
-
-        <footer>
-            <p>&copy; 2024 Nobel Girmay - Ironman 2023</p>
-        </footer>
     </div>
+
+    <footer>
+        <p>&copy; 2024 Nobel Girmay - Ironman 2023</p>
+    </footer>
 
     <script>
         function openNav() {
