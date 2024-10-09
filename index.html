@@ -29,11 +29,20 @@
             letter-spacing: 2px;
             position: relative;
             z-index: 1;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
         }
 
         header h1 {
             margin: 0;
             font-size: 2.5em;
+        }
+
+        /* Style the logo */
+        .logo {
+            height: 70px; /* Adjust the height as necessary */
+            margin-right: 15px;
         }
 
         .sidebar {
@@ -168,8 +177,8 @@
 <body>
 
     <header>
+        <img src="Unfilled NG Logo (1) (1)(edit).png" alt="Nobel Girmay Logo" class="logo">
         <h1>Lake Placid Ironman 2023</h1>
-        <p>Retrospective Analysis</p>
     </header>
 
     <button class="open-btn" onclick="openNav()">&#9776;</button>
