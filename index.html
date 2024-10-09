@@ -172,7 +172,6 @@
             margin-left: 250px;
         }
 
-        /* New styles for enhanced visuals */
         .progress-bar {
             width: 0;
             height: 5px;
@@ -220,6 +219,34 @@
             display: inline-block;
         }
 
+        .icon-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-top: 40px;
+        }
+
+        .icon-box {
+            width: 100px;
+            height: 100px;
+            margin: 0 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: #A8DADC;
+            border-radius: 15px;
+            transition: transform 0.3s ease;
+        }
+
+        .icon-box:hover {
+            transform: scale(1.1);
+        }
+
+        .icon-box svg, .icon-box img {
+            width: 60px;
+            height: 60px;
+        }
+
         @media screen and (max-width: 768px) {
             .sidebar {
                 width: 200px;
@@ -230,6 +257,12 @@
             }
             .stat-box {
                 width: calc(50% - 20px);
+            }
+            .icon-container {
+                flex-direction: column;
+            }
+            .icon-box {
+                margin: 10px 0;
             }
         }
     </style>
@@ -262,6 +295,24 @@
             <div class="description-box">
                 <p>Welcome to my journey through the Lake Placid Ironman 2023. This project captures my insights and performance across different aspects like swim, bike, run, diet, sleep, and body composition.</p>
             </div>
+            <div class="icon-container">
+                <div class="icon-box">
+                    <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M12 22C17.5228 22 22 17.5228 22 12C22 6.47715 17.5228 2 12 2C6.47715 2 2 6.47715 2 12C2 17.5228 6.47715 22 12 22Z" stroke="#1D3557" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        <path d="M12 18C15.3137 18 18 15.3137 18 12C18 8.68629 15.3137 6 12 6C8.68629 6 6 8.68629 6 12C6 15.3137 8.68629 18 12 18Z" stroke="#1D3557" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        <path d="M12 14C13.1046 14 14 13.1046 14 12C14 10.8954 13.1046 10 12 10C10.8954 10 10 10.8954 10 12C10 13.1046 10.8954 14 12 14Z" stroke="#1D3557" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                </div>
+                <div class="icon-box">
+                    <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M19 16.9A5 5 0 0 0 18 7h-1.26a8 8 0 1 0-11.62 9" stroke="#1D3557" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        <path d="M13 11l2 2 4-4" stroke="#1D3557" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                </div>
+                <div class="icon-box">
+                    <img src="logo.png" alt="Ironman Logo">
+                </div>
+            </div>
             <div class="stat-container">
                 <div class="stat-box">
                     <h3>Total Training Days</h3>
@@ -278,26 +329,84 @@
             </div>
         </div>
 
-        <!-- Other sections (body_composition, swim, bike, run, diet, sleep, final_thoughts) -->
-        <!-- ... (Keep the structure similar to the intro section, adding relevant stat boxes) ... -->
+        <!-- Body Composition Section -->
+        <div id="body_composition" class="content">
+            <h2>Body Composition Analysis</h2>
+            <div class="description-box">
+                <p>Tracking changes in body composition throughout the training process and its impact on performance.</p>
+            </div>
+            <!-- Add specific body composition stats or charts here -->
+        </div>
 
+        <!-- Swim Section -->
+        <div id="swim" class="content">
+            <h2>Swim Analysis</h2>
+            <div class="description-box">
+                <p>Detailed analysis of swim training, techniques, and performance improvements over time.</p>
+            </div>
+            <!-- Add swim-specific stats or charts here -->
+        </div>
+
+        <!-- Bike Section -->
+        <div id="bike" class="content">
+            <h2>Bike Analysis</h2>
+            <div class="description-box">
+                <p>Comprehensive look at cycling training, including distance, speed, and endurance metrics.</p>
+            </div>
+            <!-- Add bike-specific stats or charts here -->
+        </div>
+
+        <!-- Run Section -->
+        <div id="run" class="content">
+            <h2>Run Analysis</h2>
+            <div class="description-box">
+                <p>Exploration of running performance, including pace improvements and endurance building.</p>
+            </div>
+            <!-- Add run-specific stats or charts here -->
+        </div>
+
+        <!-- Diet Section -->
+        <div id="diet" class="content">
+            <h2>Diet Analysis</h2>
+            <div class="description-box">
+                <p>Overview of nutritional strategies and their impact on training and race day performance.</p>
+            </div>
+            <!-- Add diet-specific stats or charts here -->
+        </div>
+
+        <!-- Sleep Section -->
+        <div id="sleep" class="content">
+            <h2>Sleep Analysis</h2>
+            <div class="description-box">
+                <p>Examination of sleep patterns and their correlation with training intensity and recovery.</p>
+            </div>
+            <!-- Add sleep-specific stats or charts here -->
+        </div>
+
+        <!-- Final Thoughts Section -->
+        <div id="final_thoughts" class="content">
+            <h2>Final Thoughts</h2>
+            <div class="description-box">
+                <p>Reflections on the entire Ironman journey, lessons learned, and future aspirations.</p>
+            </div>
+        </div>
     </div>
-
+    
     <footer>
         <p>&copy; 2024 Nobel Girmay - Ironman 2023</p>
     </footer>
-
+    
     <script>
         function openNav() {
             document.getElementById("mySidebar").classList.add("show");
             document.getElementById("main").classList.add("active");
         }
-
+    
         function closeNav() {
             document.getElementById("mySidebar").classList.remove("show");
             document.getElementById("main").classList.remove("active");
         }
-
+    
         function openTab(evt, tabName) {
             var i, content;
             content = document.getElementsByClassName("content");
@@ -308,7 +417,7 @@
             animateNumbers();
             closeNav();
         }
-
+    
         function animateNumbers() {
             const numbers = document.querySelectorAll('.animate-number');
             numbers.forEach(num => {
@@ -331,7 +440,7 @@
                 requestAnimationFrame(updateNumber);
             });
         }
-
+    
         // Progress bar animation
         window.onscroll = function() {
             var winScroll = document.body.scrollTop || document.documentElement.scrollTop;
@@ -339,14 +448,15 @@
             var scrolled = (winScroll / height) * 100;
             document.getElementById("progressBar").style.width = scrolled + "%";
         };
-
+    
         // Initial animation
         animateNumbers();
-
+    
         // GSAP animations
         gsap.from(".content h2", {duration: 1, opacity: 0, y: -50, ease: "power3.out"});
         gsap.from(".description-box", {duration: 1, opacity: 0, y: 50, ease: "power3.out", delay: 0.5});
         gsap.from(".stat-box", {duration: 1, opacity: 0, y: 30, ease: "power3.out", stagger: 0.2, delay: 1});
+        gsap.from(".icon-box", {duration: 1, opacity: 0, scale: 0.5, ease: "back.out(1.7)", stagger: 0.2, delay: 1.5});
     </script>
-</body>
-</html>
+    </body>
+    </html>
