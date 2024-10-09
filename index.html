@@ -11,6 +11,7 @@
             font-family: 'Arial', sans-serif;
             background-color: #F1FAEE;
             color: #1D3557;
+            height: 100%;
         }
 
         header {
@@ -26,31 +27,52 @@
             font-size: 2.5em;
         }
 
-        .tabs {
-            display: flex;
-            justify-content: center;
+        .sidebar {
+            height: 100%;
+            width: 250px;
+            position: fixed;
+            top: 0;
+            left: -250px;
             background-color: #E63946;
-            padding: 15px 0;
+            overflow-x: hidden;
+            transition: 0.5s;
+            padding-top: 60px;
         }
 
-        .tabs button {
-            background-color: #E63946;
+        .sidebar a {
+            padding: 10px 15px;
+            text-decoration: none;
+            font-size: 1.5em;
             color: #F1FAEE;
-            padding: 15px 30px;
-            cursor: pointer;
-            border: none;
-            outline: none;
-            transition: background-color 0.3s ease;
-            font-size: 1.2em;
-            text-transform: uppercase;
+            display: block;
+            transition: 0.3s;
         }
 
-        .tabs button:hover {
+        .sidebar a:hover {
             background-color: #457B9D;
         }
 
-        .tabs button.active {
-            background-color: #1D3557;
+        .open-btn {
+            font-size: 20px;
+            cursor: pointer;
+            background-color: #E63946;
+            color: #F1FAEE;
+            border: none;
+            padding: 15px;
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            transition: left 0.5s;
+            z-index: 100;
+        }
+
+        .open-btn:hover {
+            background-color: #457B9D;
+        }
+
+        #main {
+            transition: margin-left 0.5s;
+            padding: 20px;
         }
 
         .content {
@@ -102,104 +124,113 @@
         <p>Retrospective Analysis</p>
     </header>
 
-    <div class="tabs">
-        <button class="tablink active" onclick="openTab(event, 'intro')">Intro</button>
-        <button class="tablink" onclick="openTab(event, 'body_composition')">Body Composition</button>
-        <button class="tablink" onclick="openTab(event, 'swim')">Swim</button>
-        <button class="tablink" onclick="openTab(event, 'bike')">Bike</button>
-        <button class="tablink" onclick="openTab(event, 'run')">Run</button>
-        <button class="tablink" onclick="openTab(event, 'diet')">Diet</button>
-        <button class="tablink" onclick="openTab(event, 'sleep')">Sleep</button>
-        <button class="tablink" onclick="openTab(event, 'final_thoughts')">Final Thoughts</button>
+    <button class="open-btn" onclick="openNav()">&#9776; Menu</button>
+
+    <div id="mySidebar" class="sidebar">
+        <a href="javascript:void(0)" onclick="closeNav()">&#10006; Close</a>
+        <a href="javascript:void(0)" onclick="openTab(event, 'intro')">Intro</a>
+        <a href="javascript:void(0)" onclick="openTab(event, 'body_composition')">Body Composition</a>
+        <a href="javascript:void(0)" onclick="openTab(event, 'swim')">Swim</a>
+        <a href="javascript:void(0)" onclick="openTab(event, 'bike')">Bike</a>
+        <a href="javascript:void(0)" onclick="openTab(event, 'run')">Run</a>
+        <a href="javascript:void(0)" onclick="openTab(event, 'diet')">Diet</a>
+        <a href="javascript:void(0)" onclick="openTab(event, 'sleep')">Sleep</a>
+        <a href="javascript:void(0)" onclick="openTab(event, 'final_thoughts')">Final Thoughts</a>
     </div>
 
-    <!-- Intro Section -->
-    <div id="intro" class="content active">
-        <h2>Introduction</h2>
-        <p>Welcome to my journey through the Lake Placid Ironman 2023. This project captures my insights and performance across different aspects like swim, bike, run, diet, sleep, and body composition.</p>
-    </div>
-
-    <!-- Body Composition Section -->
-    <div id="body_composition" class="content">
-        <h2>Body Composition</h2>
-        <p>Analysis and visualizations on body composition data over the training period.</p>
-        <!-- Add content and visualizations here -->
-    </div>
-
-    <!-- Swim Section -->
-    <div id="swim" class="content">
-        <h2>Swim Analysis</h2>
-        <div class="description-box">
-            <h3>Visualization 1: Duration vs Stroke Count Over Time</h3>
-            <p>This chart provides a detailed breakdown of your swim stroke count over time, allowing you to analyze how your stroke technique evolves throughout the session. It's a great way to assess consistency and efficiency in swimming.</p>
-
-            <h3>Visualization 2: Calories Burned vs Distance Over Time</h3>
-            <p>This visualization highlights the relationship between calories burned and distance covered. It helps you track energy expenditure over your swims and see how distance and intensity contribute to your total calorie burn.</p>
+    <div id="main">
+        <!-- Intro Section -->
+        <div id="intro" class="content active">
+            <h2>Introduction</h2>
+            <p>Welcome to my journey through the Lake Placid Ironman 2023. This project captures my insights and performance across different aspects like swim, bike, run, diet, sleep, and body composition.</p>
         </div>
-        <iframe src="swim_visualizations_gh/duration_stroke_count_over_time.html"></iframe>
-        <iframe src="swim_visualizations_gh/calories_distance_over_time.html"></iframe>
-    </div>
 
-    <!-- Bike Section -->
-    <div id="bike" class="content">
-        <h2>Bike Analysis</h2>
-        <p>Visualizations and insights on biking performance.</p>
-        <!-- Add content and visualizations here -->
-    </div>
+        <!-- Body Composition Section -->
+        <div id="body_composition" class="content">
+            <h2>Body Composition</h2>
+            <p>Analysis and visualizations on body composition data over the training period.</p>
+            <!-- Add content and visualizations here -->
+        </div>
 
-    <!-- Run Section -->
-    <div id="run" class="content">
-        <h2>Run Analysis</h2>
-        <p>Visualizations and insights on running performance.</p>
-        <!-- Add content and visualizations here -->
-    </div>
+        <!-- Swim Section -->
+        <div id="swim" class="content">
+            <h2>Swim Analysis</h2>
+            <div class="description-box">
+                <h3>Visualization 1: Duration vs Stroke Count Over Time</h3>
+                <p>This chart provides a detailed breakdown of your swim stroke count over time, allowing you to analyze how your stroke technique evolves throughout the session. It's a great way to assess consistency and efficiency in swimming.</p>
 
-    <!-- Diet Section -->
-    <div id="diet" class="content">
-        <h2>Diet</h2>
-        <p>Tracking the dietary plan and nutrition strategy during training.</p>
-        <!-- Add content and visualizations here -->
-    </div>
+                <h3>Visualization 2: Calories Burned vs Distance Over Time</h3>
+                <p>This visualization highlights the relationship between calories burned and distance covered. It helps you track energy expenditure over your swims and see how distance and intensity contribute to your total calorie burn.</p>
+            </div>
+            <iframe src="swim_visualizations_gh/duration_stroke_count_over_time.html"></iframe>
+            <iframe src="swim_visualizations_gh/calories_distance_over_time.html"></iframe>
+        </div>
 
-    <!-- Sleep Section -->
-    <div id="sleep" class="content">
-        <h2>Sleep</h2>
-        <p>Sleep data analysis to measure rest and recovery during training.</p>
-        <!-- Add content and visualizations here -->
-    </div>
+        <!-- Bike Section -->
+        <div id="bike" class="content">
+            <h2>Bike Analysis</h2>
+            <p>Visualizations and insights on biking performance.</p>
+            <!-- Add content and visualizations here -->
+        </div>
 
-    <!-- Final Thoughts Section -->
-    <div id="final_thoughts" class="content">
-        <h2>Final Thoughts</h2>
-        <p>A summary of my reflections and learnings from this journey.</p>
-    </div>
+        <!-- Run Section -->
+        <div id="run" class="content">
+            <h2>Run Analysis</h2>
+            <p>Visualizations and insights on running performance.</p>
+            <!-- Add content and visualizations here -->
+        </div>
 
-    <footer>
-        <p>&copy; 2024 Nobel Girmay - Ironman 2023</p>
-    </footer>
+        <!-- Diet Section -->
+        <div id="diet" class="content">
+            <h2>Diet</h2>
+            <p>Tracking the dietary plan and nutrition strategy during training.</p>
+            <!-- Add content and visualizations here -->
+        </div>
+
+        <!-- Sleep Section -->
+        <div id="sleep" class="content">
+            <h2>Sleep</h2>
+            <p>Sleep data analysis to measure rest and recovery during training.</p>
+            <!-- Add content and visualizations here -->
+        </div>
+
+        <!-- Final Thoughts Section -->
+        <div id="final_thoughts" class="content">
+            <h2>Final Thoughts</h2>
+            <p>A summary of my reflections and learnings from this journey.</p>
+        </div>
+
+        <footer>
+            <p>&copy; 2024 Nobel Girmay - Ironman 2023</p>
+        </footer>
+    </div>
 
     <script>
+        function openNav() {
+            document.getElementById("mySidebar").style.left = "0";
+            document.querySelector(".open-btn").style.left = "260px";
+        }
+
+        function closeNav() {
+            document.getElementById("mySidebar").style.left = "-250px";
+            document.querySelector(".open-btn").style.left = "20px";
+        }
+
         function openTab(evt, tabName) {
-            var i, content, tablinks;
+            var i, content;
             content = document.getElementsByClassName("content");
             for (i = 0; i < content.length; i++) {
                 content[i].style.display = "none";
                 content[i].classList.remove("active");
             }
-            tablinks = document.getElementsByClassName("tablink");
-            for (i = 0; i < tablinks.length; i++) {
-                tablinks[i].className = tablinks[i].className.replace(" active", "");
-            }
-            // Add fade-in effect
             setTimeout(function() {
                 document.getElementById(tabName).classList.add("active");
                 document.getElementById(tabName).style.display = "block";
-            }, 100); // Small delay for smoother transition
+            }, 100);
 
-            evt.currentTarget.className += " active";
+            closeNav();
         }
 
-        // Display the first tab content (Intro) by default
         document.getElementById("intro").style.display = "block";
         document.getElementById("intro").classList.add("active");
     </script>
