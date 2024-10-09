@@ -45,6 +45,7 @@
             overflow-x: hidden;
             transition: 0.5s;
             padding-top: 60px;
+            font-family: 'Oswald', sans-serif; /* New sportier font */
         }
 
         .sidebar a {
@@ -61,13 +62,15 @@
             padding-left: 25px;
         }
 
+        /* Ironman-themed Menu Button */
         .open-btn {
-            font-size: 20px;
-            cursor: pointer;
+            background-image: url('https://upload.wikimedia.org/wikipedia/commons/5/5a/Ironman-logo.png'); /* Replace with relevant image */
             background-color: #E63946;
-            color: #F1FAEE;
             border: none;
-            padding: 15px;
+            background-size: cover;
+            background-position: center;
+            width: 50px;
+            height: 50px;
             position: fixed;
             top: 20px;
             left: 20px;
@@ -161,7 +164,7 @@
         <p>Retrospective Analysis</p>
     </header>
 
-    <button class="open-btn" onclick="openNav()">&#9776; Menu</button>
+    <button class="open-btn" onclick="openNav()"></button>
 
     <div id="mySidebar" class="sidebar">
         <a href="javascript:void(0)" onclick="closeNav()">&#10006; Close</a>
