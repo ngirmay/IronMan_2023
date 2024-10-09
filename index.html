@@ -91,6 +91,13 @@
             padding-left: 25px;
         }
 
+        /* Move the close button lower */
+        .sidebar a.close-btn {
+            position: absolute;
+            bottom: 30px;
+            left: 20px;
+        }
+
         .main-content {
             margin-left: 0;
             padding: 40px;
@@ -136,6 +143,11 @@
             width: 100%;
         }
 
+        /* Fixing the gap between red sidebar and blue footer */
+        #main {
+            margin-bottom: 0;
+        }
+
         /* Small touch of animation */
         .content iframe {
             width: 100%;
@@ -176,7 +188,7 @@
     <button class="open-btn" onclick="openNav()">&#9776;</button>
 
     <div id="mySidebar" class="sidebar">
-        <a href="javascript:void(0)" onclick="closeNav()">&#10006; Close</a>
+        <a href="javascript:void(0)" class="close-btn" onclick="closeNav()">&#10006; Close</a>
         <a href="javascript:void(0)" onclick="openTab(event, 'intro')">Intro</a>
         <a href="javascript:void(0)" onclick="openTab(event, 'body_composition')">Body Composition</a>
         <a href="javascript:void(0)" onclick="openTab(event, 'swim')">Swim</a>
