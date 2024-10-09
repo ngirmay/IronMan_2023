@@ -3,14 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Lake Placid Ironman 2023</title>
-    <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;700&family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.9.1/gsap.min.js"></script>
+    <title>Ironman 2023 Project</title>
+    <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;700&display=swap" rel="stylesheet">
     <style>
         body, html {
             margin: 0;
             padding: 0;
-            font-family: 'Roboto', sans-serif;
+            font-family: 'Arial', sans-serif;
             background-color: #F1FAEE;
             color: #1D3557;
             height: 100%;
@@ -18,7 +17,7 @@
         }
 
         * {
-            box-sizing: border-box;
+            transition: all 0.3s ease;
         }
 
         header {
@@ -26,13 +25,41 @@
             color: #F1FAEE;
             padding: 20px;
             text-align: center;
-            font-family: 'Oswald', sans-serif;
-            text-transform: uppercase;
+            letter-spacing: 2px;
+            position: relative;
+            z-index: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
         }
 
         header h1 {
             margin: 0;
             font-size: 2.5em;
+        }
+
+        .open-btn {
+            font-size: 20px;
+            cursor: pointer;
+            background-color: #E63946;
+            color: #F1FAEE;
+            border: none;
+            padding: 15px;
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            z-index: 2;
+            border-radius: 50%;
+            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+            width: 60px;
+            height: 60px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .open-btn:hover {
+            background-color: #457B9D;
         }
 
         .sidebar {
@@ -44,25 +71,9 @@
             background-color: #E63946;
             overflow-x: hidden;
             transition: 0.5s;
-            padding-top: 20px;
+            padding-top: 60px;
             font-family: 'Oswald', sans-serif;
             z-index: 3;
-        }
-
-        .sidebar .logo-container {
-            padding: 20px;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-        }
-
-        .sidebar .sidebar-logo {
-            width: 60px;
-            height: 60px;
-            border-radius: 50%;
-            background-color: #F1FAEE;
-            padding: 5px;
-            cursor: pointer;
         }
 
         .sidebar a {
@@ -74,16 +85,18 @@
             transition: 0.3s;
             font-weight: 700;
             text-transform: uppercase;
+            letter-spacing: 1px;
         }
 
         .sidebar a:hover {
-            background-color: #1D3557;
+            background-color: #457B9D;
+            padding-left: 25px;
         }
 
         .sidebar a.close-btn {
             position: absolute;
-            top: 20px;
-            right: 20px;
+            top: 10px;
+            right: 10px;
             font-size: 1.8em;
             padding: 5px 10px;
         }
@@ -91,21 +104,28 @@
         .main-content {
             margin-left: 0;
             padding: 40px;
-            transition: margin-left 0.5s;
+            transition: margin-left 0.5s ease;
+            min-height: calc(100vh - 160px);
         }
 
         .content {
-            max-width: 800px;
-            margin: 0 auto;
+            opacity: 0;
+            transition: opacity 0.5s ease, transform 0.5s ease;
+            transform: translateY(20px);
+            padding: 40px 0;
+            text-align: center;
+            display: none;
+        }
+
+        .content.active {
+            opacity: 1;
+            transform: translateY(0);
+            display: block;
         }
 
         .content h2 {
             font-size: 2.5em;
             margin-bottom: 20px;
-            font-family: 'Oswald', sans-serif;
-            text-transform: uppercase;
-            color: #1D3557;
-            text-align: center;
         }
 
         .description-box {
@@ -116,57 +136,7 @@
             margin: 40px 0;
             font-size: 1.2em;
             line-height: 1.6;
-            text-align: center;
-        }
-
-        .icon-container {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            margin-top: 40px;
-        }
-
-        .icon-box {
-            width: 80px;
-            height: 80px;
-            margin: 0 20px;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            background-color: #A8DADC;
-            border-radius: 10px;
-        }
-
-        .icon-box svg {
-            width: 40px;
-            height: 40px;
-            fill: #1D3557;
-        }
-
-        .stat-container {
-            display: flex;
-            justify-content: space-around;
-            margin-top: 40px;
-        }
-
-        .stat-box {
-            background-color: #457B9D;
-            color: #F1FAEE;
-            padding: 20px;
-            border-radius: 10px;
-            width: 200px;
-            text-align: center;
-        }
-
-        .stat-box h3 {
-            font-size: 1.2em;
-            margin-bottom: 10px;
-        }
-
-        .stat-box p {
-            font-size: 2em;
-            font-weight: bold;
-            margin: 0;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
         }
 
         footer {
@@ -177,6 +147,7 @@
             position: fixed;
             bottom: 0;
             width: 100%;
+            z-index: 2;
         }
 
         #mySidebar.show {
@@ -189,29 +160,25 @@
 
         @media screen and (max-width: 768px) {
             .sidebar {
-                width: 100%;
-                left: -100%;
+                width: 200px;
+                left: -200px;
             }
-            .stat-container {
-                flex-direction: column;
-                align-items: center;
-            }
-            .stat-box {
-                margin-bottom: 20px;
+            .open-btn {
+                left: 10px;
             }
         }
     </style>
 </head>
 <body>
+
     <header>
         <h1>Lake Placid Ironman 2023</h1>
     </header>
 
+    <button class="open-btn" onclick="openNav()">&#9776;</button>
+
     <div id="mySidebar" class="sidebar">
-        <div class="logo-container">
-            <img src="logo.png" alt="Ironman Logo" class="sidebar-logo" onclick="toggleNav()">
-        </div>
-        <a href="javascript:void(0)" class="close-btn" onclick="toggleNav()">&#10006;</a>
+        <a href="javascript:void(0)" class="close-btn" onclick="closeNav()">&#10006;</a>
         <a href="javascript:void(0)" onclick="openTab(event, 'intro')">Intro</a>
         <a href="javascript:void(0)" onclick="openTab(event, 'body_composition')">Body Composition</a>
         <a href="javascript:void(0)" onclick="openTab(event, 'swim')">Swim</a>
@@ -223,39 +190,67 @@
     </div>
 
     <div id="main" class="main-content">
-        <div id="intro" class="content">
+        <!-- Intro Section -->
+        <div id="intro" class="content active">
             <h2>Introduction</h2>
             <div class="description-box">
                 <p>Welcome to my journey through the Lake Placid Ironman 2023. This project captures my insights and performance across different aspects like swim, bike, run, diet, sleep, and body composition.</p>
             </div>
-            <div class="icon-container">
-                <div class="icon-box">
-                    <svg viewBox="0 0 24 24">
-                        <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8zm-5-9h10v2H7z"/>
-                    </svg>
-                </div>
-                <div class="icon-box">
-                    <svg viewBox="0 0 24 24">
-                        <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8zm4.59-12.42L10 14.17l-2.59-2.58L6 13l4 4 8-8z"/>
-                    </svg>
-                </div>
-                <div class="icon-box">
-                    <img src="logo.png" alt="Ironman Logo" style="width: 40px; height: 40px;">
-                </div>
+        </div>
+
+        <!-- Body Composition Section -->
+        <div id="body_composition" class="content">
+            <h2>Body Composition Analysis</h2>
+            <div class="description-box">
+                <p>Tracking changes in body composition throughout the training process and its impact on performance.</p>
             </div>
-            <div class="stat-container">
-                <div class="stat-box">
-                    <h3>Total Training Days</h3>
-                    <p>180</p>
-                </div>
-                <div class="stat-box">
-                    <h3>Hours Trained</h3>
-                    <p>720</p>
-                </div>
-                <div class="stat-box">
-                    <h3>Calories Burned</h3>
-                    <p>540,000</p>
-                </div>
+        </div>
+
+        <!-- Swim Section -->
+        <div id="swim" class="content">
+            <h2>Swim Analysis</h2>
+            <div class="description-box">
+                <p>Detailed analysis of swim training, techniques, and performance improvements over time.</p>
+            </div>
+        </div>
+
+        <!-- Bike Section -->
+        <div id="bike" class="content">
+            <h2>Bike Analysis</h2>
+            <div class="description-box">
+                <p>Comprehensive look at cycling training, including distance, speed, and endurance metrics.</p>
+            </div>
+        </div>
+
+        <!-- Run Section -->
+        <div id="run" class="content">
+            <h2>Run Analysis</h2>
+            <div class="description-box">
+                <p>Exploration of running performance, including pace improvements and endurance building.</p>
+            </div>
+        </div>
+
+        <!-- Diet Section -->
+        <div id="diet" class="content">
+            <h2>Diet Analysis</h2>
+            <div class="description-box">
+                <p>Overview of nutritional strategies and their impact on training and race day performance.</p>
+            </div>
+        </div>
+
+        <!-- Sleep Section -->
+        <div id="sleep" class="content">
+            <h2>Sleep Analysis</h2>
+            <div class="description-box">
+                <p>Examination of sleep patterns and their correlation with training intensity and recovery.</p>
+            </div>
+        </div>
+
+        <!-- Final Thoughts Section -->
+        <div id="final_thoughts" class="content">
+            <h2>Final Thoughts</h2>
+            <div class="description-box">
+                <p>Reflections on the entire Ironman journey, lessons learned, and future aspirations.</p>
             </div>
         </div>
     </div>
@@ -265,23 +260,27 @@
     </footer>
 
     <script>
-        function toggleNav() {
-            document.getElementById("mySidebar").classList.toggle("show");
-            document.getElementById("main").classList.toggle("active");
+        function openNav() {
+            document.getElementById("mySidebar").classList.add("show");
+            document.getElementById("main").classList.add("active");
+        }
+
+        function closeNav() {
+            document.getElementById("mySidebar").classList.remove("show");
+            document.getElementById("main").classList.remove("active");
         }
 
         function openTab(evt, tabName) {
             var i, content;
             content = document.getElementsByClassName("content");
             for (i = 0; i < content.length; i++) {
-                content[i].style.display = "none";
+                content[i].classList.remove("active");
             }
-            document.getElementById(tabName).style.display = "block";
-            toggleNav();
-        }
+            document.getElementById(tabName).classList.add("active");
 
-        // Initialize
-        document.getElementById("intro").style.display = "block";
+            closeNav();
+        }
     </script>
+
 </body>
 </html>
