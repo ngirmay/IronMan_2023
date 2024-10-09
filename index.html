@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Ironman 2023 Project</title>
+    <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500&display=swap" rel="stylesheet">
     <style>
         body, html {
             margin: 0;
@@ -45,7 +46,7 @@
             overflow-x: hidden;
             transition: 0.5s;
             padding-top: 60px;
-            font-family: 'Oswald', sans-serif; /* New sportier font */
+            font-family: 'Oswald', sans-serif;
         }
 
         .sidebar a {
@@ -62,20 +63,27 @@
             padding-left: 25px;
         }
 
-        /* Ironman-themed Menu Button */
+        /* Updated Menu Button */
         .open-btn {
-            background-image: url('https://upload.wikimedia.org/wikipedia/commons/5/5a/Ironman-logo.png'); /* Replace with relevant image */
+            font-size: 20px;
+            cursor: pointer;
             background-color: #E63946;
+            color: #F1FAEE;
             border: none;
-            background-size: cover;
-            background-position: center;
-            width: 50px;
-            height: 50px;
+            padding: 15px;
             position: fixed;
             top: 20px;
             left: 20px;
             z-index: 2;
             border-radius: 50%;
+            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+            font-family: 'Oswald', sans-serif;
+            width: 60px;
+            height: 60px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-transform: uppercase;
         }
 
         .open-btn:hover {
@@ -164,7 +172,7 @@
         <p>Retrospective Analysis</p>
     </header>
 
-    <button class="open-btn" onclick="openNav()"></button>
+    <button class="open-btn" onclick="openNav()">&#9776;</button>
 
     <div id="mySidebar" class="sidebar">
         <a href="javascript:void(0)" onclick="closeNav()">&#10006; Close</a>
@@ -193,21 +201,7 @@
             </div>
         </div>
 
-        <!-- Swim Section -->
-        <div id="swim" class="content">
-            <h2>Swim Analysis</h2>
-            <div class="description-box">
-                <h3>Visualization 1: Duration vs Stroke Count Over Time</h3>
-                <p>This chart provides a detailed breakdown of your swim stroke count over time, allowing you to analyze how your stroke technique evolves throughout the session. It's a great way to assess consistency and efficiency in swimming.</p>
-
-                <h3>Visualization 2: Calories Burned vs Distance Over Time</h3>
-                <p>This visualization highlights the relationship between calories burned and distance covered. It helps you track energy expenditure over your swims and see how distance and intensity contribute to your total calorie burn.</p>
-            </div>
-            <iframe src="swim_visualizations_gh/duration_stroke_count_over_time.html"></iframe>
-            <iframe src="swim_visualizations_gh/calories_distance_over_time.html"></iframe>
-        </div>
-
-        <!-- Other sections (bike, run, etc.) follow similar format -->
+        <!-- Other sections (Swim, Bike, Run, etc.) -->
         
         <footer>
             <p>&copy; 2024 Nobel Girmay - Ironman 2023</p>
