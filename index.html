@@ -31,7 +31,7 @@
             z-index: 1;
             display: flex;
             align-items: center;
-            justify-content: space-between;
+            justify-content: center;
         }
 
         header h1 {
@@ -42,7 +42,10 @@
         /* Style the logo */
         .logo {
             height: 70px; /* Adjust the height as necessary */
-            margin-right: 15px;
+            cursor: pointer;
+            position: fixed;
+            top: 10px;
+            left: 10px;
         }
 
         .sidebar {
@@ -70,33 +73,6 @@
         .sidebar a:hover {
             background-color: #457B9D;
             padding-left: 25px;
-        }
-
-        /* Updated Menu Button */
-        .open-btn {
-            font-size: 20px;
-            cursor: pointer;
-            background-color: #E63946;
-            color: #F1FAEE;
-            border: none;
-            padding: 15px;
-            position: fixed;
-            top: 20px;
-            left: 20px;
-            z-index: 2;
-            border-radius: 50%;
-            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
-            font-family: 'Oswald', sans-serif;
-            width: 60px;
-            height: 60px;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            text-transform: uppercase;
-        }
-
-        .open-btn:hover {
-            background-color: #457B9D;
         }
 
         .main-content {
@@ -177,11 +153,11 @@
 <body>
 
     <header>
-        <img src="Unfilled NG Logo (1) (1)(edit).png" alt="Nobel Girmay Logo" class="logo">
         <h1>Lake Placid Ironman 2023</h1>
     </header>
 
-    <button class="open-btn" onclick="openNav()">&#9776;</button>
+    <!-- Replacing the button with the logo -->
+    <img src="Nobel_logo.png" alt="Nobel Girmay Logo" class="logo" onclick="openNav()">
 
     <div id="mySidebar" class="sidebar">
         <a href="javascript:void(0)" onclick="closeNav()">&#10006; Close</a>
