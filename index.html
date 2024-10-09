@@ -39,14 +39,29 @@
             font-size: 2.5em;
         }
 
-        /* Style the logo */
-        .logo {
-            height: 70px; /* Adjust the height as necessary */
+        /* Menu Button as Circle */
+        .open-btn {
+            font-size: 20px;
             cursor: pointer;
+            background-color: #E63946;
+            color: #F1FAEE;
+            border: none;
+            padding: 15px;
             position: fixed;
-            top: 10px;
-            left: 10px;
-            border: 2px solid red; /* Debugging border */
+            top: 20px;
+            left: 20px;
+            z-index: 2;
+            border-radius: 50%;
+            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+            width: 60px;
+            height: 60px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .open-btn:hover {
+            background-color: #457B9D;
         }
 
         .sidebar {
@@ -157,8 +172,8 @@
         <h1>Lake Placid Ironman 2023</h1>
     </header>
 
-    <!-- Replacing the button with the logo -->
-    <img src="logo.png" alt="Nobel Girmay Logo" class="logo" onclick="openNav()">
+    <!-- Menu Button -->
+    <button class="open-btn" onclick="openNav()">&#9776;</button>
 
     <div id="mySidebar" class="sidebar">
         <a href="javascript:void(0)" onclick="closeNav()">&#10006; Close</a>
@@ -181,14 +196,60 @@
 
         <!-- Body Composition Section -->
         <div id="body_composition" class="content">
-            <h2>Body Composition</h2>
+            <h2>Body Composition Analysis</h2>
             <div class="description-box">
-                <p>Analysis and visualizations on body composition data over the training period.</p>
+                <p>Body composition details and visualizations will be updated here.</p>
             </div>
         </div>
 
-        <!-- Other sections (Swim, Bike, Run, etc.) -->
-        
+        <!-- Swim Section -->
+        <div id="swim" class="content">
+            <h2>Swim Analysis</h2>
+            <div class="description-box">
+                <p>Details and insights on swim performance will be updated here.</p>
+            </div>
+        </div>
+
+        <!-- Bike Section -->
+        <div id="bike" class="content">
+            <h2>Bike Analysis</h2>
+            <div class="description-box">
+                <p>Details and insights on biking performance will be updated here.</p>
+            </div>
+        </div>
+
+        <!-- Run Section -->
+        <div id="run" class="content">
+            <h2>Run Analysis</h2>
+            <div class="description-box">
+                <p>Details and insights on running performance will be updated here.</p>
+            </div>
+        </div>
+
+        <!-- Diet Section -->
+        <div id="diet" class="content">
+            <h2>Diet Analysis</h2>
+            <div class="description-box">
+                <p>Details about diet and nutrition will be updated here.</p>
+            </div>
+        </div>
+
+        <!-- Sleep Section -->
+        <div id="sleep" class="content">
+            <h2>Sleep Analysis</h2>
+            <div class="description-box">
+                <p>Sleep data analysis and insights will be updated here.</p>
+            </div>
+        </div>
+
+        <!-- Final Thoughts Section -->
+        <div id="final_thoughts" class="content">
+            <h2>Final Thoughts</h2>
+            <div class="description-box">
+                <p>Final reflections and learnings from this journey will be updated here.</p>
+            </div>
+        </div>
+
         <footer>
             <p>&copy; 2024 Nobel Girmay - Ironman 2023</p>
         </footer>
