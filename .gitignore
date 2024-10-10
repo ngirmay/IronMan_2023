@@ -17,3 +17,6 @@ venv/
 *.zip*
 *project_structure*
 *.gpx*
+*selfdecode*
+*questionnaire*
+
