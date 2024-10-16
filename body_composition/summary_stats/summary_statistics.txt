@@ -1,0 +1,41 @@
+### VO2 Max Summary Statistics ###
+Mean VO2 Max: 53.53 mL/min·kg
+Median VO2 Max: 54.45 mL/min·kg
+Standard Deviation: 2.19
+Lowest VO2 Max: 48.88 mL/min·kg
+Highest VO2 Max: 56.81 mL/min·kg
+Trend Line Slope (Rate of Improvement): -0.00253 VO2 Max/day
+
+### Height and Weight Summary Statistics ###
+
+Height Summary Statistics:
+count    267.000000
+mean       1.808502
+std        0.063471
+min        1.660000
+25%        1.760000
+50%        1.810000
+75%        1.850000
+max        1.980000
+Name: Final_Height, dtype: float64
+
+Weight Summary Statistics:
+count    239.000000
+mean      70.108787
+std        5.485340
+min       56.000000
+25%       66.000000
+50%       70.000000
+75%       74.000000
+max       82.000000
+Name: Final_Weight, dtype: float64
+
+### Heart Rate Variability (HRV) Summary ###
+SDNN: 38.37 ms
+RMSSD: 51.83 ms
+pNN50: 29.52 %
+
+### Frequency-Domain Analysis (LF/HF Ratio) ###
+Low Frequency (LF): 317.05
+High Frequency (HF): 5142.41
+LF/HF Ratio: 0.06
