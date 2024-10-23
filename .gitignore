@@ -21,4 +21,6 @@ venv/
 *questionnaire*
 *.png*
 *.html*
-
+*.txt*
+*.pdf*
+*.svg*
