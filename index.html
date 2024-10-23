@@ -246,12 +246,12 @@
     <div id="mySidebar" class="sidebar">
         <a href="javascript:void(0)" class="close-btn" onclick="closeNav()">&#10006;</a>
         <a href="javascript:void(0)" onclick="openTab(event, 'intro')">Intro</a>
+        <a href="javascript:void(0)" onclick="openTab(event, 'genetic_analysis')">Genetic Analysis</a>
         <a href="javascript:void(0)" onclick="openTab(event, 'body_composition')">Body Composition</a>
         <a href="javascript:void(0)" onclick="openTab(event, 'swim')">Swim</a>
         <a href="javascript:void(0)" onclick="openTab(event, 'bike')">Bike</a>
         <a href="javascript:void(0)" onclick="openTab(event, 'run')">Run</a>
-        <a href="javascript:void(0)" onclick="openTab(event, 'diet')">Diet</a>
-        <a href="javascript:void(0)" onclick="openTab(event, 'sleep')">Sleep</a>
+        <a href="javascript:void(0)" onclick="openTab(event, 'diet_sleep')">Diet & Sleep</a>
         <a href="javascript:void(0)" onclick="openTab(event, 'final_thoughts')">Final Thoughts</a>
     </div>
 
@@ -278,8 +278,86 @@
             </div>
         </div>
 
-        <!-- Other sections (body_composition, swim, bike, run, diet, sleep, final_thoughts) -->
-        <!-- ... (Keep the structure similar to the intro section, adding relevant stat boxes) ... -->
+        <!-- Genetic Analysis Section -->
+        <div id="genetic_analysis" class="content">
+            <h2>Genetic Analysis</h2>
+            <div class="description-box">
+                <p>This section delves into my genetic makeup and how it influences my athletic performance, endurance, recovery, and injury risk.</p>
+            </div>
+            <!-- Add genetic analysis visualizations and stats here -->
+        </div>
+
+        <!-- Body Composition Section -->
+        <div id="body_composition" class="content">
+            <h2>Body Composition</h2>
+            <div class="description-box">
+                <p>This section explores how my body composition evolved throughout my Ironman training, with a focus on metrics like BMI, body fat percentage, and lean mass.</p>
+            </div>
+            <div class="stat-container">
+                <div class="stat-box">
+                    <h3>BMI</h3>
+                    <p><span class="animate-number" data-value="22.5">0</span></p>
+                </div>
+                <div class="stat-box">
+                    <h3>Body Fat %</h3>
+                    <p><span class="animate-number" data-value="12">0</span></p>
+                </div>
+                <div class="stat-box">
+                    <h3>Lean Mass (kg)</h3>
+                    <p><span class="animate-number" data-value="65">0</span></p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Swim Section -->
+        <div id="swim" class="content">
+            <h2>Swim</h2>
+            <div class="description-box">
+                <p>An analysis of my swim performance during the Ironman training, focusing on improvements in pace, distance, and technique.</p>
+            </div>
+        </div>
+
+        <!-- Bike Section -->
+        <div id="bike" class="content">
+            <h2>Bike</h2>
+            <div class="description-box">
+                <p>A deep dive into my biking sessions, covering distance, power, and cadence trends throughout training.</p>
+            </div>
+        </div>
+
+        <!-- Run Section -->
+        <div id="run" class="content">
+            <h2>Run</h2>
+            <div class="description-box">
+                <p>This section focuses on my running performance, showcasing my progress in speed, endurance, and pacing strategies.</p>
+            </div>
+        </div>
+
+        <!-- Diet & Sleep Section -->
+        <div id="diet_sleep" class="content">
+            <h2>Diet & Sleep</h2>
+            <div class="description-box">
+                <p>This section covers the impact of my diet and sleep on my overall training performance and recovery.</p>
+            </div>
+            <div class="stat-container">
+                <div class="stat-box">
+                    <h3>Calories Consumed</h3>
+                    <p><span class="animate-number" data-value="4000">0</span></p>
+                </div>
+                <div class="stat-box">
+                    <h3>Average Sleep (hours)</h3>
+                    <p><span class="animate-number" data-value="7.5">0</span></p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Final Thoughts Section -->
+        <div id="final_thoughts" class="content">
+            <h2>Final Thoughts</h2>
+            <div class="description-box">
+                <p>A reflection on the entire training journey, lessons learned, and how this experience has shaped my approach to endurance events.</p>
+            </div>
+        </div>
 
     </div>
 

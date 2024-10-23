@@ -17,3 +17,8 @@ venv/
 *.zip*
 *project_structure*
 *.gpx*
+*.txt*
+*.html*
+*.png*
+*.pdf*
+*.svg*
