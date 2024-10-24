@@ -3,236 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ironman 2023 Project</title>
+    <title>Ironman 2023 Project - Introduction</title>
     <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;700&family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css"> <!-- Link to shared CSS file -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.9.1/gsap.min.js"></script>
-    <style>
-        body, html {
-            margin: 0;
-            padding: 0;
-            font-family: 'Roboto', sans-serif;
-            background-color: #F1FAEE;
-            color: #1D3557;
-            height: 100%;
-            overflow-x: hidden;
-        }
-
-        * {
-            transition: all 0.3s ease;
-            box-sizing: border-box;
-        }
-
-        header {
-            background-color: #1D3557;
-            color: #F1FAEE;
-            padding: 20px;
-            text-align: center;
-            letter-spacing: 2px;
-            position: relative;
-            z-index: 1;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-
-        header h1 {
-            margin: 0;
-            font-size: 2.5em;
-            font-family: 'Oswald', sans-serif;
-            text-transform: uppercase;
-        }
-
-        .open-btn {
-            font-size: 20px;
-            cursor: pointer;
-            background-color: #E63946;
-            color: #F1FAEE;
-            border: none;
-            padding: 15px;
-            position: fixed;
-            top: 20px;
-            left: 20px;
-            z-index: 4;
-            border-radius: 50%;
-            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
-            width: 60px;
-            height: 60px;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            transition: transform 0.3s ease;
-        }
-
-        .open-btn:hover {
-            background-color: #457B9D;
-            transform: scale(1.1);
-        }
-
-        .sidebar {
-            height: 100%;
-            width: 250px;
-            position: fixed;
-            top: 0;
-            left: -250px;
-            background-color: #E63946;
-            overflow-x: hidden;
-            transition: 0.5s;
-            padding-top: 60px;
-            font-family: 'Oswald', sans-serif;
-            z-index: 3;
-        }
-
-        .sidebar a {
-            padding: 15px 20px;
-            text-decoration: none;
-            font-size: 1.8em;
-            color: #F1FAEE;
-            display: block;
-            transition: 0.3s;
-            font-weight: 700;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-        }
-
-        .sidebar a:hover {
-            background-color: #457B9D;
-            padding-left: 25px;
-        }
-
-        .sidebar a.close-btn {
-            position: absolute;
-            top: 10px;
-            right: 10px;
-            font-size: 1.8em;
-            padding: 5px 10px;
-        }
-
-        .main-content {
-            margin-left: 0;
-            padding: 40px;
-            transition: margin-left 0.5s ease;
-            min-height: calc(100vh - 160px);
-        }
-
-        .content {
-            opacity: 0;
-            transition: opacity 0.5s ease, transform 0.5s ease;
-            transform: translateY(20px);
-            padding: 40px 0;
-            text-align: center;
-            display: none;
-        }
-
-        .content.active {
-            opacity: 1;
-            transform: translateY(0);
-            display: block;
-        }
-
-        .content h2 {
-            font-size: 2.5em;
-            margin-bottom: 20px;
-            font-family: 'Oswald', sans-serif;
-            text-transform: uppercase;
-            color: #1D3557;
-        }
-
-        .description-box {
-            background-color: #A8DADC;
-            color: #1D3557;
-            padding: 20px;
-            border-radius: 10px;
-            margin: 40px 0;
-            font-size: 1.2em;
-            line-height: 1.6;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-            transition: transform 0.3s ease;
-        }
-
-        .description-box:hover {
-            transform: scale(1.02);
-        }
-
-        footer {
-            background-color: #1D3557;
-            color: #F1FAEE;
-            text-align: center;
-            padding: 20px;
-            position: fixed;
-            bottom: 0;
-            width: 100%;
-            z-index: 2;
-        }
-
-        #mySidebar.show {
-            left: 0;
-        }
-        
-        #main.active {
-            margin-left: 250px;
-        }
-
-        /* New styles for enhanced visuals */
-        .progress-bar {
-            width: 0;
-            height: 5px;
-            background-color: #E63946;
-            position: fixed;
-            top: 0;
-            left: 0;
-            z-index: 5;
-        }
-
-        .stat-container {
-            display: flex;
-            justify-content: space-around;
-            flex-wrap: wrap;
-            margin-top: 40px;
-        }
-
-        .stat-box {
-            background-color: #457B9D;
-            color: #F1FAEE;
-            padding: 20px;
-            border-radius: 10px;
-            margin: 10px;
-            width: 200px;
-            text-align: center;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-            transition: transform 0.3s ease;
-        }
-
-        .stat-box:hover {
-            transform: translateY(-5px);
-        }
-
-        .stat-box h3 {
-            font-size: 1.2em;
-            margin-bottom: 10px;
-        }
-
-        .stat-box p {
-            font-size: 2em;
-            font-weight: bold;
-        }
-
-        .animate-number {
-            display: inline-block;
-        }
-
-        @media screen and (max-width: 768px) {
-            .sidebar {
-                width: 200px;
-                left: -200px;
-            }
-            .open-btn {
-                left: 10px;
-            }
-            .stat-box {
-                width: calc(50% - 20px);
-            }
-        }
-    </style>
 </head>
 <body>
     <div class="progress-bar" id="progressBar"></div>
@@ -245,14 +19,14 @@
 
     <div id="mySidebar" class="sidebar">
         <a href="javascript:void(0)" class="close-btn" onclick="closeNav()">&#10006;</a>
-        <a href="javascript:void(0)" onclick="openTab(event, 'intro')">Intro</a>
-        <a href="javascript:void(0)" onclick="openTab(event, 'genetic_analysis')">Genetic Analysis</a>
-        <a href="javascript:void(0)" onclick="openTab(event, 'body_composition')">Body Composition</a>
-        <a href="javascript:void(0)" onclick="openTab(event, 'swim')">Swim</a>
-        <a href="javascript:void(0)" onclick="openTab(event, 'bike')">Bike</a>
-        <a href="javascript:void(0)" onclick="openTab(event, 'run')">Run</a>
-        <a href="javascript:void(0)" onclick="openTab(event, 'diet_sleep')">Diet & Sleep</a>
-        <a href="javascript:void(0)" onclick="openTab(event, 'final_thoughts')">Final Thoughts</a>
+        <a href="index.html">Intro</a>
+        <a href="genetic_analysis.html">Genetic Analysis</a>
+        <a href="body_composition.html">Body Composition</a>
+        <a href="swim.html">Swim</a>
+        <a href="bike.html">Bike</a>
+        <a href="run.html">Run</a>
+        <a href="diet_sleep.html">Diet & Sleep</a>
+        <a href="final_thoughts.html">Final Thoughts</a>
     </div>
 
     <div id="main" class="main-content">
@@ -277,88 +51,6 @@
                 </div>
             </div>
         </div>
-
-        <!-- Genetic Analysis Section -->
-        <div id="genetic_analysis" class="content">
-            <h2>Genetic Analysis</h2>
-            <div class="description-box">
-                <p>This section delves into my genetic makeup and how it influences my athletic performance, endurance, recovery, and injury risk.</p>
-            </div>
-            <!-- Add genetic analysis visualizations and stats here -->
-        </div>
-
-        <!-- Body Composition Section -->
-        <div id="body_composition" class="content">
-            <h2>Body Composition</h2>
-            <div class="description-box">
-                <p>This section explores how my body composition evolved throughout my Ironman training, with a focus on metrics like BMI, body fat percentage, and lean mass.</p>
-            </div>
-            <div class="stat-container">
-                <div class="stat-box">
-                    <h3>BMI</h3>
-                    <p><span class="animate-number" data-value="22.5">0</span></p>
-                </div>
-                <div class="stat-box">
-                    <h3>Body Fat %</h3>
-                    <p><span class="animate-number" data-value="12">0</span></p>
-                </div>
-                <div class="stat-box">
-                    <h3>Lean Mass (kg)</h3>
-                    <p><span class="animate-number" data-value="65">0</span></p>
-                </div>
-            </div>
-        </div>
-
-        <!-- Swim Section -->
-        <div id="swim" class="content">
-            <h2>Swim</h2>
-            <div class="description-box">
-                <p>An analysis of my swim performance during the Ironman training, focusing on improvements in pace, distance, and technique.</p>
-            </div>
-        </div>
-
-        <!-- Bike Section -->
-        <div id="bike" class="content">
-            <h2>Bike</h2>
-            <div class="description-box">
-                <p>A deep dive into my biking sessions, covering distance, power, and cadence trends throughout training.</p>
-            </div>
-        </div>
-
-        <!-- Run Section -->
-        <div id="run" class="content">
-            <h2>Run</h2>
-            <div class="description-box">
-                <p>This section focuses on my running performance, showcasing my progress in speed, endurance, and pacing strategies.</p>
-            </div>
-        </div>
-
-        <!-- Diet & Sleep Section -->
-        <div id="diet_sleep" class="content">
-            <h2>Diet & Sleep</h2>
-            <div class="description-box">
-                <p>This section covers the impact of my diet and sleep on my overall training performance and recovery.</p>
-            </div>
-            <div class="stat-container">
-                <div class="stat-box">
-                    <h3>Calories Consumed</h3>
-                    <p><span class="animate-number" data-value="4000">0</span></p>
-                </div>
-                <div class="stat-box">
-                    <h3>Average Sleep (hours)</h3>
-                    <p><span class="animate-number" data-value="7.5">0</span></p>
-                </div>
-            </div>
-        </div>
-
-        <!-- Final Thoughts Section -->
-        <div id="final_thoughts" class="content">
-            <h2>Final Thoughts</h2>
-            <div class="description-box">
-                <p>A reflection on the entire training journey, lessons learned, and how this experience has shaped my approach to endurance events.</p>
-            </div>
-        </div>
-
     </div>
 
     <footer>
@@ -376,40 +68,6 @@
             document.getElementById("main").classList.remove("active");
         }
 
-        function openTab(evt, tabName) {
-            var i, content;
-            content = document.getElementsByClassName("content");
-            for (i = 0; i < content.length; i++) {
-                content[i].classList.remove("active");
-            }
-            document.getElementById(tabName).classList.add("active");
-            animateNumbers();
-            closeNav();
-        }
-
-        function animateNumbers() {
-            const numbers = document.querySelectorAll('.animate-number');
-            numbers.forEach(num => {
-                const finalValue = parseInt(num.getAttribute('data-value'));
-                const duration = 2000; // 2 seconds
-                const startTime = performance.now();
-                
-                function updateNumber(currentTime) {
-                    const elapsedTime = currentTime - startTime;
-                    if (elapsedTime < duration) {
-                        const progress = elapsedTime / duration;
-                        const currentValue = Math.round(finalValue * progress);
-                        num.textContent = currentValue.toLocaleString();
-                        requestAnimationFrame(updateNumber);
-                    } else {
-                        num.textContent = finalValue.toLocaleString();
-                    }
-                }
-                
-                requestAnimationFrame(updateNumber);
-            });
-        }
-
         // Progress bar animation
         window.onscroll = function() {
             var winScroll = document.body.scrollTop || document.documentElement.scrollTop;
@@ -417,9 +75,6 @@
             var scrolled = (winScroll / height) * 100;
             document.getElementById("progressBar").style.width = scrolled + "%";
         };
-
-        // Initial animation
-        animateNumbers();
 
         // GSAP animations
         gsap.from(".content h2", {duration: 1, opacity: 0, y: -50, ease: "power3.out"});
