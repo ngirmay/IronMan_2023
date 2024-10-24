@@ -3,248 +3,50 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ironman 2023 Project</title>
-    <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;700&family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.9.1/gsap.min.js"></script>
+    <title>Lake Placid Ironman 2023</title>
+    <link rel="stylesheet" href="styles/main.css">
     <style>
-        body, html {
-            margin: 0;
-            padding: 0;
-            font-family: 'Roboto', sans-serif;
-            background-color: #F1FAEE;
-            color: #1D3557;
-            height: 100%;
-            overflow-x: hidden;
-        }
-
-        * {
-            transition: all 0.3s ease;
-            box-sizing: border-box;
-        }
-
-        header {
-            background-color: #1D3557;
-            color: #F1FAEE;
-            padding: 20px;
-            text-align: center;
-            letter-spacing: 2px;
-            position: relative;
-            z-index: 1;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-
-        header h1 {
-            margin: 0;
-            font-size: 2.5em;
-            font-family: 'Oswald', sans-serif;
-            text-transform: uppercase;
-        }
-
-        .open-btn {
-            font-size: 20px;
-            cursor: pointer;
-            background-color: #E63946;
-            color: #F1FAEE;
-            border: none;
-            padding: 15px;
-            position: fixed;
-            top: 20px;
-            left: 20px;
-            z-index: 4;
-            border-radius: 50%;
-            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
-            width: 60px;
-            height: 60px;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            transition: transform 0.3s ease;
-        }
-
-        .open-btn:hover {
-            background-color: #457B9D;
-            transform: scale(1.1);
-        }
-
-        .sidebar {
-            height: 100%;
-            width: 250px;
-            position: fixed;
-            top: 0;
-            left: -250px;
-            background-color: #E63946;
-            overflow-x: hidden;
-            transition: 0.5s;
-            padding-top: 60px;
-            font-family: 'Oswald', sans-serif;
-            z-index: 3;
-        }
-
-        .sidebar a {
-            padding: 15px 20px;
-            text-decoration: none;
-            font-size: 1.8em;
-            color: #F1FAEE;
-            display: block;
-            transition: 0.3s;
-            font-weight: 700;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-        }
-
-        .sidebar a:hover {
-            background-color: #457B9D;
-            padding-left: 25px;
-        }
-
-        .sidebar a.close-btn {
-            position: absolute;
-            top: 10px;
-            right: 10px;
-            font-size: 1.8em;
-            padding: 5px 10px;
-        }
-
-        .main-content {
-            margin-left: 0;
-            padding: 40px;
-            transition: margin-left 0.5s ease;
-            min-height: calc(100vh - 160px);
-        }
-
-        .content {
-            opacity: 0;
-            transition: opacity 0.5s ease, transform 0.5s ease;
-            transform: translateY(20px);
-            padding: 40px 0;
-            text-align: center;
-            display: none;
-        }
-
-        .content.active {
-            opacity: 1;
-            transform: translateY(0);
-            display: block;
-        }
-
-        .content h2 {
-            font-size: 2.5em;
-            margin-bottom: 20px;
-            font-family: 'Oswald', sans-serif;
-            text-transform: uppercase;
-            color: #1D3557;
-        }
-
-        .description-box {
-            background-color: #A8DADC;
-            color: #1D3557;
-            padding: 20px;
-            border-radius: 10px;
-            margin: 40px 0;
-            font-size: 1.2em;
-            line-height: 1.6;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-            transition: transform 0.3s ease;
-        }
-
-        .description-box:hover {
-            transform: scale(1.02);
-        }
-
-        footer {
-            background-color: #1D3557;
-            color: #F1FAEE;
-            text-align: center;
-            padding: 20px;
-            position: fixed;
-            bottom: 0;
+        .visualization-container {
+            margin: 20px 0;
             width: 100%;
-            z-index: 2;
+            height: 600px;
+            background: #fff;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
         }
-
-        #mySidebar.show {
-            left: 0;
+        .iframe-container {
+            width: 100%;
+            height: 100%;
+            border: none;
         }
-        
-        #main.active {
-            margin-left: 250px;
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+            margin: 20px 0;
         }
-
-        /* New styles for enhanced visuals */
-        .progress-bar {
-            width: 0;
-            height: 5px;
-            background-color: #E63946;
-            position: fixed;
-            top: 0;
-            left: 0;
-            z-index: 5;
-        }
-
-        .stat-container {
-            display: flex;
-            justify-content: space-around;
-            flex-wrap: wrap;
-            margin-top: 40px;
-        }
-
-        .stat-box {
-            background-color: #457B9D;
-            color: #F1FAEE;
+        .stats-container {
+            background: white;
             padding: 20px;
-            border-radius: 10px;
-            margin: 10px;
-            width: 200px;
-            text-align: center;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-            transition: transform 0.3s ease;
-        }
-
-        .stat-box:hover {
-            transform: translateY(-5px);
-        }
-
-        .stat-box h3 {
-            font-size: 1.2em;
-            margin-bottom: 10px;
-        }
-
-        .stat-box p {
-            font-size: 2em;
-            font-weight: bold;
-        }
-
-        .animate-number {
-            display: inline-block;
-        }
-
-        @media screen and (max-width: 768px) {
-            .sidebar {
-                width: 200px;
-                left: -200px;
-            }
-            .open-btn {
-                left: 10px;
-            }
-            .stat-box {
-                width: calc(50% - 20px);
-            }
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            height: 400px;
+            overflow: auto;
         }
     </style>
 </head>
 <body>
-    <div class="progress-bar" id="progressBar"></div>
+    <div id="progressBar" class="progress-bar"></div>
 
-    <header>
+    <div>
         <h1>Lake Placid Ironman 2023</h1>
-    </header>
+    </div>
 
-    <button class="open-btn" onclick="openNav()">&#9776;</button>
+    ☰
 
     <div id="mySidebar" class="sidebar">
-        <a href="javascript:void(0)" class="close-btn" onclick="closeNav()">&#10006;</a>
+        <a href="javascript:void(0)" class="close-btn" onclick="closeNav()">✖</a>
         <a href="javascript:void(0)" onclick="openTab(event, 'intro')">Intro</a>
         <a href="javascript:void(0)" onclick="openTab(event, 'genetic_analysis')">Genetic Analysis</a>
         <a href="javascript:void(0)" onclick="openTab(event, 'body_composition')">Body Composition</a>
@@ -265,16 +67,26 @@
             <div class="stat-container">
                 <div class="stat-box">
                     <h3>Total Training Days</h3>
-                    <p><span class="animate-number" data-value="180">0</span></p>
+                    <span class="animate-number" data-value="180">0</span>
                 </div>
                 <div class="stat-box">
                     <h3>Hours Trained</h3>
-                    <p><span class="animate-number" data-value="720">0</span></p>
+                    <span class="animate-number" data-value="720">0</span>
                 </div>
                 <div class="stat-box">
                     <h3>Calories Burned</h3>
-                    <p><span class="animate-number" data-value="540000">0</span></p>
+                    <span class="animate-number" data-value="540000">0</span>
                 </div>
+            </div>
+
+            <div class="visualization-container">
+                <img src="course_maps/IM24_LP_CourseMap_Swim_081423_cc-1_large.webp" alt="Swim Course Map" style="width: 100%; height: auto;">
+            </div>
+            <div class="visualization-container">
+                <img src="course_maps/IM24_LP_CourseMap_Bike_081423_cc-1_large.webp" alt="Bike Course Map" style="width: 100%; height: auto;">
+            </div>
+            <div class="visualization-container">
+                <img src="course_maps/IM24_LP_CourseMap_Run_081423_cc-1_large.webp" alt="Run Course Map" style="width: 100%; height: auto;">
             </div>
         </div>
 
@@ -284,7 +96,19 @@
             <div class="description-box">
                 <p>This section delves into my genetic makeup and how it influences my athletic performance, endurance, recovery, and injury risk.</p>
             </div>
-            <!-- Add genetic analysis visualizations and stats here -->
+            
+            <!-- Genetic Analysis Visualizations -->
+            <div class="visualization-container">
+                <iframe src="assets/visualizations/genetic_analysis/athletic_genetics_overview_20241024_132540.html" class="iframe-container"></iframe>
+            </div>
+            <div class="visualization-container">
+                <iframe src="assets/visualizations/genetic_analysis/genetic_performance_report.html" class="iframe-container"></iframe>
+            </div>
+
+            <!-- Genetic Analysis Stats -->
+            <div class="stats-container">
+                <iframe src="assets/stats/genetic_analysis/genetic_report.txt" class="iframe-container"></iframe>
+            </div>
         </div>
 
         <!-- Body Composition Section -->
@@ -293,61 +117,297 @@
             <div class="description-box">
                 <p>This section explores how my body composition evolved throughout my Ironman training, with a focus on metrics like BMI, body fat percentage, and lean mass.</p>
             </div>
+
             <div class="stat-container">
                 <div class="stat-box">
                     <h3>BMI</h3>
-                    <p><span class="animate-number" data-value="22.5">0</span></p>
+                    <span class="animate-number" data-value="22.5">0</span>
                 </div>
                 <div class="stat-box">
                     <h3>Body Fat %</h3>
-                    <p><span class="animate-number" data-value="12">0</span></p>
+                    <span class="animate-number" data-value="12">0</span>
                 </div>
                 <div class="stat-box">
                     <h3>Lean Mass (kg)</h3>
-                    <p><span class="animate-number" data-value="65">0</span></p>
+                    <span class="animate-number" data-value="65">0</span>
                 </div>
+            </div>
+
+            <!-- Body Composition Stats -->
+            <div class="stats-grid">
+                <div class="stats-container">
+                    <iframe src="assets/stats/body_composition/body_fat_percentage_summary_stats_20241024_134949.csv" class="iframe-container"></iframe>
+                </div>
+                <div class="stats-container">
+                    <iframe src="assets/stats/body_composition/body_mass_summary_stats_20241024_134949.csv" class="iframe-container"></iframe>
+                </div>
+                <div class="stats-container">
+                    <iframe src="assets/stats/body_composition/combined_body_composition_stats_20241024_134949.csv" class="iframe-container"></iframe>
+                </div>
+            </div>
+
+            <!-- Body Composition Visualizations -->
+            <div class="visualization-container">
+                <iframe src="assets/visualizations/body_composition/body_fat_percentage_over_time_20241024_134949.html" class="iframe-container"></iframe>
+            </div>
+            <div class="visualization-container">
+                <iframe src="assets/visualizations/body_composition/body_mass_over_time_20241024_134949.html" class="iframe-container"></iframe>
+            </div>
+            <div class="visualization-container">
+                <iframe src="assets/visualizations/body_composition/comparison_body_mass_body_fat_20241024_134949.html" class="iframe-container"></iframe>
+            </div>
+            <div class="visualization-container">
+                <iframe src="assets/visualizations/body_composition/heart_rate_vs_activity_type_20241024_135605.html" class="iframe-container"></iframe>
+            </div>
+            <div class="visualization-container">
+                <iframe src="assets/visualizations/body_composition/heart_rate_zones_20241024_140507.html" class="iframe-container"></iframe>
+            </div>
+            <div class="visualization-container">
+                <iframe src="assets/visualizations/body_composition/heart_rate_zones_Karvonen_20241024_140347.html" class="iframe-container"></iframe>
+            </div>
+            <div class="visualization-container">
+                <iframe src="assets/visualizations/body_composition/heart_rate_zones_MHR_20241024_140347.html" class="iframe-container"></iframe>
+            </div>
+            <div class="visualization-container">
+                <iframe src="assets/visualizations/body_composition/height_distribution_20241024_135255.html" class="iframe-container"></iframe>
+            </div>
+            <div class="visualization-container">
+                <iframe src="assets/visualizations/body_composition/height_weight_regression_20241024_135255.html" class="iframe-container"></iframe>
+            </div>
+            <div class="visualization-container">
+                <iframe src="assets/visualizations/body_composition/hrv_trend_20241024_141310.html" class="iframe-container"></iframe>
+            </div>
+            <div class="visualization-container">
+                <iframe src="assets/visualizations/body_composition/lean_body_mass_over_time_20241024_134949.html" class="iframe-container"></iframe>
+            </div>
+            <div class="visualization-container">
+                <iframe src="assets/visualizations/body_composition/time_spent_in_zones_all_20241024_140347.html" class="iframe-container"></iframe>
+            </div>
+            <div class="visualization-container">
+                <iframe src="assets/visualizations/body_composition/vo2_max_trend_20241024_141609.html" class="iframe-container"></iframe>
+            </div>
+            <div class="visualization-container">
+                <iframe src="assets/visualizations/body_composition/weight_distribution_20241024_135255.html" class="iframe-container"></iframe>
             </div>
         </div>
 
         <!-- Swim Section -->
         <div id="swim" class="content">
-            <h2>Swim</h2>
+            <h2>Swim Performance</h2>
             <div class="description-box">
                 <p>An analysis of my swim performance during the Ironman training, focusing on improvements in pace, distance, and technique.</p>
+            </div>
+
+            <!-- Swim Stats -->
+            <div class="stats-grid">
+                <div class="stats-container">
+                    <iframe src="assets/stats/swim/summary_statistics.html" class="iframe-container"></iframe>
+                </div>
+                <div class="stats-container">
+                    <iframe src="assets/stats/swim/swim_analysis.html" class="iframe-container"></iframe>
+                </div>
+                <div class="stats-container">
+                    <iframe src="assets/stats/swim/swim_analysis_metrics.html" class="iframe-container"></iframe>
+                </div>
+            </div>
+
+            <!-- Swim Visualizations -->
+            <div class="visualization-container">
+                <iframe src="assets/visualizations/swim/avg_dps_swolf_over_time.html" class="iframe-container"></iframe>
+            </div>
+            <div class="visualization-container">
+                <iframe src="assets/visualizations/swim/body_angle_analysis.html" class="iframe-container"></iframe>
+            </div>
+            <div class="visualization-container">
+                <iframe src="assets/visualizations/swim/calories_burned_total_distance.html" class="iframe-container"></iframe>
+            </div>
+            <div class="visualization-container">
+                <iframe src="assets/visualizations/swim/calories_distance_over_time.html" class="iframe-container"></iframe>
+            </div>
+            <div class="visualization-container">
+                <iframe src="assets/visualizations/swim/duration_avg_stroke_count_over_time.html" class="iframe-container"></iframe>
+            </div>
+            <div class="visualization-container">
+                <iframe src="assets/visualizations/swim/duration_stroke_count_over_time.html" class="iframe-container"></iframe>
+            </div>
+            <div class="visualization-container">
+                <iframe src="assets/visualizations/swim/interval_distance_stroke_count_over_time.html" class="iframe-container"></iframe>
+            </div>
+            <div class="visualization-container">
+                <iframe src="assets/visualizations/swim/key_frame_comparison_1.html" class="iframe-container"></iframe>
+            </div>
+            <div class="visualization-container">
+                <iframe src="assets/visualizations/swim/key_frame_comparison_2.html" class="iframe-container"></iframe>
+            </div>
+            <div class="visualization-container">
+                <iframe src="assets/visualizations/swim/key_frame_comparison_3.html" class="iframe-container"></iframe>
+            </div>
+            <div class="visualization-container">
+                <iframe src="assets/visualizations/swim/key_frame_comparison_4.html" class="iframe-container"></iframe>
+            </div>
+            <div class="visualization-container">
+                <iframe src="assets/visualizations/swim/metrics_comparison.html" class="iframe-container"></iframe>
+            </div>
+            <div class="visualization-container">
+                <iframe src="assets/visualizations/swim/pace_avg_stroke_rate_over_time.html" class="iframe-container"></iframe>
+            </div>
+            <div class="visualization-container">
+                <iframe src="assets/visualizations/swim/wrist_position_analysis.html" class="iframe-container"></iframe>
             </div>
         </div>
 
         <!-- Bike Section -->
         <div id="bike" class="content">
-            <h2>Bike</h2>
+            <h2>Bike Performance</h2>
             <div class="description-box">
                 <p>A deep dive into my biking sessions, covering distance, power, and cadence trends throughout training.</p>
+            </div>
+
+            <!-- Bike Stats -->
+            <div class="stats-grid">
+                <div class="stats-container">
+                    <iframe src="assets/stats/bike/anova_results.html" class="iframe-container"></iframe>
+                </div>
+                <div class="stats-container">
+                    <iframe src="assets/stats/bike/average_metrics.html" class="iframe-container"></iframe>
+                </div>
+                <div class="stats-container">
+                    <iframe src="assets/stats/bike/average_taper_metrics.html" class="iframe-container"></iframe>
+                </div>
+                <div class="stats-container">
+                    <iframe src="assets/stats/bike/summary_stats_04.html" class="iframe-container"></iframe>
+                </div>
+                <div class="stats-container">
+                    <iframe src="assets/stats/bike/tukey_results.html" class="iframe-container"></iframe>
+                </div>
+            </div>
+
+            <!-- Bike Visualizations -->
+            <div class="visualization-container">
+                <iframe src="assets/visualizations/bike/activity_counts.html" class="iframe-container"></iframe>
+            </div>
+            <div class="visualization-container">
+                <iframe src="assets/visualizations/bike/avg_power.html" class="iframe-container"></iframe>
+            </div>
+            <div class="visualization-container">
+                <iframe src="assets/visualizations/bike/corr_matrix.html" class="iframe-container"></iframe>
+            </div>
+            <div class="visualization-container">
+                <iframe src="assets/visualizations/bike/cumulative_tss.html" class="iframe-container"></iframe>
+            </div>
+            <div class="visualization-container">
+                <iframe src="assets/visualizations/bike/distribution.html" class="iframe-container"></iframe>
+            </div>
+            <div class="visualization-container">
+                <iframe src="assets/visualizations/bike/duration_distribution.html" class="iframe-container"></iframe>
+            </div>
+            <div class="visualization-container">
+                <iframe src="assets/visualizations/bike/heatmap.html" class="iframe-container"></iframe>
+            </div>
+            <div class="visualization-container">
+                <iframe src="assets/visualizations/bike/if_progression.html" class="iframe-container"></iframe>
+            </div>
+            <div class="visualization-container">
+                <iframe src="assets/visualizations/bike/tss_distribution.html" class="iframe-container"></iframe>
+            </div>
+            <div class="visualization-container">
+                <iframe src="assets/visualizations/bike/tss_if_over_time.html" class="iframe-container"></iframe>
+            </div>
+            <div class="visualization-container">
+                <iframe src="assets/visualizations/bike/tss_values.html" class="iframe-container"></iframe>
+            </div>
+            <div class="visualization-container">
+                <iframe src="assets/visualizations/bike/tss_vs_duration.html" class="iframe-container"></iframe>
+            </div>
+            <div class="visualization-container">
+                <iframe src="assets/visualizations/bike/tss_vs_if.html" class="iframe-container"></iframe>
+            </div>
+            <div class="visualization-container">
+                <iframe src="assets/visualizations/bike/weekly_training_load.html" class="iframe-container"></iframe>
+            </div>
+            <div class="visualization-container">
+                <iframe src="assets/visualizations/bike/workout_comparison.html" class="iframe-container"></iframe>
+            </div>
+            <div class="visualization-container">
+                <iframe src="assets/visualizations/bike/workout_type_distribution.html" class="iframe-container"></iframe>
+            </div>
+            <div class="visualization-container">
+                <iframe src="assets/visualizations/bike/workouts_time.html" class="iframe-container"></iframe>
             </div>
         </div>
 
         <!-- Run Section -->
         <div id="run" class="content">
-            <h2>Run</h2>
+            <h2>Run Performance</h2>
             <div class="description-box">
                 <p>This section focuses on my running performance, showcasing my progress in speed, endurance, and pacing strategies.</p>
+            </div>
+
+            <!-- Run Stats -->
+            <div class="stats-grid">
+                <div class="stats-container">
+                    <iframe src="assets/stats/run/running_improvement_stats.html" class="iframe-container"></iframe>
+                </div>
+                <div class="stats-container">
+                    <iframe src="assets/stats/run/running_summary_stats.html" class="iframe-container"></iframe>
+                </div>
+            </div>
+
+            <!-- Run Visualizations -->
+            <div class="visualization-container">
+                <iframe src="assets/visualizations/run/enhanced_running_data_analysis.html" class="iframe-container"></iframe>
+            </div>
+            <div class="visualization-container">
+                <iframe src="assets/visualizations/run/heart_rate_cadence_over_time.html" class="iframe-container"></iframe>
+            </div>
+            <div class="visualization-container">
+                <iframe src="assets/visualizations/run/pace_distance_over_time.html" class="iframe-container"></iframe>
+            </div>
+            <div class="visualization-container">
+                <iframe src="assets/visualizations/run/weekly_mileage_before_feb_25_2023.html" class="iframe-container"></iframe>
             </div>
         </div>
 
         <!-- Diet & Sleep Section -->
         <div id="diet_sleep" class="content">
-            <h2>Diet & Sleep</h2>
+            <h2>Diet & Sleep Analysis</h2>
             <div class="description-box">
                 <p>This section covers the impact of my diet and sleep on my overall training performance and recovery.</p>
             </div>
+
             <div class="stat-container">
                 <div class="stat-box">
                     <h3>Calories Consumed</h3>
-                    <p><span class="animate-number" data-value="4000">0</span></p>
+                    <span class="animate-number" data-value="4000">0</span>
                 </div>
                 <div class="stat-box">
                     <h3>Average Sleep (hours)</h3>
-                    <p><span class="animate-number" data-value="7.5">0</span></p>
+                    <span class="animate-number" data-value="7.5">0</span>
                 </div>
+            </div>
+
+            <!-- Diet & Sleep Stats -->
+            <div class="stats-grid">
+                <div class="stats-container">
+                    <iframe src="assets/stats/diet_sleep/ironman_regression_results_20241024_130557.html" class="iframe-container"></iframe>
+                </div>
+                <div class="stats-container">
+                    <iframe src="assets/stats/diet_sleep/ironman_summary_statistics_20241024_130557.html" class="iframe-container"></iframe>
+                </div>
+                <div class="stats-container">
+                    <iframe src="assets/stats/diet_sleep/sleep_summary_statistics_20241024_130520.html" class="iframe-container"></iframe>
+                </div>
+            </div>
+
+            <!-- Diet & Sleep Visualizations -->
+            <div class="visualization-container">
+                <iframe src="assets/visualizations/diet_sleep/ironman_macronutrient_distribution_20241024_130557.html" class="iframe-container"></iframe>
+            </div>
+            <div class="visualization-container">
+                <iframe src="assets/visualizations/diet_sleep/ironman_weight_and_calories_over_time_20241024_130557.html" class="iframe-container"></iframe>
+            </div>
+            <div class="visualization-container">
+                <iframe src="assets/visualizations/diet_sleep/sleep_data_analysis_20241024_130520.html" class="iframe-container"></iframe>
             </div>
         </div>
 
@@ -358,22 +418,21 @@
                 <p>A reflection on the entire training journey, lessons learned, and how this experience has shaped my approach to endurance events.</p>
             </div>
         </div>
-
     </div>
 
     <footer>
-        <p>&copy; 2024 Nobel Girmay - Ironman 2023</p>
+        © 2024 Nobel Girmay - Ironman 2023
     </footer>
 
     <script>
         function openNav() {
-            document.getElementById("mySidebar").classList.add("show");
-            document.getElementById("main").classList.add("active");
+            document.getElementById("mySidebar").style.width = "250px";
+            document.getElementById("main").style.marginLeft = "250px";
         }
 
         function closeNav() {
-            document.getElementById("mySidebar").classList.remove("show");
-            document.getElementById("main").classList.remove("active");
+            document.getElementById("mySidebar").style.width = "0";
+            document.getElementById("main").style.marginLeft = "0";
         }
 
         function openTab(evt, tabName) {
@@ -383,50 +442,25 @@
                 content[i].classList.remove("active");
             }
             document.getElementById(tabName).classList.add("active");
-            animateNumbers();
-            closeNav();
         }
 
-        function animateNumbers() {
+        document.addEventListener('DOMContentLoaded', function() {
             const numbers = document.querySelectorAll('.animate-number');
-            numbers.forEach(num => {
-                const finalValue = parseInt(num.getAttribute('data-value'));
-                const duration = 2000; // 2 seconds
-                const startTime = performance.now();
-                
-                function updateNumber(currentTime) {
-                    const elapsedTime = currentTime - startTime;
-                    if (elapsedTime < duration) {
-                        const progress = elapsedTime / duration;
-                        const currentValue = Math.round(finalValue * progress);
-                        num.textContent = currentValue.toLocaleString();
-                        requestAnimationFrame(updateNumber);
-                    } else {
-                        num.textContent = finalValue.toLocaleString();
+            numbers.forEach(number => {
+                const target = parseInt(number.getAttribute('data-value'));
+                let current = 0;
+                const increment = target / 100;
+                const timer = setInterval(() => {
+                    current += increment;
+                    number.textContent = Math.round(current);
+                    if (current >= target) {
+                        number.textContent = target;
+                        clearInterval(timer);
                     }
-                }
-                
-                requestAnimationFrame(updateNumber);
+                }, 10);
             });
-        }
-
-        // Progress bar animation
-        window.onscroll = function() {
-            var winScroll = document.body.scrollTop || document.documentElement.scrollTop;
-            var height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
-            var scrolled = (winScroll / height) * 100;
-            document.getElementById("progressBar").style.width = scrolled + "%";
-        };
-
-        // Initial animation
-        animateNumbers();
-
-        // GSAP animations
-        gsap.from(".content h2", {duration: 1, opacity: 0, y: -50, ease: "power3.out"});
-        gsap.from(".description-box", {duration: 1, opacity: 0, y: 50, ease: "power3.out", delay: 0.5});
-        gsap.from(".stat-box", {duration: 1, opacity: 0, y: 30, ease: "power3.out", stagger: 0.2, delay: 1});
+        });
     </script>
 </body>
 </html>
-
-
+            
