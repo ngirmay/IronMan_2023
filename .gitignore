@@ -23,7 +23,16 @@ venv/
 *.svg*
 # Ignore all html files
 *.html
-# Un-ignore specific genetic_analysis.html
+
+# Un-ignore main analysis files
 !genetic_analysis.html
-!assets/visualizations/genetic_analysis/athletic_genetics_overview_20241024_132540.html
-!assets/visualizations/genetic_analysis/genetic_performance_report.html
+!index.html
+
+# Un-ignore all visualization files in assets directory
+!assets/visualizations/**/*.html
+!assets/visualizations/bike/*.html
+!assets/visualizations/body_composition/*.html
+!assets/visualizations/diet_sleep/*.html
+!assets/visualizations/genetic_analysis/*.html
+!assets/visualizations/run/*.html
+!assets/visualizations/swim/*.html
