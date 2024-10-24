@@ -1,0 +1,391 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Genetic Analysis - Lake Placid Ironman 2023</title>
+    <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;700&family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.9.1/gsap.min.js"></script>
+    <link rel="stylesheet" href="styles/main.css">
+    <style>
+        .score-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin: 40px 0;
+        }
+
+        .score-card {
+            background: #457B9D;
+            color: white;
+            padding: 20px;
+            border-radius: 10px;
+            text-align: center;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .score-label {
+            font-size: 1.2em;
+            margin-bottom: 10px;
+            font-family: 'Oswald', sans-serif;
+        }
+
+        .score-value {
+            font-size: 2.5em;
+            font-weight: bold;
+        }
+
+        .genetics-table {
+            width: 100%;
+            margin: 20px 0;
+            border-collapse: collapse;
+            background: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .genetics-table th,
+        .genetics-table td {
+            padding: 12px 15px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+
+        .genetics-table th {
+            background-color: #1D3557;
+            color: white;
+            font-family: 'Oswald', sans-serif;
+        }
+
+        .genetics-table tr:hover {
+            background-color: #f5f5f5;
+        }
+
+        .visualization-container {
+            background: white;
+            border-radius: 10px;
+            padding: 20px;
+            margin: 20px 0;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .visualization-frame {
+            width: 100%;
+            height: 600px;
+            border: none;
+            border-radius: 10px;
+        }
+
+        .section-title {
+            color: #1D3557;
+            font-family: 'Oswald', sans-serif;
+            font-size: 2em;
+            margin: 40px 0 20px;
+            text-transform: uppercase;
+            text-align: center;
+        }
+
+        .overview-iframe {
+            width: 100%;
+            height: 1000px;
+            border: none;
+            margin: 20px 0;
+            border-radius: 10px;
+        }
+
+        .nav-pills {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            margin: 20px 0;
+            flex-wrap: wrap;
+        }
+
+        .nav-pill {
+            padding: 10px 20px;
+            background: #457B9D;
+            color: white;
+            border-radius: 20px;
+            cursor: pointer;
+            text-decoration: none;
+            transition: background 0.3s ease;
+            font-family: 'Oswald', sans-serif;
+        }
+
+        .nav-pill:hover {
+            background: #1D3557;
+        }
+
+        .back-to-top {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background: #E63946;
+            color: white;
+            padding: 15px;
+            border-radius: 50%;
+            cursor: pointer;
+            display: none;
+            border: none;
+            width: 50px;
+            height: 50px;
+            font-size: 20px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+        }
+
+        .back-to-top:hover {
+            background: #457B9D;
+        }
+    </style>
+</head>
+<body>
+    <div class="progress-bar" id="progressBar"></div>
+
+    <header>
+        <h1>Genetic Analysis</h1>
+    </header>
+
+    <nav class="nav-pills">
+        <a href="index.html" class="nav-pill">Home</a>
+        <a href="#overview" class="nav-pill">Overview</a>
+        <a href="#performance" class="nav-pill">Performance Scores</a>
+        <a href="#detailed-analysis" class="nav-pill">Detailed Analysis</a>
+    </nav>
+
+    <main class="main-content">
+        <div class="description-box">
+            <p>A comprehensive analysis of genetic factors influencing athletic performance, focusing on power, endurance, and recovery capabilities.</p>
+        </div>
+
+        <section id="overview">
+            <h2 class="section-title">Genetic Overview</h2>
+            <iframe class="overview-iframe" src="../assets/visualizations/genetic_analysis/athletic_genetics_overview_20241024_132540.html"></iframe>
+        </section>
+
+        <section id="performance">
+            <h2 class="section-title">Performance Scores</h2>
+            <div class="score-container">
+                <div class="score-card">
+                    <div class="score-label">Power Score</div>
+                    <div class="score-value">27.1/100</div>
+                </div>
+                <div class="score-card">
+                    <div class="score-label">Endurance Score</div>
+                    <div class="score-value">42.9/100</div>
+                </div>
+                <div class="score-card">
+                    <div class="score-label">Balanced Score</div>
+                    <div class="score-value">0.0/100</div>
+                </div>
+            </div>
+        </section>
+
+        <section id="detailed-analysis">
+            <h2 class="section-title">Detailed Genetic Analysis</h2>
+            <div class="table-responsive">
+                <table class="genetics-table">
+                    <thead>
+                        <tr>
+                            <th>Gene</th>
+                            <th>Genotype</th>
+                            <th>Optimal</th>
+                            <th>Trait</th>
+                            <th>Pathway</th>
+                            <th>Performance</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>HIF1A</td>
+                            <td>CC</td>
+                            <td>CC</td>
+                            <td>Hypoxia response</td>
+                            <td>Oxygen Transport</td>
+                            <td>0.75</td>
+                        </tr>
+                        <tr>
+                            <td>RYR1</td>
+                            <td>CC</td>
+                            <td>CC</td>
+                            <td>Calcium signaling</td>
+                            <td>Muscle Function</td>
+                            <td>0.74</td>
+                        </tr>
+                        <tr>
+                            <td>PPARA</td>
+                            <td>GG</td>
+                            <td>GG</td>
+                            <td>Fatty acid metabolism</td>
+                            <td>Energy Metabolism</td>
+                            <td>0.70</td>
+                        </tr>
+                        <tr>
+                            <td>VEGFA</td>
+                            <td>GG</td>
+                            <td>CC</td>
+                            <td>Blood vessel formation</td>
+                            <td>Cardiovascular</td>
+                            <td>0.68</td>
+                        </tr>
+                        <tr>
+                            <td>COL5A1</td>
+                            <td>CC</td>
+                            <td>CC</td>
+                            <td>Tendon flexibility</td>
+                            <td>Injury Risk</td>
+                            <td>0.66</td>
+                        </tr>
+                        <tr>
+                            <td>IL6</td>
+                            <td>GG</td>
+                            <td>GG</td>
+                            <td>Inflammation response</td>
+                            <td>Recovery</td>
+                            <td>0.60</td>
+                        </tr>
+                        <tr>
+                            <td>IGF1</td>
+                            <td>AA</td>
+                            <td>AA</td>
+                            <td>Muscle development</td>
+                            <td>Muscle Composition</td>
+                            <td>0.56</td>
+                        </tr>
+                        <tr>
+                            <td>ACE</td>
+                            <td>GC</td>
+                            <td>GG</td>
+                            <td>Cardiovascular efficiency</td>
+                            <td>Cardiovascular</td>
+                            <td>0.56</td>
+                        </tr>
+                        <tr>
+                            <td>HFE</td>
+                            <td>CC</td>
+                            <td>CC</td>
+                            <td>Iron metabolism</td>
+                            <td>Energy Metabolism</td>
+                            <td>0.54</td>
+                        </tr>
+                        <tr>
+                            <td>BDNF</td>
+                            <td>CC</td>
+                            <td>GG</td>
+                            <td>Neural adaptation</td>
+                            <td>Neuromuscular</td>
+                            <td>0.54</td>
+                        </tr>
+                        <tr>
+                            <td>PPARGC1A</td>
+                            <td>TC</td>
+                            <td>CC</td>
+                            <td>Mitochondrial function</td>
+                            <td>Energy Metabolism</td>
+                            <td>0.41</td>
+                        </tr>
+                        <tr>
+                            <td>MCT1</td>
+                            <td>TA</td>
+                            <td>TT</td>
+                            <td>Lactate transport</td>
+                            <td>Energy Metabolism</td>
+                            <td>0.36</td>
+                        </tr>
+                        <tr>
+                            <td>ACVR1B</td>
+                            <td>AG</td>
+                            <td>AA</td>
+                            <td>Muscle strength</td>
+                            <td>Muscle Composition</td>
+                            <td>0.34</td>
+                        </tr>
+                        <tr>
+                            <td>ADRB2</td>
+                            <td>AG</td>
+                            <td>GG</td>
+                            <td>Cardiac response</td>
+                            <td>Cardiovascular</td>
+                            <td>0.32</td>
+                        </tr>
+                        <tr>
+                            <td>MSTN</td>
+                            <td>CC</td>
+                            <td>AA</td>
+                            <td>Muscle growth regulation</td>
+                            <td>Muscle Composition</td>
+                            <td>0.24</td>
+                        </tr>
+                        <tr>
+                            <td>NOS3</td>
+                            <td>TT</td>
+                            <td>CC</td>
+                            <td>Nitric oxide production</td>
+                            <td>Cardiovascular</td>
+                            <td>0.15</td>
+                        </tr>
+                        <tr>
+                            <td>VDR</td>
+                            <td>TT</td>
+                            <td>GG</td>
+                            <td>Vitamin D metabolism</td>
+                            <td>Recovery</td>
+                            <td>0.13</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+        <section id="visualizations">
+            <h2 class="section-title">Performance Visualizations</h2>
+            <div class="visualization-container">
+                <iframe class="visualization-frame" src="../assets/visualizations/genetic_analysis/genetic_performance_report.html"></iframe>
+            </div>
+        </section>
+    </main>
+
+    <button class="back-to-top" id="backToTop" title="Back to top">↑</button>
+
+    <footer>
+        <p>&copy; 2024 Nobel Girmay - Ironman 2023</p>
+    </footer>
+
+    <script>
+        // Progress bar
+        window.onscroll = function() {
+            var winScroll = document.body.scrollTop || document.documentElement.scrollTop;
+            var height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+            var scrolled = (winScroll / height) * 100;
+            document.getElementById("progressBar").style.width = scrolled + "%";
+            
+            // Show/hide back to top button
+            var backToTop = document.getElementById("backToTop");
+            if (winScroll > 300) {
+                backToTop.style.display = "block";
+            } else {
+                backToTop.style.display = "none";
+            }
+        };
+
+        // Back to top functionality
+        document.getElementById("backToTop").onclick = function() {
+            window.scrollTo({top: 0, behavior: 'smooth'});
+        };
+
+        // GSAP animations
+        gsap.from(".description-box", {duration: 1, opacity: 0, y: 50, ease: "power3.out"});
+        gsap.from(".score-card", {
+            duration: 1,
+            opacity: 0,
+            y: 30,
+            stagger: 0.2,
+            ease: "power3.out",
+            scrollTrigger: {
+                trigger: ".score-container",
+                start: "top center"
+            }
+        });
+    </script>
+</body>
+</html>

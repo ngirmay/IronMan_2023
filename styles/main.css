@@ -1,0 +1,266 @@
+/* Reset and base styles */
+body, html {
+    margin: 0;
+    padding: 0;
+    font-family: 'Roboto', sans-serif;
+    background-color: #F1FAEE;
+    color: #1D3557;
+    height: 100%;
+    overflow-x: hidden;
+}
+
+* {
+    transition: all 0.3s ease;
+    box-sizing: border-box;
+}
+
+/* Header styles */
+header {
+    background-color: #1D3557;
+    color: #F1FAEE;
+    padding: 20px;
+    text-align: center;
+    letter-spacing: 2px;
+    position: relative;
+    z-index: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+header h1 {
+    margin: 0;
+    font-size: 2.5em;
+    font-family: 'Oswald', sans-serif;
+    text-transform: uppercase;
+}
+
+/* Navigation button */
+.open-btn {
+    font-size: 20px;
+    cursor: pointer;
+    background-color: #E63946;
+    color: #F1FAEE;
+    border: none;
+    padding: 15px;
+    position: fixed;
+    top: 20px;
+    left: 20px;
+    z-index: 4;
+    border-radius: 50%;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+    width: 60px;
+    height: 60px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: transform 0.3s ease;
+}
+
+.open-btn:hover {
+    background-color: #457B9D;
+    transform: scale(1.1);
+}
+
+/* Sidebar styles */
+.sidebar {
+    height: 100%;
+    width: 250px;
+    position: fixed;
+    top: 0;
+    left: -250px;
+    background-color: #E63946;
+    overflow-x: hidden;
+    transition: 0.5s;
+    padding-top: 60px;
+    font-family: 'Oswald', sans-serif;
+    z-index: 3;
+}
+
+.sidebar a {
+    padding: 15px 20px;
+    text-decoration: none;
+    font-size: 1.8em;
+    color: #F1FAEE;
+    display: block;
+    transition: 0.3s;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.sidebar a:hover {
+    background-color: #457B9D;
+    padding-left: 25px;
+}
+
+.sidebar a.close-btn {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    font-size: 1.8em;
+    padding: 5px 10px;
+}
+
+/* Main content styles */
+.main-content {
+    margin-left: 0;
+    padding: 40px;
+    transition: margin-left 0.5s ease;
+    min-height: calc(100vh - 160px);
+}
+
+.content {
+    opacity: 0;
+    transition: opacity 0.5s ease, transform 0.5s ease;
+    transform: translateY(20px);
+    padding: 40px 0;
+    text-align: center;
+    display: none;
+}
+
+.content.active {
+    opacity: 1;
+    transform: translateY(0);
+    display: block;
+}
+
+.content h2 {
+    font-size: 2.5em;
+    margin-bottom: 20px;
+    font-family: 'Oswald', sans-serif;
+    text-transform: uppercase;
+    color: #1D3557;
+}
+
+/* Description box styles */
+.description-box {
+    background-color: #A8DADC;
+    color: #1D3557;
+    padding: 20px;
+    border-radius: 10px;
+    margin: 40px 0;
+    font-size: 1.2em;
+    line-height: 1.6;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease;
+}
+
+.description-box:hover {
+    transform: scale(1.02);
+}
+
+/* Footer styles */
+footer {
+    background-color: #1D3557;
+    color: #F1FAEE;
+    text-align: center;
+    padding: 20px;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    z-index: 2;
+}
+
+/* Sidebar state classes */
+#mySidebar.show {
+    left: 0;
+}
+
+#main.active {
+    margin-left: 250px;
+}
+
+/* Progress bar */
+.progress-bar {
+    width: 0;
+    height: 5px;
+    background-color: #E63946;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 5;
+}
+
+/* Statistics container and boxes */
+.stat-container {
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    margin-top: 40px;
+}
+
+.stat-box {
+    background-color: #457B9D;
+    color: #F1FAEE;
+    padding: 20px;
+    border-radius: 10px;
+    margin: 10px;
+    width: 200px;
+    text-align: center;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease;
+}
+
+.stat-box:hover {
+    transform: translateY(-5px);
+}
+
+.stat-box h3 {
+    font-size: 1.2em;
+    margin-bottom: 10px;
+}
+
+.stat-box p {
+    font-size: 2em;
+    font-weight: bold;
+}
+
+.animate-number {
+    display: inline-block;
+}
+
+/* Responsive design */
+@media screen and (max-width: 768px) {
+    .sidebar {
+        width: 200px;
+        left: -200px;
+    }
+    
+    .open-btn {
+        left: 10px;
+    }
+    
+    .stat-box {
+        width: calc(50% - 20px);
+    }
+    
+    .main-content {
+        padding: 20px;
+    }
+    
+    header h1 {
+        font-size: 2em;
+    }
+    
+    .content h2 {
+        font-size: 2em;
+    }
+}
+
+/* Utility classes */
+.text-center {
+    text-align: center;
+}
+
+.mb-4 {
+    margin-bottom: 1rem;
+}
+
+.mt-4 {
+    margin-top: 1rem;
+}
+
+.p-4 {
+    padding: 1rem;
+}

@@ -18,7 +18,12 @@ venv/
 *project_structure*
 *.gpx*
 *.txt*
-*.html*
 *.png*
 *.pdf*
 *.svg*
+# Ignore all html files
+*.html
+# Un-ignore specific genetic_analysis.html
+!genetic_analysis.html
+!assets/visualizations/genetic_analysis/athletic_genetics_overview_20241024_132540.html
+!assets/visualizations/genetic_analysis/genetic_performance_report.html
