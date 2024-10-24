@@ -5,54 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Genetic Analysis - Lake Placid Ironman 2023</title>
     <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;700&family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles/main.css">
     <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
     <style>
-        body, html {
-            margin: 0;
-            padding: 0;
-            font-family: 'Roboto', sans-serif;
-            background-color: #F1FAEE;
-            color: #1D3557;
-            height: 100%;
-        }
-
-        .header {
-            background-color: #1D3557;
-            color: white;
-            padding: 20px;
-            text-align: center;
-            font-family: 'Oswald', sans-serif;
-        }
-
-        .header h1 {
-            margin: 0;
-            font-size: 2.5em;
-            text-transform: uppercase;
-        }
-
-        .description-box {
-            background-color: #A8DADC;
-            padding: 20px;
-            margin: 20px;
-            border-radius: 10px;
-            font-size: 1.2em;
-            line-height: 1.6;
-        }
-
-        .content-section {
-            padding: 20px;
-            margin: 20px;
-        }
-
-        .section-title {
-            color: #1D3557;
-            font-family: 'Oswald', sans-serif;
-            font-size: 2em;
-            margin: 40px 0 20px;
-            text-transform: uppercase;
-            text-align: center;
-        }
-
         .score-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
@@ -124,6 +79,57 @@
             border: none;
         }
 
+        .nav-pills {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            margin: 20px 0;
+            flex-wrap: wrap;
+        }
+
+        .nav-pill {
+            padding: 10px 20px;
+            background: #457B9D;
+            color: white;
+            border-radius: 20px;
+            cursor: pointer;
+            text-decoration: none;
+            transition: background 0.3s ease;
+            font-family: 'Oswald', sans-serif;
+        }
+
+        .nav-pill:hover {
+            background: #1D3557;
+        }
+
+        .header {
+            background-color: #1D3557;
+            color: white;
+            padding: 20px;
+            text-align: center;
+            font-family: 'Oswald', sans-serif;
+        }
+
+        .header h1 {
+            margin: 0;
+            font-size: 2.5em;
+            text-transform: uppercase;
+        }
+
+        .description-box {
+            background-color: #A8DADC;
+            padding: 20px;
+            margin: 20px;
+            border-radius: 10px;
+            font-size: 1.2em;
+            line-height: 1.6;
+        }
+
+        .content-section {
+            padding: 20px;
+            margin: 20px;
+        }
+
         footer {
             background-color: #1D3557;
             color: white;
@@ -139,11 +145,11 @@
             .score-grid {
                 grid-template-columns: 1fr;
             }
-
+            
             .genetics-table {
                 font-size: 14px;
             }
-
+            
             .plotly-graph {
                 height: 600px;
             }
@@ -151,6 +157,10 @@
     </style>
 </head>
 <body>
+    <nav class="nav-pills">
+        <a href="index.html" class="nav-pill">← Back to Home</a>
+    </nav>
+
     <div class="header">
         <h1>Genetic Analysis</h1>
     </div>
@@ -160,6 +170,7 @@
     </div>
 
     <div class="content-section">
+        <!-- Performance Scores -->
         <h2 class="section-title">Performance Scores</h2>
         <div class="score-grid">
             <div class="score-card">
@@ -176,6 +187,7 @@
             </div>
         </div>
 
+        <!-- Genetic Analysis Table -->
         <h2 class="section-title">Genetic Analysis</h2>
         <div class="visualization-container">
             <table class="genetics-table">
@@ -330,19 +342,21 @@
             </table>
         </div>
 
+        <!-- Genetic Overview -->
         <h2 class="section-title">Genetic Overview</h2>
         <div class="visualization-container">
-            <iframe src="/ironman_retrospective/Ironman2023/assets/visualizations/genetic_analysis/athletic_genetics_overview_20241024_132540.html" 
-                    class="plotly-graph" 
+            <iframe class="plotly-graph" 
+                    src="assets/visualizations/genetic_analysis/athletic_genetics_overview_20241024_132540.html"
                     frameborder="0" 
                     scrolling="no">
             </iframe>
         </div>
 
-        <h2 class="section-title">Performance Visualizations</h2>
+        <!-- Performance Report -->
+        <h2 class="section-title">Performance Analysis</h2>
         <div class="visualization-container">
-            <iframe src="/ironman_retrospective/Ironman2023/assets/visualizations/genetic_analysis/genetic_performance_report.html" 
-                    class="plotly-graph" 
+            <iframe class="plotly-graph" 
+                    src="assets/visualizations/genetic_analysis/genetic_performance_report.html"
                     frameborder="0" 
                     scrolling="no">
             </iframe>
