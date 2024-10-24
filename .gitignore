@@ -36,3 +36,12 @@ venv/
 !assets/visualizations/genetic_analysis/*.html
 !assets/visualizations/run/*.html
 !assets/visualizations/swim/*.html
+
+# Un-ignore all stats files in assets directory
+!assets/stats/**/*.html
+!assets/stats/bike/*.html
+!assets/stats/body_composition/*.html
+!assets/stats/diet_sleep/*.html
+!assets/stats/genetic_analysis/*.html
+!assets/stats/run/*.html
+!assets/stats/swim/*.html
