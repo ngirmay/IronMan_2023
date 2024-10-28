@@ -422,121 +422,251 @@
         </div>
 
         <!-- Genetic Analysis Section -->
-        <div id="genetic_analysis" class="content">
-            <h2 class="section-title">GENETIC ANALYSIS</h2>
-            
-            <!-- Overview Box -->
-            <div class="description-box genetic-overview">
-                <p>This section delves into my genetic makeup and how it influences my athletic performance, endurance, recovery, and injury risk.</p>
-            </div>
-            
-            <!-- Performance Report Container -->
-            <div class="visualization-container report-container">
-                <h3 class="visualization-title">Genetic Performance Report</h3>
-                <iframe 
-                    class="visualization-iframe" 
-                    src="assets/visualizations/genetic_analysis/genetic_performance_report.html"
-                ></iframe>
-            </div>
-        
-            <!-- Athletics Overview Container -->
-            <div class="visualization-container overview-container">
-                <h3 class="visualization-title">Athletic Genetics Overview</h3>
-                <iframe 
-                    class="visualization-iframe" 
-                    src="assets/visualizations/genetic_analysis/athletic_genetics_overview_20241024_132540.html"
-                ></iframe>
-            </div>
+<div id="genetic_analysis" class="content">
+    <h2 class="section-title">GENETIC ANALYSIS</h2>
+    
+    <div class="description-box genetic-overview">
+        <p>This section delves into my genetic makeup and how it influences my athletic performance, endurance, recovery, and injury risk.</p>
+    </div>
+    
+    <!-- Performance Report Container -->
+    <div class="visualization-container report-container expandable-viz">
+        <h3 class="visualization-title">Genetic Performance Report</h3>
+        <div class="visualization-content">
+            <iframe 
+                class="visualization-iframe" 
+                src="assets/visualizations/genetic_analysis/genetic_performance_report.html"
+            ></iframe>
         </div>
-        
-        <style>
-        .section-title {
-            text-align: center;
-            color: #1D3557;
-            font-size: 2.5em;
-            margin-bottom: 30px;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-        }
-        
-        .genetic-overview {
-            background-color: #A8DADC;
-            border-radius: 10px;
-            padding: 25px;
-            margin: 20px auto;
-            max-width: 800px;
-            text-align: center;
-            font-size: 1.1em;
-            line-height: 1.6;
-            color: #1D3557;
-        }
-        
-        .visualization-container {
-            background: white;
-            border-radius: 10px;
-            overflow: hidden;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-            margin: 30px 0;
-        }
-        
-        .visualization-title {
-            background: #457B9D;
-            color: #F1FAEE;
-            padding: 15px;
-            margin: 0;
-            font-size: 1.2em;
-            text-align: center;
-        }
-        
-        /* Specific sizing for report container */
-        .report-container {
-            height: 600px;
-        }
-        
-        .report-container .visualization-iframe {
-            width: 100%;
-            height: 100%;
-            border: none;
-        }
-        
-        /* Specific sizing for overview container to show all 4 graphs */
-        .overview-container {
-            height: 1000px; /* Match the height from the HTML file */
-        }
-        
-        .overview-container .visualization-iframe {
-            width: 100%;
-            height: 100%;
-            border: none;
-            transform: scale(0.95); /* Slightly scale down to ensure full visibility */
-            transform-origin: top center;
-        }
-        
-        /* Responsive Design */
-        @media (max-width: 1400px) {
-            .overview-container {
-                height: 1200px; /* Increased height for smaller screens */
-            }
+        <div class="expanded-content">
+            <p>This report shows your genetic predisposition scores across three key areas: Power (27.1/100), Endurance (42.9/100), and Balance (0.0/100). These scores are calculated based on specific genetic markers that influence athletic performance. The power score indicates potential for explosive movements, endurance reflects aerobic capacity, and balance represents overall athletic versatility.</p>
+        </div>
+    </div>
+
+    <!-- Athletics Overview Container -->
+    <div class="visualization-container overview-container expandable-viz">
+        <h3 class="visualization-title">Athletic Genetics Overview</h3>
+        <div class="visualization-content">
+            <iframe 
+                class="visualization-iframe" 
+                src="assets/visualizations/genetic_analysis/athletic_genetics_overview_20241024_132540.html"
+            ></iframe>
+        </div>
+        <div class="expanded-content">
+            <p>This detailed overview analyzes key genetic markers that influence athletic performance. The analysis includes genes like HIF1A (CC) which affects oxygen transport and hypoxia response, and RYR1 (CC) which impacts calcium signaling and muscle function. Each gene's performance score indicates how optimal your genetic variant is for athletic performance.</p>
+        </div>
+    </div>
+</div>
+
+<style>
+/* Existing styles */
+.section-title {
+    text-align: center;
+    color: #1D3557;
+    font-size: 2.5em;
+    margin-bottom: 30px;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+}
+
+.genetic-overview {
+    background-color: #A8DADC;
+    border-radius: 10px;
+    padding: 25px;
+    margin: 20px auto;
+    max-width: 800px;
+    text-align: center;
+    font-size: 1.1em;
+    line-height: 1.6;
+    color: #1D3557;
+}
+
+.visualization-container {
+    background: white;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    margin: 30px 0;
+    transition: transform 0.3s ease;
+}
+
+.visualization-title {
+    background: #457B9D;
+    color: #F1FAEE;
+    padding: 15px;
+    margin: 0;
+    font-size: 1.2em;
+    text-align: center;
+}
+
+/* New expandable visualization styles */
+.expandable-viz {
+    cursor: pointer;
+}
+
+.expandable-viz:hover {
+    transform: scale(1.02);
+}
+
+.expanded-content {
+    display: none;
+    padding: 20px;
+    background: #f8f9fa;
+    border-top: 1px solid #dee2e6;
+}
+
+.visualization-modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.8);
+    z-index: 1000;
+    overflow-y: auto;
+}
+
+.modal-content {
+    position: relative;
+    background: white;
+    margin: 40px auto;
+    padding: 20px;
+    width: 90%;
+    max-width: 1200px;
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+}
+
+.close-modal {
+    position: absolute;
+    right: 20px;
+    top: 20px;
+    font-size: 24px;
+    cursor: pointer;
+    color: #1D3557;
+}
+
+/* Specific container sizes */
+.report-container {
+    height: 600px;
+}
+
+.overview-container {
+    height: 1000px;
+}
+
+.visualization-iframe {
+    width: 100%;
+    height: 100%;
+    border: none;
+}
+
+/* Animation classes */
+.fade-in {
+    animation: fadeIn 0.3s ease-in;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+/* Responsive adjustments */
+@media (max-width: 1400px) {
+    .overview-container {
+        height: 1200px;
+    }
+    
+    .overview-container .visualization-iframe {
+        transform: scale(0.85);
+    }
+}
+
+@media (max-width: 768px) {
+    .overview-container {
+        height: 1400px;
+    }
+    
+    .overview-container .visualization-iframe {
+        transform: scale(0.75);
+    }
+    
+    .report-container {
+        height: 800px;
+    }
+
+    .section-title {
+        font-size: 2em;
+    }
+
+    .genetic-overview {
+        margin: 15px;
+        padding: 20px;
+        font-size: 1em;
+    }
+
+    .modal-content {
+        width: 95%;
+        margin: 20px auto;
+    }
+}
+</style>
+
+<script>
+// Handle expandable visualizations
+document.addEventListener('DOMContentLoaded', function() {
+    const expandableVizs = document.querySelectorAll('.expandable-viz');
+    
+    expandableVizs.forEach(viz => {
+        viz.addEventListener('click', function() {
+            // Create modal
+            const modal = document.createElement('div');
+            modal.className = 'visualization-modal fade-in';
             
-            .overview-container .visualization-iframe {
-                transform: scale(0.85);
-            }
-        }
-        
-        @media (max-width: 768px) {
-            .overview-container {
-                height: 1400px; /* Further increased height for mobile */
-            }
+            // Get content
+            const title = this.querySelector('.visualization-title').cloneNode(true);
+            const content = this.querySelector('.visualization-content').cloneNode(true);
+            const description = this.querySelector('.expanded-content').cloneNode(true);
             
-            .overview-container .visualization-iframe {
-                transform: scale(0.75);
-            }
+            // Create modal content
+            modal.innerHTML = `
+                <div class="modal-content">
+                    <span class="close-modal">&times;</span>
+                    ${title.outerHTML}
+                    ${content.outerHTML}
+                    ${description.outerHTML}
+                </div>
+            `;
             
-            .report-container {
-                height: 800px; /* Increased height for mobile */
-            }
-        }
-        </style>
+            // Add modal to page
+            document.body.appendChild(modal);
+            modal.style.display = 'block';
+            document.body.style.overflow = 'hidden';
+            
+            // Show expanded content
+            modal.querySelector('.expanded-content').style.display = 'block';
+            
+            // Close modal functionality
+            const closeBtn = modal.querySelector('.close-modal');
+            closeBtn.onclick = function() {
+                modal.classList.remove('fade-in');
+                setTimeout(() => {
+                    modal.remove();
+                    document.body.style.overflow = 'auto';
+                }, 300);
+            };
+            
+            // Close on outside click
+            modal.onclick = function(e) {
+                if (e.target === modal) {
+                    closeBtn.click();
+                }
+            };
+        });
+    });
+});
+</script>
 
         <!-- Body Composition Section -->
         <div id="body_composition" class="content">
