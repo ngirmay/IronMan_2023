@@ -436,13 +436,14 @@
             <iframe 
                 class="visualization-iframe" 
                 src="assets/visualizations/genetic_analysis/genetic_performance_report.html"
+                scrolling="no"
             ></iframe>
         </div>
         <div class="expanded-content">
             <p>This report shows your genetic predisposition scores across three key areas: Power (27.1/100), Endurance (42.9/100), and Balance (0.0/100). These scores are calculated based on specific genetic markers that influence athletic performance. The power score indicates potential for explosive movements, endurance reflects aerobic capacity, and balance represents overall athletic versatility.</p>
         </div>
     </div>
- 
+
     <!-- Athletics Overview Container -->
     <div class="visualization-container overview-container expandable-viz">
         <h3 class="visualization-title">Athletic Genetics Overview</h3>
@@ -450,25 +451,26 @@
             <iframe 
                 class="visualization-iframe" 
                 src="assets/visualizations/genetic_analysis/athletic_genetics_overview_20241024_132540.html"
+                scrolling="no"
             ></iframe>
         </div>
         <div class="expanded-content">
             <p>This detailed overview analyzes key genetic markers that influence athletic performance. The analysis includes genes like HIF1A (CC) which affects oxygen transport and hypoxia response, and RYR1 (CC) which impacts calcium signaling and muscle function. Each gene's performance score indicates how optimal your genetic variant is for athletic performance.</p>
         </div>
     </div>
- </div>
- 
- <style>
- .section-title {
+</div>
+
+<style>
+.section-title {
     text-align: center;
     color: #1D3557;
     font-size: 2.5em;
     margin-bottom: 30px;
     text-transform: uppercase;
     letter-spacing: 2px;
- }
- 
- .genetic-overview {
+}
+
+.genetic-overview {
     background-color: #A8DADC;
     border-radius: 10px;
     padding: 25px;
@@ -478,9 +480,9 @@
     font-size: 1.1em;
     line-height: 1.6;
     color: #1D3557;
- }
- 
- .visualization-container {
+}
+
+.visualization-container {
     background: white;
     border-radius: 10px;
     overflow: hidden;
@@ -489,133 +491,146 @@
     transition: transform 0.3s ease;
     width: 95%;
     max-width: 1800px;
- }
- 
- .visualization-title {
+    position: relative;
+}
+
+.visualization-title {
     background: #457B9D;
     color: #F1FAEE;
     padding: 15px;
     margin: 0;
     font-size: 1.2em;
     text-align: center;
- }
- 
- .expandable-viz {
+}
+
+.visualization-content {
+    position: relative;
+    overflow: hidden;
+}
+
+.expandable-viz {
     cursor: pointer;
- }
- 
- .expandable-viz:hover {
+}
+
+.expandable-viz:hover {
     transform: scale(1.02);
- }
- 
- .expanded-content {
+}
+
+.expanded-content {
     display: none;
     padding: 20px;
     background: #f8f9fa;
     border-top: 1px solid #dee2e6;
- }
- 
- .visualization-modal {
+}
+
+.visualization-modal {
     display: none;
     position: fixed;
     top: 0;
     left: 0;
     width: 100%;
-    height: 300%;
+    height: 100%;
     background: rgba(0, 0, 0, 0.8);
     z-index: 1000;
-    overflow-y: auto;
- }
- 
- .modal-content {
+    overflow: auto;
+}
+
+.modal-content {
     position: relative;
     background: white;
     margin: 40px auto;
     padding: 30px;
     width: 95%;
     max-width: 1800px;
-    min-height: 120vh;
     border-radius: 10px;
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
- }
- 
- .close-modal {
+}
+
+.close-modal {
     position: absolute;
     right: 20px;
     top: 20px;
     font-size: 24px;
     cursor: pointer;
     color: #1D3557;
- }
- 
- .report-container {
-    height: 2400px;
- }
- 
- .overview-container {
-    height: 2800px;
- }
- 
- .visualization-iframe {
+    z-index: 1100;
+}
+
+.report-container {
+    height: 800px;
+}
+
+.overview-container {
+    height: 1000px;
+}
+
+.visualization-iframe {
     width: 100%;
-    height: 300%;
+    height: 100%;
     border: none;
-    transform-origin: top;
-    transform: scale(0.95);
- }
- 
- .fade-in {
+    position: absolute;
+    top: 0;
+    left: 0;
+    transform: scale(1);
+    transform-origin: 0 0;
+}
+
+.fade-in {
     animation: fadeIn 0.3s ease-in;
- }
- 
- @keyframes fadeIn {
+}
+
+@keyframes fadeIn {
     from { opacity: 0; }
     to { opacity: 1; }
- }
- 
- @media (max-width: 1400px) {
-    .overview-container {
-        height: 3000px;
-    }
-    
-    .visualization-iframe {
-        transform: scale(0.85);
-    }
- }
- 
- @media (max-width: 768px) {
-    .overview-container {
-        height: 3200px;
-    }
-    
-    .visualization-iframe {
-        transform: scale(0.75);
-        height: 350%;
-    }
-    
+}
+
+@media (max-width: 1400px) {
     .report-container {
-        height: 2600px;
+        height: 700px;
     }
- 
+    
+    .overview-container {
+        height: 900px;
+    }
+    
+    .visualization-iframe {
+        transform: scale(0.9);
+    }
+}
+
+@media (max-width: 768px) {
+    .report-container {
+        height: 600px;
+    }
+    
+    .overview-container {
+        height: 800px;
+    }
+    
+    .visualization-iframe {
+        transform: scale(0.8);
+    }
+
     .section-title {
         font-size: 2em;
     }
- 
+
     .genetic-overview {
         margin: 15px;
         padding: 20px;
         font-size: 1em;
     }
- 
+
     .modal-content {
-        width: 95%;
-        margin: 20px auto;
+        width: 98%;
+        margin: 10px auto;
+        padding: 15px;
     }
- }
- </style>
- 
- <script>
- document.addEventListener('DOMContentLoaded', function() {
+}
+</style>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
     const expandableVizs = document.querySelectorAll('.expandable-viz');
     
     expandableVizs.forEach(viz => {
@@ -626,6 +641,12 @@
             const title = this.querySelector('.visualization-title').cloneNode(true);
             const content = this.querySelector('.visualization-content').cloneNode(true);
             const description = this.querySelector('.expanded-content').cloneNode(true);
+            
+            const iframe = content.querySelector('iframe');
+            if (iframe) {
+                iframe.style.position = 'relative';
+                iframe.style.height = '800px';
+            }
             
             modal.innerHTML = `
                 <div class="modal-content">
@@ -658,8 +679,8 @@
             };
         });
     });
- });
- </script>
+});
+</script>
 
         <!-- Body Composition Section -->
         <div id="body_composition" class="content">
