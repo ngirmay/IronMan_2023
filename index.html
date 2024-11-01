@@ -1559,47 +1559,56 @@
 
 
         <!-- Diet & Sleep Section -->
-        <div id="diet_sleep" class="content">
-            <h2>Diet & Sleep Analysis</h2>
-            <div class="description-box">
-                <p>This section covers the impact of my diet and sleep on my overall training performance and recovery.</p>
-            </div>
+<div id="diet_sleep" class="content">
+    <h2 class="section-title">Diet & Sleep Analysis</h2>
+    <div class="description-box">
+        <p>This section covers the impact of my diet and sleep on my overall training performance and recovery.</p>
+    </div>
 
-            <div class="stat-container">
-                <div class="stat-box">
-                    <h3>Calories Consumed</h3>
-                    <p><span class="animate-number" data-value="4000">0</span></p>
-                </div>
-                <div class="stat-box">
-                    <h3>Average Sleep (hours)</h3>
-                    <p><span class="animate-number" data-value="7.5">0</span></p>
-                </div>
-            </div>
+    <div class="stat-container">
+        <div class="stat-box">
+            <h3>Calories Consumed</h3>
+            <p><span class="animate-number" data-value="4000">0</span></p>
+        </div>
+        <div class="stat-box">
+            <h3>Average Sleep (hours)</h3>
+            <p><span class="animate-number" data-value="7.5">0</span></p>
+        </div>
+    </div>
 
-            <div class="visualization-grid">
-                <div class="visualization-container">
-                    <h3 class="visualization-title">Macronutrient Distribution</h3>
-                    <iframe class="visualization-iframe" src="assets/visualizations/diet_sleep/ironman_macronutrient_distribution_20241024_130557.html"></iframe>
-                </div>
-                <div class="visualization-container">
-                    <h3 class="visualization-title">Weight and Calories</h3>
-                    <iframe class="visualization-iframe" src="assets/visualizations/diet_sleep/ironman_weight_and_calories_over_time_20241024_130557.html"></iframe>
-                </div>
-                <div class="visualization-container">
-                    <h3 class="visualization-title">Sleep Analysis</h3>
-                    <iframe class="visualization-iframe" src="assets/visualizations/diet_sleep/sleep_data_analysis_20241024_130520.html"></iframe>
-                </div>
+    <div class="visualization-grid">
+        <div class="visualization-container expandable-viz">
+            <h3 class="visualization-title">Macronutrient Distribution</h3>
+            <div class="visualization-content">
+                <iframe class="visualization-iframe preview-mode" src="assets/visualizations/diet_sleep/ironman_macronutrient_distribution_20241024_130557.html"></iframe>
+            </div>
+            <div class="expanded-content">
+                <p>Analysis of macronutrient intake distribution over the training period.</p>
             </div>
         </div>
 
-        <!-- Final Thoughts Section -->
-        <div id="final_thoughts" class="content">
-            <h2>Final Thoughts</h2>
-            <div class="description-box">
-                <p>A reflection on the entire training journey, lessons learned, and how this experience has shaped my approach to endurance events.</p>
+        <div class="visualization-container expandable-viz">
+            <h3 class="visualization-title">Weight and Calories</h3>
+            <div class="visualization-content">
+                <iframe class="visualization-iframe preview-mode" src="assets/visualizations/diet_sleep/ironman_weight_and_calories_over_time_20241024_130557.html"></iframe>
+            </div>
+            <div class="expanded-content">
+                <p>Correlation between weight changes and calorie intake over time.</p>
+            </div>
+        </div>
+
+        <div class="visualization-container expandable-viz">
+            <h3 class="visualization-title">Sleep Analysis</h3>
+            <div class="visualization-content">
+                <iframe class="visualization-iframe preview-mode" src="assets/visualizations/diet_sleep/sleep_data_analysis_20241024_130520.html"></iframe>
+            </div>
+            <div class="expanded-content">
+                <p>Detailed analysis of sleep patterns and their impact on recovery.</p>
             </div>
         </div>
     </div>
+</div>
+
 
     <footer>
         <p>&copy; 2024 Nobel Girmay - Ironman 2023</p>
