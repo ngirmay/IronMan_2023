@@ -1093,10 +1093,10 @@
         position: relative;
         background: white;
         margin: 40px auto;
-        padding: 30px;
-        width: 95%;
-        max-width: 1800px;
-        min-height: 800px;
+        padding: 20px;
+        width: 80%;
+        max-width: 1200px; /* Smaller max-width for better visibility */
+        min-height: 600px; /* Reduced height for full view */
         border-radius: 10px;
         box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
     }
@@ -1154,14 +1154,15 @@
         }
     
         .modal-content {
-            width: 98%;
+            width: 95%;
             margin: 10px auto;
             padding: 15px;
+            min-height: 500px; /* Adjusted for smaller screens */
         }
     }
-    </style>
-    
-    <script>
+</style>
+
+<script>
     document.addEventListener('DOMContentLoaded', function() {
         // Number Animation
         const animateNumbers = document.querySelectorAll('.animate-number');
@@ -1204,7 +1205,7 @@
                 if (iframe) {
                     iframe.classList.remove('preview-mode');
                     iframe.scrolling = 'auto';
-                    iframe.style.height = '1200px';
+                    iframe.style.height = '800px'; // Smaller height for better fit
                     iframe.style.position = 'relative';
                     iframe.style.transform = 'none';
                 }
@@ -1241,7 +1242,8 @@
             });
         });
     });
-    </script>
+</script>
+
 
         <!-- Swim Section -->
         <div id="swim" class="content">
