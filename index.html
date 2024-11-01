@@ -1246,67 +1246,145 @@
 
 
         <!-- Swim Section -->
-        <div id="swim" class="content">
-            <h2>Swim Performance</h2>
-            <div class="description-box">
-                <p>An analysis of my swim performance during the Ironman training, focusing on improvements in pace, distance, and technique.</p>
-            </div>
+<div id="swim" class="content">
+    <h2 class="section-title">Swim Performance</h2>
+    <div class="description-box">
+        <p>An analysis of my swim performance during the Ironman training, focusing on improvements in pace, distance, and technique.</p>
+    </div>
 
-            <div class="visualization-grid">
-                <div class="visualization-container">
-                    <h3 class="visualization-title">DPS and SWOLF Trends</h3>
-                    <iframe class="visualization-iframe" src="assets/visualizations/swim/avg_dps_swolf_over_time.html"></iframe>
-                </div>
-                <div class="visualization-container">
-                    <h3 class="visualization-title">Body Angle Analysis</h3>
-                    <iframe class="visualization-iframe" src="assets/visualizations/swim/body_angle_analysis.html"></iframe>
-                </div>
-                <div class="visualization-container">
-                    <h3 class="visualization-title">Energy Expenditure</h3>
-                    <iframe class="visualization-iframe" src="assets/visualizations/swim/calories_burned_total_distance.html"></iframe>
-                </div>
-                <div class="visualization-container">
-                    <h3 class="visualization-title">Calorie and Distance Trends</h3>
-                    <iframe class="visualization-iframe" src="assets/visualizations/swim/calories_distance_over_time.html"></iframe>
-                </div>
-                <div class="visualization-container">
-                    <h3 class="visualization-title">Stroke Analysis</h3>
-                    <iframe class="visualization-iframe" src="assets/visualizations/swim/duration_avg_stroke_count_over_time.html"></iframe>
-                </div>
-                <div class="visualization-container">
-                    <h3 class="visualization-title">Stroke Count Timeline</h3>
-                    <iframe class="visualization-iframe" src="assets/visualizations/swim/duration_stroke_count_over_time.html"></iframe>
-                </div>
-                <div class="visualization-container">
-                    <h3 class="visualization-title">Interval Analysis</h3>
-                    <iframe class="visualization-iframe" src="assets/visualizations/swim/interval_distance_stroke_count_over_time.html"></iframe>
-                </div>
-                <div class="visualization-container">
-                    <h3 class="visualization-title">Form Analysis 1</h3>
-                    <iframe class="visualization-iframe" src="assets/visualizations/swim/key_frame_comparison_1.html"></iframe>
-                </div>
-                <div class="visualization-container">
-                    <h3 class="visualization-title">Form Analysis 2</h3>
-                    <iframe class="visualization-iframe" src="assets/visualizations/swim/key_frame_comparison_2.html"></iframe>
-                </div>
-                <div class="visualization-container">
-                    <h3 class="visualization-title">Form Analysis 3</h3>
-                    <iframe class="visualization-iframe" src="assets/visualizations/swim/key_frame_comparison_3.html"></iframe>
-                </div>
-                <div class="visualization-container">
-                    <h3 class="visualization-title">Form Analysis 4</h3>
-                    <iframe class="visualization-iframe" src="assets/visualizations/swim/key_frame_comparison_4.html"></iframe>
-                </div>
-                <div class="visualization-container">
-                    <h3 class="visualization-title">Performance Metrics</h3>
-                    <iframe class="visualization-iframe" src="assets/visualizations/swim/metrics_comparison.html"></iframe>
-                </div>
-                <div class="visualization-container">
-                    <h3 class="visualization-title">Pace and Stroke Rate</h3>
-                    <iframe class="visualization-iframe" src="assets/visualizations/swim/pace_avg_stroke_rate_over_time.html"></iframe>
-                </div>
+    <div class="visualization-grid">
+        <div class="visualization-container expandable-viz">
+            <h3 class="visualization-title">DPS and SWOLF Trends</h3>
+            <div class="visualization-content">
+                <iframe class="visualization-iframe preview-mode" src="assets/visualizations/swim/avg_dps_swolf_over_time.html"></iframe>
+            </div>
+            <div class="expanded-content">
+                <p>Analysis of DPS (Distance Per Stroke) and SWOLF (Swim Golf) trends over time.</p>
             </div>
         </div>
+
+        <div class="visualization-container expandable-viz">
+            <h3 class="visualization-title">Body Angle Analysis</h3>
+            <div class="visualization-content">
+                <iframe class="visualization-iframe preview-mode" src="assets/visualizations/swim/body_angle_analysis.html"></iframe>
+            </div>
+            <div class="expanded-content">
+                <p>Examination of body angle changes during swim sessions.</p>
+            </div>
+        </div>
+
+        <div class="visualization-container expandable-viz">
+            <h3 class="visualization-title">Energy Expenditure</h3>
+            <div class="visualization-content">
+                <iframe class="visualization-iframe preview-mode" src="assets/visualizations/swim/calories_burned_total_distance.html"></iframe>
+            </div>
+            <div class="expanded-content">
+                <p>Correlation of calories burned with total swimming distance.</p>
+            </div>
+        </div>
+
+        <div class="visualization-container expandable-viz">
+            <h3 class="visualization-title">Calorie and Distance Trends</h3>
+            <div class="visualization-content">
+                <iframe class="visualization-iframe preview-mode" src="assets/visualizations/swim/calories_distance_over_time.html"></iframe>
+            </div>
+            <div class="expanded-content">
+                <p>Trends in calorie expenditure and swim distance over time.</p>
+            </div>
+        </div>
+
+        <div class="visualization-container expandable-viz">
+            <h3 class="visualization-title">Stroke Analysis</h3>
+            <div class="visualization-content">
+                <iframe class="visualization-iframe preview-mode" src="assets/visualizations/swim/duration_avg_stroke_count_over_time.html"></iframe>
+            </div>
+            <div class="expanded-content">
+                <p>Analysis of stroke count changes throughout training.</p>
+            </div>
+        </div>
+
+        <div class="visualization-container expandable-viz">
+            <h3 class="visualization-title">Stroke Count Timeline</h3>
+            <div class="visualization-content">
+                <iframe class="visualization-iframe preview-mode" src="assets/visualizations/swim/duration_stroke_count_over_time.html"></iframe>
+            </div>
+            <div class="expanded-content">
+                <p>Timeline of stroke count during swim sessions.</p>
+            </div>
+        </div>
+
+        <div class="visualization-container expandable-viz">
+            <h3 class="visualization-title">Interval Analysis</h3>
+            <div class="visualization-content">
+                <iframe class="visualization-iframe preview-mode" src="assets/visualizations/swim/interval_distance_stroke_count_over_time.html"></iframe>
+            </div>
+            <div class="expanded-content">
+                <p>Breakdown of swim intervals by distance and stroke count.</p>
+            </div>
+        </div>
+
+        <div class="visualization-container expandable-viz">
+            <h3 class="visualization-title">Form Analysis 1</h3>
+            <div class="visualization-content">
+                <iframe class="visualization-iframe preview-mode" src="assets/visualizations/swim/key_frame_comparison_1.html"></iframe>
+            </div>
+            <div class="expanded-content">
+                <p>Key frame comparison for form analysis (session 1).</p>
+            </div>
+        </div>
+
+        <div class="visualization-container expandable-viz">
+            <h3 class="visualization-title">Form Analysis 2</h3>
+            <div class="visualization-content">
+                <iframe class="visualization-iframe preview-mode" src="assets/visualizations/swim/key_frame_comparison_2.html"></iframe>
+            </div>
+            <div class="expanded-content">
+                <p>Key frame comparison for form analysis (session 2).</p>
+            </div>
+        </div>
+
+        <div class="visualization-container expandable-viz">
+            <h3 class="visualization-title">Form Analysis 3</h3>
+            <div class="visualization-content">
+                <iframe class="visualization-iframe preview-mode" src="assets/visualizations/swim/key_frame_comparison_3.html"></iframe>
+            </div>
+            <div class="expanded-content">
+                <p>Key frame comparison for form analysis (session 3).</p>
+            </div>
+        </div>
+
+        <div class="visualization-container expandable-viz">
+            <h3 class="visualization-title">Form Analysis 4</h3>
+            <div class="visualization-content">
+                <iframe class="visualization-iframe preview-mode" src="assets/visualizations/swim/key_frame_comparison_4.html"></iframe>
+            </div>
+            <div class="expanded-content">
+                <p>Key frame comparison for form analysis (session 4).</p>
+            </div>
+        </div>
+
+        <div class="visualization-container expandable-viz">
+            <h3 class="visualization-title">Performance Metrics</h3>
+            <div class="visualization-content">
+                <iframe class="visualization-iframe preview-mode" src="assets/visualizations/swim/metrics_comparison.html"></iframe>
+            </div>
+            <div class="expanded-content">
+                <p>Comparative metrics across swim training sessions.</p>
+            </div>
+        </div>
+
+        <div class="visualization-container expandable-viz">
+            <h3 class="visualization-title">Pace and Stroke Rate</h3>
+            <div class="visualization-content">
+                <iframe class="visualization-iframe preview-mode" src="assets/visualizations/swim/pace_avg_stroke_rate_over_time.html"></iframe>
+            </div>
+            <div class="expanded-content">
+                <p>Analysis of pace and average stroke rate over time.</p>
+            </div>
+        </div>
+    </div>
+</div>
+
 
         <!-- Bike Section -->
         <div id="bike" class="content">
