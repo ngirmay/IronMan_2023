@@ -703,233 +703,545 @@
  </script>
 
         <!-- Body Composition Section -->
-        <div id="body_composition" class="content">
-            <h2 class="section-title">BODY COMPOSITION</h2>
-            
-            <div class="description-box">
-                <p>This section explores how my body composition evolved throughout my Ironman training, with a focus on metrics like BMI, body fat percentage, lean mass, and cardiovascular indicators.</p>
-            </div>
-            
-            <!-- Key Metrics Stats -->
-            <div class="stat-container">
-                <div class="stat-box">
-                    <h3>BMI</h3>
-                    <p><span class="animate-number" data-value="22.5">0</span></p>
-                    <small>Healthy Range</small>
+<div id="body_composition" class="content">
+    <h2 class="section-title">BODY COMPOSITION</h2>
+    
+    <div class="description-box">
+        <p>This section explores how my body composition evolved throughout my Ironman training, with a focus on metrics like BMI, body fat percentage, lean mass, and cardiovascular indicators.</p>
+    </div>
+    
+    <!-- Key Metrics Stats -->
+    <div class="stat-container">
+        <div class="stat-box">
+            <h3>BMI</h3>
+            <p><span class="animate-number" data-value="22.5">0</span></p>
+            <small>Healthy Range</small>
+        </div>
+        <div class="stat-box">
+            <h3>Body Fat %</h3>
+            <p><span class="animate-number" data-value="12">0</span></p>
+            <small>Athletic Range</small>
+        </div>
+        <div class="stat-box">
+            <h3>Lean Mass (kg)</h3>
+            <p><span class="animate-number" data-value="65">0</span></p>
+            <small>Peak Training</small>
+        </div>
+    </div>
+
+    <!-- Body Composition Trends -->
+    <div class="metrics-section">
+        <h3 class="subsection-title">Body Composition Analysis</h3>
+        <div class="visualization-grid">
+            <div class="visualization-container expandable-viz">
+                <h3 class="visualization-title">Body Mass Distribution</h3>
+                <div class="visualization-content">
+                    <iframe 
+                        class="visualization-iframe preview-mode" 
+                        src="assets/visualizations/body_composition/weight_distribution_20241024_135255.html"
+                        scrolling="no"
+                    ></iframe>
                 </div>
-                <div class="stat-box">
-                    <h3>Body Fat %</h3>
-                    <p><span class="animate-number" data-value="12">0</span></p>
-                    <small>Athletic Range</small>
-                </div>
-                <div class="stat-box">
-                    <h3>Lean Mass (kg)</h3>
-                    <p><span class="animate-number" data-value="65">0</span></p>
-                    <small>Peak Training</small>
-                </div>
-            </div>
-        
-            <!-- Body Composition Trends -->
-            <div class="metrics-section">
-                <h3 class="subsection-title">Body Composition Analysis</h3>
-                <div class="visualization-grid">
-                    <div class="visualization-container">
-                        <h3 class="visualization-title">Body Mass Distribution</h3>
-                        <iframe class="visualization-iframe" src="assets/visualizations/body_composition/weight_distribution_20241024_135255.html"></iframe>
-                    </div>
-                    <div class="visualization-container">
-                        <h3 class="visualization-title">Body Fat Percentage Trends</h3>
-                        <iframe class="visualization-iframe" src="assets/visualizations/body_composition/body_fat_percentage_over_time_20241024_134949.html"></iframe>
-                    </div>
-                    <div class="visualization-container">
-                        <h3 class="visualization-title">Body Mass Evolution</h3>
-                        <iframe class="visualization-iframe" src="assets/visualizations/body_composition/body_mass_over_time_20241024_134949.html"></iframe>
-                    </div>
-                    <div class="visualization-container">
-                        <h3 class="visualization-title">Body Mass vs Body Fat</h3>
-                        <iframe class="visualization-iframe" src="assets/visualizations/body_composition/comparison_body_mass_body_fat_20241024_134949.html"></iframe>
-                    </div>
-                    <div class="visualization-container">
-                        <h3 class="visualization-title">Lean Body Mass Trends</h3>
-                        <iframe class="visualization-iframe" src="assets/visualizations/body_composition/lean_body_mass_over_time_20241024_134949.html"></iframe>
-                    </div>
-                    <div class="visualization-container">
-                        <h3 class="visualization-title">Height Distribution Analysis</h3>
-                        <iframe class="visualization-iframe" src="assets/visualizations/body_composition/height_distribution_20241024_135255.html"></iframe>
-                    </div>
-                    <div class="visualization-container">
-                        <h3 class="visualization-title">Height vs Weight Analysis</h3>
-                        <iframe class="visualization-iframe" src="assets/visualizations/body_composition/height_weight_regression_20241024_135255.html"></iframe>
-                    </div>
+                <div class="expanded-content">
+                    <p>Distribution analysis of body mass measurements throughout the training period.</p>
                 </div>
             </div>
-        
-            <!-- Cardiovascular Metrics -->
-            <div class="metrics-section">
-                <h3 class="subsection-title">Cardiovascular Performance</h3>
-                <div class="visualization-grid">
-                    <div class="visualization-container">
-                        <h3 class="visualization-title">Heart Rate by Activity</h3>
-                        <iframe class="visualization-iframe" src="assets/visualizations/body_composition/heart_rate_vs_activity_type_20241024_135605.html"></iframe>
-                    </div>
-                    <div class="visualization-container">
-                        <h3 class="visualization-title">Base Heart Rate Zones</h3>
-                        <iframe class="visualization-iframe" src="assets/visualizations/body_composition/heart_rate_zones_20241024_140507.html"></iframe>
-                    </div>
-                    <div class="visualization-container">
-                        <h3 class="visualization-title">Karvonen Heart Rate Zones</h3>
-                        <iframe class="visualization-iframe" src="assets/visualizations/body_composition/heart_rate_zones_Karvonen_20241024_140347.html"></iframe>
-                    </div>
-                    <div class="visualization-container">
-                        <h3 class="visualization-title">MHR Heart Rate Zones</h3>
-                        <iframe class="visualization-iframe" src="assets/visualizations/body_composition/heart_rate_zones_MHR_20241024_140347.html"></iframe>
-                    </div>
-                    <div class="visualization-container">
-                        <h3 class="visualization-title">Time in Zones Analysis</h3>
-                        <iframe class="visualization-iframe" src="assets/visualizations/body_composition/time_spent_in_zones_all_20241024_140347.html"></iframe>
-                    </div>
-                    <div class="visualization-container">
-                        <h3 class="visualization-title">HRV Trends</h3>
-                        <iframe class="visualization-iframe" src="assets/visualizations/body_composition/hrv_trend_20241024_141310.html"></iframe>
-                    </div>
-                    <div class="visualization-container">
-                        <h3 class="visualization-title">VO2 Max Trends</h3>
-                        <iframe class="visualization-iframe" src="assets/visualizations/body_composition/vo2_max_trend_20241024_141609.html"></iframe>
-                    </div>
+
+            <div class="visualization-container expandable-viz">
+                <h3 class="visualization-title">Body Fat Percentage Trends</h3>
+                <div class="visualization-content">
+                    <iframe 
+                        class="visualization-iframe preview-mode" 
+                        src="assets/visualizations/body_composition/body_fat_percentage_over_time_20241024_134949.html"
+                        scrolling="no"
+                    ></iframe>
+                </div>
+                <div class="expanded-content">
+                    <p>Temporal analysis of body fat percentage changes during training.</p>
+                </div>
+            </div>
+
+            <div class="visualization-container expandable-viz">
+                <h3 class="visualization-title">Body Mass Evolution</h3>
+                <div class="visualization-content">
+                    <iframe 
+                        class="visualization-iframe preview-mode" 
+                        src="assets/visualizations/body_composition/body_mass_over_time_20241024_134949.html"
+                        scrolling="no"
+                    ></iframe>
+                </div>
+                <div class="expanded-content">
+                    <p>Progression of total body mass throughout the training program.</p>
+                </div>
+            </div>
+
+            <div class="visualization-container expandable-viz">
+                <h3 class="visualization-title">Body Mass vs Body Fat</h3>
+                <div class="visualization-content">
+                    <iframe 
+                        class="visualization-iframe preview-mode" 
+                        src="assets/visualizations/body_composition/comparison_body_mass_body_fat_20241024_134949.html"
+                        scrolling="no"
+                    ></iframe>
+                </div>
+                <div class="expanded-content">
+                    <p>Comparative analysis of body mass and body fat percentage relationships.</p>
+                </div>
+            </div>
+
+            <div class="visualization-container expandable-viz">
+                <h3 class="visualization-title">Lean Body Mass Trends</h3>
+                <div class="visualization-content">
+                    <iframe 
+                        class="visualization-iframe preview-mode" 
+                        src="assets/visualizations/body_composition/lean_body_mass_over_time_20241024_134949.html"
+                        scrolling="no"
+                    ></iframe>
+                </div>
+                <div class="expanded-content">
+                    <p>Tracking of lean body mass changes during the training period.</p>
+                </div>
+            </div>
+
+            <div class="visualization-container expandable-viz">
+                <h3 class="visualization-title">Height Distribution Analysis</h3>
+                <div class="visualization-content">
+                    <iframe 
+                        class="visualization-iframe preview-mode" 
+                        src="assets/visualizations/body_composition/height_distribution_20241024_135255.html"
+                        scrolling="no"
+                    ></iframe>
+                </div>
+                <div class="expanded-content">
+                    <p>Statistical analysis of height measurements and distribution.</p>
+                </div>
+            </div>
+
+            <div class="visualization-container expandable-viz">
+                <h3 class="visualization-title">Height vs Weight Analysis</h3>
+                <div class="visualization-content">
+                    <iframe 
+                        class="visualization-iframe preview-mode" 
+                        src="assets/visualizations/body_composition/height_weight_regression_20241024_135255.html"
+                        scrolling="no"
+                    ></iframe>
+                </div>
+                <div class="expanded-content">
+                    <p>Correlation analysis between height and weight measurements.</p>
                 </div>
             </div>
         </div>
+    </div>
+
+    <!-- Cardiovascular Metrics -->
+    <div class="metrics-section">
+        <h3 class="subsection-title">Cardiovascular Performance</h3>
+        <div class="visualization-grid">
+            <div class="visualization-container expandable-viz">
+                <h3 class="visualization-title">Heart Rate by Activity</h3>
+                <div class="visualization-content">
+                    <iframe 
+                        class="visualization-iframe preview-mode" 
+                        src="assets/visualizations/body_composition/heart_rate_vs_activity_type_20241024_135605.html"
+                        scrolling="no"
+                    ></iframe>
+                </div>
+                <div class="expanded-content">
+                    <p>Analysis of heart rate patterns across different training activities.</p>
+                </div>
+            </div>
+
+            <div class="visualization-container expandable-viz">
+                <h3 class="visualization-title">Base Heart Rate Zones</h3>
+                <div class="visualization-content">
+                    <iframe 
+                        class="visualization-iframe preview-mode" 
+                        src="assets/visualizations/body_composition/heart_rate_zones_20241024_140507.html"
+                        scrolling="no"
+                    ></iframe>
+                </div>
+                <div class="expanded-content">
+                    <p>Distribution of training time across base heart rate zones.</p>
+                </div>
+            </div>
+
+            <div class="visualization-container expandable-viz">
+                <h3 class="visualization-title">Karvonen Heart Rate Zones</h3>
+                <div class="visualization-content">
+                    <iframe 
+                        class="visualization-iframe preview-mode" 
+                        src="assets/visualizations/body_composition/heart_rate_zones_Karvonen_20241024_140347.html"
+                        scrolling="no"
+                    ></iframe>
+                </div>
+                <div class="expanded-content">
+                    <p>Analysis of training intensity using Karvonen heart rate zones.</p>
+                </div>
+            </div>
+
+            <div class="visualization-container expandable-viz">
+                <h3 class="visualization-title">MHR Heart Rate Zones</h3>
+                <div class="visualization-content">
+                    <iframe 
+                        class="visualization-iframe preview-mode" 
+                        src="assets/visualizations/body_composition/heart_rate_zones_MHR_20241024_140347.html"
+                        scrolling="no"
+                    ></iframe>
+                </div>
+                <div class="expanded-content">
+                    <p>Training distribution across maximum heart rate zones.</p>
+                </div>
+            </div>
+
+            <div class="visualization-container expandable-viz">
+                <h3 class="visualization-title">Time in Zones Analysis</h3>
+                <div class="visualization-content">
+                    <iframe 
+                        class="visualization-iframe preview-mode" 
+                        src="assets/visualizations/body_composition/time_spent_in_zones_all_20241024_140347.html"
+                        scrolling="no"
+                    ></iframe>
+                </div>
+                <div class="expanded-content">
+                    <p>Detailed breakdown of time spent in different heart rate zones.</p>
+                </div>
+            </div>
+
+            <div class="visualization-container expandable-viz">
+                <h3 class="visualization-title">HRV Trends</h3>
+                <div class="visualization-content">
+                    <iframe 
+                        class="visualization-iframe preview-mode" 
+                        src="assets/visualizations/body_composition/hrv_trend_20241024_141310.html"
+                        scrolling="no"
+                    ></iframe>
+                </div>
+                <div class="expanded-content">
+                    <p>Heart rate variability trends throughout training period.</p>
+                </div>
+            </div>
+
+            <div class="visualization-container expandable-viz">
+                <h3 class="visualization-title">VO2 Max Trends</h3>
+                <div class="visualization-content">
+                    <iframe 
+                        class="visualization-iframe preview-mode" 
+                        src="assets/visualizations/body_composition/vo2_max_trend_20241024_141609.html"
+                        scrolling="no"
+                    ></iframe>
+                </div>
+                <div class="expanded-content">
+                    <p>Progression of VO2 Max measurements during training.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
         
-        <style>
-        .section-title {
-            text-align: center;
-            color: #1D3557;
-            font-size: 2.5em;
-            margin-bottom: 30px;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-        }
-        
-        .subsection-title {
-            text-align: center;
-            color: #1D3557;
-            font-size: 1.8em;
-            margin: 40px 0 20px;
-            letter-spacing: 1px;
-        }
-        
-        .description-box {
-            background-color: #A8DADC;
-            border-radius: 10px;
-            padding: 25px;
-            margin: 20px auto;
-            max-width: 800px;
-            text-align: center;
-            font-size: 1.1em;
-            line-height: 1.6;
-            color: #1D3557;
-        }
-        
-        /* Stats Styling */
-        .stat-container {
-            display: flex;
-            justify-content: center;
-            flex-wrap: wrap;
-            gap: 20px;
-            margin: 40px 0;
-        }
-        
-        .stat-box {
-            background-color: #457B9D;
-            color: #F1FAEE;
-            padding: 25px 40px;
-            border-radius: 10px;
-            text-align: center;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-            min-width: 200px;
-        }
-        
-        .stat-box h3 {
-            margin-bottom: 10px;
-            font-size: 1.2em;
-        }
-        
-        .stat-box p {
-            font-size: 2.2em;
-            font-weight: bold;
-            margin: 10px 0;
-        }
-        
-        .stat-box small {
-            display: block;
-            opacity: 0.8;
-            font-size: 0.9em;
-            margin-top: 5px;
-        }
-        
-        /* Visualization Styling */
-        .metrics-section {
-            margin: 60px 0;
-        }
-        
+<style>
+    .section-title {
+        text-align: center;
+        color: #1D3557;
+        font-size: 2.5em;
+        margin-bottom: 30px;
+        text-transform: uppercase;
+        letter-spacing: 2px;
+    }
+    
+    .subsection-title {
+        text-align: center;
+        color: #1D3557;
+        font-size: 1.8em;
+        margin: 40px 0 20px;
+        letter-spacing: 1px;
+    }
+    
+    .description-box {
+        background-color: #A8DADC;
+        border-radius: 10px;
+        padding: 25px;
+        margin: 20px auto;
+        max-width: 800px;
+        text-align: center;
+        font-size: 1.1em;
+        line-height: 1.6;
+        color: #1D3557;
+    }
+    
+    /* Stats Styling */
+    .stat-container {
+        display: flex;
+        justify-content: center;
+        flex-wrap: wrap;
+        gap: 20px;
+        margin: 40px 0;
+    }
+    
+    .stat-box {
+        background-color: #457B9D;
+        color: #F1FAEE;
+        padding: 25px 40px;
+        border-radius: 10px;
+        text-align: center;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        min-width: 200px;
+    }
+    
+    .stat-box h3 {
+        margin-bottom: 10px;
+        font-size: 1.2em;
+    }
+    
+    .stat-box p {
+        font-size: 2.2em;
+        font-weight: bold;
+        margin: 10px 0;
+    }
+    
+    .stat-box small {
+        display: block;
+        opacity: 0.8;
+        font-size: 0.9em;
+        margin-top: 5px;
+    }
+    
+    /* Visualization Grid Styling */
+    .metrics-section {
+        margin: 60px 0;
+    }
+    
+    .visualization-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(600px, 1fr));
+        gap: 20px;
+        margin: 20px 0;
+    }
+    
+    .visualization-container {
+        background: white;
+        border-radius: 10px;
+        overflow: hidden;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        height: 450px;
+        position: relative;
+    }
+    
+    .visualization-title {
+        background: #457B9D;
+        color: #F1FAEE;
+        padding: 15px;
+        margin: 0;
+        font-size: 1.2em;
+        text-align: center;
+    }
+    
+    .visualization-content {
+        position: relative;
+        overflow: hidden;
+        background: white;
+        height: 100%;
+    }
+    
+    /* Expandable Visualization Styling */
+    .expandable-viz {
+        cursor: pointer;
+        transition: transform 0.3s ease;
+    }
+    
+    .expandable-viz:hover {
+        transform: scale(1.02);
+    }
+    
+    .expanded-content {
+        display: none;
+        padding: 20px;
+        background: #f8f9fa;
+        border-top: 1px solid #dee2e6;
+    }
+    
+    .visualization-iframe {
+        width: 100%;
+        height: 100%;
+        border: none;
+    }
+    
+    .visualization-iframe.preview-mode {
+        width: 100%;
+        height: 150%;
+        border: none;
+        position: absolute;
+        top: 0;
+        left: 0;
+        transform: scale(0.8) translateY(-15%);
+        transform-origin: top center;
+    }
+    
+    /* Modal Styling */
+    .visualization-modal {
+        display: none;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0, 0, 0, 0.8);
+        z-index: 1000;
+        overflow: auto;
+    }
+    
+    .modal-content {
+        position: relative;
+        background: white;
+        margin: 40px auto;
+        padding: 30px;
+        width: 95%;
+        max-width: 1800px;
+        min-height: 800px;
+        border-radius: 10px;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+    }
+    
+    .close-modal {
+        position: absolute;
+        right: 20px;
+        top: 20px;
+        font-size: 24px;
+        cursor: pointer;
+        color: #1D3557;
+        z-index: 1100;
+    }
+    
+    .fade-in {
+        animation: fadeIn 0.3s ease-in;
+    }
+    
+    @keyframes fadeIn {
+        from { opacity: 0; }
+        to { opacity: 1; }
+    }
+    
+    /* Responsive Design */
+    @media (max-width: 1400px) {
         .visualization-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(600px, 1fr));
-            gap: 20px;
-            margin: 20px 0;
+            grid-template-columns: 1fr;
         }
         
         .visualization-container {
-            background: white;
-            border-radius: 10px;
-            overflow: hidden;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-            height: 500px;
+            height: 400px;
         }
         
-        .visualization-title {
-            background: #457B9D;
-            color: #F1FAEE;
-            padding: 15px;
-            margin: 0;
-            font-size: 1.2em;
-            text-align: center;
+        .visualization-iframe.preview-mode {
+            transform: scale(0.75) translateY(-15%);
         }
-        
-        .visualization-iframe {
+    }
+    
+    @media (max-width: 768px) {
+        .stat-box {
             width: 100%;
-            height: calc(100% - 50px);
-            border: none;
-            transform: scale(0.95);
-            transform-origin: top center;
+            max-width: 300px;
         }
         
-        /* Responsive Design */
-        @media (max-width: 1200px) {
-            .visualization-grid {
-                grid-template-columns: 1fr;
-            }
-            
-            .visualization-container {
-                height: 400px;
-            }
+        .visualization-container {
+            height: 350px;
         }
         
-        @media (max-width: 768px) {
-            .stat-box {
-                width: 100%;
-                max-width: 300px;
-            }
-            
-            .visualization-container {
-                height: 350px;
-            }
-            
-            .visualization-iframe {
-                transform: scale(0.9);
-            }
+        .visualization-iframe.preview-mode {
+            transform: scale(0.7) translateY(-15%);
         }
-        </style>
+    
+        .section-title {
+            font-size: 2em;
+        }
+    
+        .modal-content {
+            width: 98%;
+            margin: 10px auto;
+            padding: 15px;
+        }
+    }
+    </style>
+    
+    <script>
+    document.addEventListener('DOMContentLoaded', function() {
+        // Number Animation
+        const animateNumbers = document.querySelectorAll('.animate-number');
+        
+        animateNumbers.forEach(number => {
+            const targetValue = parseFloat(number.dataset.value);
+            const duration = 2000; // 2 seconds
+            const steps = 60;
+            const stepValue = targetValue / steps;
+            let currentStep = 0;
+            let currentValue = 0;
+            
+            const interval = setInterval(() => {
+                currentStep++;
+                currentValue += stepValue;
+                
+                if (currentStep === steps) {
+                    currentValue = targetValue;
+                    clearInterval(interval);
+                }
+                
+                number.textContent = currentValue.toFixed(1);
+            }, duration / steps);
+        });
+    
+        // Expandable Visualizations
+        const expandableVizs = document.querySelectorAll('.expandable-viz');
+        
+        expandableVizs.forEach(viz => {
+            viz.addEventListener('click', function() {
+                const modal = document.createElement('div');
+                modal.className = 'visualization-modal fade-in';
+                
+                const title = this.querySelector('.visualization-title').cloneNode(true);
+                const content = this.querySelector('.visualization-content').cloneNode(true);
+                const description = this.querySelector('.expanded-content').cloneNode(true);
+                
+                // Update iframe for modal view
+                const iframe = content.querySelector('iframe');
+                if (iframe) {
+                    iframe.classList.remove('preview-mode');
+                    iframe.scrolling = 'auto';
+                    iframe.style.height = '1200px';
+                    iframe.style.position = 'relative';
+                    iframe.style.transform = 'none';
+                }
+                
+                modal.innerHTML = `
+                    <div class="modal-content">
+                        <span class="close-modal">&times;</span>
+                        ${title.outerHTML}
+                        ${content.outerHTML}
+                        ${description.outerHTML}
+                    </div>
+                `;
+                
+                document.body.appendChild(modal);
+                modal.style.display = 'block';
+                document.body.style.overflow = 'hidden';
+                
+                modal.querySelector('.expanded-content').style.display = 'block';
+                
+                const closeBtn = modal.querySelector('.close-modal');
+                closeBtn.onclick = function() {
+                    modal.classList.remove('fade-in');
+                    setTimeout(() => {
+                        modal.remove();
+                        document.body.style.overflow = 'auto';
+                    }, 300);
+                };
+                
+                modal.onclick = function(e) {
+                    if (e.target === modal) {
+                        closeBtn.click();
+                    }
+                };
+            });
+        });
+    });
+    </script>
 
         <!-- Swim Section -->
         <div id="swim" class="content">
