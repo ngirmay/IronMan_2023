@@ -1387,59 +1387,125 @@
 
 
         <!-- Bike Section -->
-        <div id="bike" class="content">
-            <h2>Bike Performance</h2>
-            <div class="description-box">
-                <p>A deep dive into my biking sessions, covering distance, power, and cadence trends throughout training.</p>
-            </div>
+<div id="bike" class="content">
+    <h2 class="section-title">Bike Performance</h2>
+    <div class="description-box">
+        <p>A deep dive into my biking sessions, covering distance, power, and cadence trends throughout training.</p>
+    </div>
 
-            <div class="visualization-grid">
-                <div class="visualization-container">
-                    <h3 class="visualization-title">Activity Distribution</h3>
-                    <iframe class="visualization-iframe" src="assets/visualizations/bike/activity_counts.html"></iframe>
-                </div>
-                <div class="visualization-container">
-                    <h3 class="visualization-title">Power Analysis</h3>
-                    <iframe class="visualization-iframe" src="assets/visualizations/bike/avg_power.html"></iframe>
-                </div>
-                <div class="visualization-container">
-                    <h3 class="visualization-title">Correlation Analysis</h3>
-                    <iframe class="visualization-iframe" src="assets/visualizations/bike/corr_matrix.html"></iframe>
-                </div>
-                <div class="visualization-container">
-                    <h3 class="visualization-title">Training Stress Score</h3>
-                    <iframe class="visualization-iframe" src="assets/visualizations/bike/cumulative_tss.html"></iframe>
-                </div>
-                <div class="visualization-container">
-                    <h3 class="visualization-title">Metric Distribution</h3>
-                    <iframe class="visualization-iframe" src="assets/visualizations/bike/distribution.html"></iframe>
-                </div>
-                <div class="visualization-container">
-                    <h3 class="visualization-title">Duration Analysis</h3>
-                    <iframe class="visualization-iframe" src="assets/visualizations/bike/duration_distribution.html"></iframe>
-                </div>
-                <div class="visualization-container">
-                    <h3 class="visualization-title">Training Intensity</h3>
-                    <iframe class="visualization-iframe" src="assets/visualizations/bike/if_progression.html"></iframe>
-                </div>
-                <div class="visualization-container">
-                    <h3 class="visualization-title">TSS Distribution</h3>
-                    <iframe class="visualization-iframe" src="assets/visualizations/bike/tss_distribution.html"></iframe>
-                </div>
-                <div class="visualization-container">
-                    <h3 class="visualization-title">TSS Over Time</h3>
-                    <iframe class="visualization-iframe" src="assets/visualizations/bike/tss_if_over_time.html"></iframe>
-                </div>
-                <div class="visualization-container">
-                    <h3 class="visualization-title">Weekly Load</h3>
-                    <iframe class="visualization-iframe" src="assets/visualizations/bike/weekly_training_load.html"></iframe>
-                </div>
-                <div class="visualization-container">
-                    <h3 class="visualization-title">Workout Comparison</h3>
-                    <iframe class="visualization-iframe" src="assets/visualizations/bike/workout_comparison.html"></iframe>
-                </div>
+    <div class="visualization-grid">
+        <div class="visualization-container expandable-viz">
+            <h3 class="visualization-title">Activity Distribution</h3>
+            <div class="visualization-content">
+                <iframe class="visualization-iframe preview-mode" src="assets/visualizations/bike/activity_counts.html"></iframe>
+            </div>
+            <div class="expanded-content">
+                <p>Overview of the distribution of biking activities throughout training.</p>
             </div>
         </div>
+
+        <div class="visualization-container expandable-viz">
+            <h3 class="visualization-title">Power Analysis</h3>
+            <div class="visualization-content">
+                <iframe class="visualization-iframe preview-mode" src="assets/visualizations/bike/avg_power.html"></iframe>
+            </div>
+            <div class="expanded-content">
+                <p>Analysis of average power output during biking sessions.</p>
+            </div>
+        </div>
+
+        <div class="visualization-container expandable-viz">
+            <h3 class="visualization-title">Correlation Analysis</h3>
+            <div class="visualization-content">
+                <iframe class="visualization-iframe preview-mode" src="assets/visualizations/bike/corr_matrix.html"></iframe>
+            </div>
+            <div class="expanded-content">
+                <p>Correlation matrix showing relationships between various biking metrics.</p>
+            </div>
+        </div>
+
+        <div class="visualization-container expandable-viz">
+            <h3 class="visualization-title">Training Stress Score</h3>
+            <div class="visualization-content">
+                <iframe class="visualization-iframe preview-mode" src="assets/visualizations/bike/cumulative_tss.html"></iframe>
+            </div>
+            <div class="expanded-content">
+                <p>Cumulative Training Stress Score (TSS) over the training period.</p>
+            </div>
+        </div>
+
+        <div class="visualization-container expandable-viz">
+            <h3 class="visualization-title">Metric Distribution</h3>
+            <div class="visualization-content">
+                <iframe class="visualization-iframe preview-mode" src="assets/visualizations/bike/distribution.html"></iframe>
+            </div>
+            <div class="expanded-content">
+                <p>Distribution of various biking metrics such as speed, power, and cadence.</p>
+            </div>
+        </div>
+
+        <div class="visualization-container expandable-viz">
+            <h3 class="visualization-title">Duration Analysis</h3>
+            <div class="visualization-content">
+                <iframe class="visualization-iframe preview-mode" src="assets/visualizations/bike/duration_distribution.html"></iframe>
+            </div>
+            <div class="expanded-content">
+                <p>Analysis of session duration distributions across different biking workouts.</p>
+            </div>
+        </div>
+
+        <div class="visualization-container expandable-viz">
+            <h3 class="visualization-title">Training Intensity</h3>
+            <div class="visualization-content">
+                <iframe class="visualization-iframe preview-mode" src="assets/visualizations/bike/if_progression.html"></iframe>
+            </div>
+            <div class="expanded-content">
+                <p>Progression of intensity factor (IF) over time to assess training load.</p>
+            </div>
+        </div>
+
+        <div class="visualization-container expandable-viz">
+            <h3 class="visualization-title">TSS Distribution</h3>
+            <div class="visualization-content">
+                <iframe class="visualization-iframe preview-mode" src="assets/visualizations/bike/tss_distribution.html"></iframe>
+            </div>
+            <div class="expanded-content">
+                <p>Distribution of Training Stress Score (TSS) across different sessions.</p>
+            </div>
+        </div>
+
+        <div class="visualization-container expandable-viz">
+            <h3 class="visualization-title">TSS Over Time</h3>
+            <div class="visualization-content">
+                <iframe class="visualization-iframe preview-mode" src="assets/visualizations/bike/tss_if_over_time.html"></iframe>
+            </div>
+            <div class="expanded-content">
+                <p>Trend of TSS and IF over the training period.</p>
+            </div>
+        </div>
+
+        <div class="visualization-container expandable-viz">
+            <h3 class="visualization-title">Weekly Load</h3>
+            <div class="visualization-content">
+                <iframe class="visualization-iframe preview-mode" src="assets/visualizations/bike/weekly_training_load.html"></iframe>
+            </div>
+            <div class="expanded-content">
+                <p>Weekly distribution of training load, indicating volume and intensity.</p>
+            </div>
+        </div>
+
+        <div class="visualization-container expandable-viz">
+            <h3 class="visualization-title">Workout Comparison</h3>
+            <div class="visualization-content">
+                <iframe class="visualization-iframe preview-mode" src="assets/visualizations/bike/workout_comparison.html"></iframe>
+            </div>
+            <div class="expanded-content">
+                <p>Comparison of key metrics across different workout sessions.</p>
+            </div>
+        </div>
+    </div>
+</div>
+
 
         <!-- Run Section -->
         <div id="run" class="content">
