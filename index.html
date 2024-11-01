@@ -434,7 +434,7 @@
         <h3 class="visualization-title">Genetic Performance Report</h3>
         <div class="visualization-content">
             <iframe 
-                class="visualization-iframe" 
+                class="visualization-iframe preview-mode" 
                 src="assets/visualizations/genetic_analysis/genetic_performance_report.html"
                 scrolling="no"
             ></iframe>
@@ -506,6 +506,7 @@
 .visualization-content {
     position: relative;
     overflow: hidden;
+    background: white;
 }
 
 .expandable-viz {
@@ -557,7 +558,7 @@
 }
 
 .report-container {
-    height: 800px;
+    height: 500px; /* Adjusted to show just the performance scores */
 }
 
 .overview-container {
@@ -566,13 +567,22 @@
 
 .visualization-iframe {
     width: 100%;
-    height: 100%;
     border: none;
+}
+
+.visualization-iframe.preview-mode {
+    height: 400px; /* Height for preview mode showing just scores */
     position: absolute;
     top: 0;
     left: 0;
     transform: scale(1);
-    transform-origin: 0 0;
+    transform-origin: top;
+}
+
+.modal .visualization-iframe {
+    height: 1200px; /* Full height for modal view */
+    position: relative;
+    transform: none;
 }
 
 .fade-in {
@@ -586,28 +596,30 @@
 
 @media (max-width: 1400px) {
     .report-container {
-        height: 700px;
+        height: 450px;
     }
     
     .overview-container {
         height: 900px;
     }
     
-    .visualization-iframe {
+    .visualization-iframe.preview-mode {
+        height: 350px;
         transform: scale(0.9);
     }
 }
 
 @media (max-width: 768px) {
     .report-container {
-        height: 600px;
+        height: 400px;
     }
     
     .overview-container {
         height: 800px;
     }
     
-    .visualization-iframe {
+    .visualization-iframe.preview-mode {
+        height: 300px;
         transform: scale(0.8);
     }
 
@@ -642,10 +654,12 @@ document.addEventListener('DOMContentLoaded', function() {
             const content = this.querySelector('.visualization-content').cloneNode(true);
             const description = this.querySelector('.expanded-content').cloneNode(true);
             
+            // Update iframe for modal view
             const iframe = content.querySelector('iframe');
             if (iframe) {
-                iframe.style.position = 'relative';
-                iframe.style.height = '800px';
+                iframe.classList.remove('preview-mode');
+                iframe.style.height = '1200px';
+                iframe.scrolling = 'yes';
             }
             
             modal.innerHTML = `
