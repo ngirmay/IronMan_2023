@@ -507,6 +507,7 @@
     position: relative;
     overflow: hidden;
     background: white;
+    height: 100%;
  }
  
  .expandable-viz {
@@ -559,24 +560,27 @@
  }
  
  .report-container {
-    height: 350px;  /* Adjusted to show just the title and scores */
+    height: 450px;
  }
  
  .overview-container {
-    height: 350px;  /* Adjusted to show just the initial view */
+    height: 450px;
  }
  
  .visualization-iframe {
     width: 100%;
+    height: 100%;
     border: none;
  }
  
  .visualization-iframe.preview-mode {
+    width: 100%;
+    height: 150%;
+    border: none;
     position: absolute;
     top: 0;
     left: 0;
-    height: 800px;
-    transform: scale(0.95);
+    transform: scale(0.8) translateY(-15%);
     transform-origin: top center;
  }
  
@@ -598,29 +602,29 @@
  
  @media (max-width: 1400px) {
     .report-container {
-        height: 300px;
+        height: 400px;
     }
     
     .overview-container {
-        height: 300px;
+        height: 400px;
     }
     
     .visualization-iframe.preview-mode {
-        transform: scale(0.85);
+        transform: scale(0.75) translateY(-15%);
     }
  }
  
  @media (max-width: 768px) {
     .report-container {
-        height: 280px;
+        height: 350px;
     }
     
     .overview-container {
-        height: 280px;
+        height: 350px;
     }
     
     .visualization-iframe.preview-mode {
-        transform: scale(0.75);
+        transform: scale(0.7) translateY(-15%);
     }
  
     .section-title {
@@ -660,6 +664,8 @@
                 iframe.classList.remove('preview-mode');
                 iframe.scrolling = 'auto';
                 iframe.style.height = '1200px';
+                iframe.style.position = 'relative';
+                iframe.style.transform = 'none';
             }
             
             modal.innerHTML = `
