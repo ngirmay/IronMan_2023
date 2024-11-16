@@ -431,7 +431,7 @@
     <h2 class="section-title">GENETIC ANALYSIS</h2>
     
     <div class="description-box genetic-overview">
-        <p>This section delves into my genetic makeup based off SNP genotyping (via selfdecode). I was able to play around with the data and make a mock report by creating a in house SNP database based on specific genetic markers that influence athletic performance and attributing "scores" to each associated gene. </p>
+        <p>This section delves into my genetic makeup based off SNP genotyping (sequencing outsourced to selfdecode). I was able to play around with the data and make a mock report by creating an in house SNP database based on specific genetic markers that influence athletic performance and attributing "scores" to each associated gene</p>
     </div>
     
     <!-- Performance Report Container -->
@@ -445,12 +445,12 @@
             ></iframe>
         </div>
         <div class="expanded-content">
-            <p>Scores were calculated by taking 20 known gene variations associated with athletic performance via scientific literature and comparing my own SNP data through normalized scoring. A future balanced score will be added to determine the overal flexibility of athletic performance.  
-
-                2 = optimal score 
-                1 = Neutral variant
-                0.5 = less than optimal variant 
-                0.1 = Non-optimal variant </p>
+            <p>Scores were calculated by taking 20 known gene variations associated with athletic performance via scientific literature and comparing my own SNP data through normalized scoring. A future balanced score will be added to determine the overal flexibility of athletic performance<p>
+                   
+                <p>2 = optimal score<p>
+                <p>1 = Neutral variant<p>
+                <p>0.5 = less than optimal variant<p> 
+                <p>0.1 = Non-optimal variant </p>
         </div>
     </div>
  
@@ -467,10 +467,13 @@
         <div class="expanded-content">
             <p>This detailed overview analyzes key genetic markers that influence athletic performance. The analysis includes the following:</p>
 
-        </li>1. Effect Size vs. Endurance/Power Bias: Show a mix of both power and endurance potential, with strong markers like ACTN3 favoring power and ACE favoring endurance performance</li>
-        </li>2. Distribution of Genentic Pathways: All genes analyzed have strong scientific backing, with evidence quality scores above 75%, </li> 
-        </li>3. Evidence Quality by Gene: Most genes are involved in energy metabolism and muscle composition</li>
-        </li>4. Genes Ranked by Effect Size: ACTN3 and ACE have the strongest influence on athletic performance, with other genes providing moderate to significant effects</li>
+        <p>1. Effect Size vs. Endurance/Power Bias: Show a mix of both power and endurance potential, with strong markers like ACTN3 favoring power and ACE favoring endurance performance<p>
+
+        <p>2. Distribution of Genentic Pathways: All genes analyzed have strong scientific backing, with evidence quality scores above 75%<p> 
+
+        <p>3. Evidence Quality by Gene: Most genes are involved in energy metabolism and muscle composition<p>
+
+        <p>4. Genes Ranked by Effect Size: ACTN3 and ACE have the strongest influence on athletic performance, with other genes providing moderate to significant effects<p>
         </div>
     </div>
  </div>
@@ -738,8 +741,8 @@
             <small>Athletic Range</small>
         </div>
         <div class="stat-box">
-            <h3>Lean Mass (kg)</h3>
-            <p><span class="animate-number" data-value="65">0</span></p>
+            <h3>Lean Mass (lb)</h3>
+            <p><span class="animate-number" data-value="160">0</span></p>
             <small>Peak Training</small>
         </div>
     </div>
@@ -1202,26 +1205,56 @@
         const animateNumbers = document.querySelectorAll('.animate-number');
         
         animateNumbers.forEach(number => {
-            const targetValue = parseFloat(number.dataset.value);
-            const duration = 2000; // 2 seconds
-            const steps = 60;
-            const stepValue = targetValue / steps;
-            let currentStep = 0;
-            let currentValue = 0;
-            
-            const interval = setInterval(() => {
-                currentStep++;
-                currentValue += stepValue;
-                
-                if (currentStep === steps) {
-                    currentValue = targetValue;
-                    clearInterval(interval);
-                }
-                
-                number.textContent = Math.round(currentValue);
-            }, duration / steps);
+            const targetValue = number.dataset.value;
+            const duration = 2000; // Animation duration in ms
+            const steps = 60; // Number of animation steps
+
+            if (targetValue.includes(':')) {
+                // Handle time values (HH:MM:SS)
+                const [hours, minutes, seconds] = targetValue.split(':').map(Number);
+                const totalSeconds = hours * 3600 + minutes * 60 + seconds;
+                const stepValue = totalSeconds / steps;
+                let currentStep = 0;
+                let currentSeconds = 0;
+
+                const interval = setInterval(() => {
+                    currentStep++;
+                    currentSeconds += stepValue;
+
+                    if (currentStep >= steps) {
+                        currentSeconds = totalSeconds;
+                        clearInterval(interval);
+                    }
+
+                    const h = Math.floor(currentSeconds / 3600);
+                    const m = Math.floor((currentSeconds % 3600) / 60);
+                    const s = Math.floor(currentSeconds % 60);
+
+                    number.textContent = `${h}:${m.toString().padStart(2, '0')}:${s
+                        .toString()
+                        .padStart(2, '0')}`;
+                }, duration / steps);
+            } else {
+                // Handle numeric values
+                const numericValue = parseFloat(targetValue.replace(/,/g, ''));
+                const stepValue = numericValue / steps;
+                let currentStep = 0;
+                let currentValue = 0;
+
+                const interval = setInterval(() => {
+                    currentStep++;
+                    currentValue += stepValue;
+
+                    if (currentStep >= steps) {
+                        currentValue = numericValue;
+                        clearInterval(interval);
+                    }
+
+                    number.textContent = Math.round(currentValue).toLocaleString();
+                }, duration / steps);
+            }
         });
-    
+
         // Expandable Visualizations
         const expandableVizs = document.querySelectorAll('.expandable-viz');
         
@@ -1277,6 +1310,7 @@
         });
     });
 </script>
+
 
 
         <!-- Swim Section -->
@@ -1708,7 +1742,7 @@
     </div>
 </div>
 
-<!-- Intro Section -->
+<!-- Final Thoughts Section -->
 <div id="final_thoughts" class="content active">
     <h2 class="section-title">Final Thoughts</h2>
     
@@ -1722,28 +1756,28 @@
     <div class="stat-container">
         <div class="stat-box">
             <h3>Final Swim Time</h3>
-            <p><span class="animate-number" data-value="1:38:16">0</span></p>
+            <p><span class="animate-number" data-value="01:38:16">0</span></p>
             <small></small>
         </div>
         <div class="stat-box">
             <h3>Final Bike Time</h3>
-            <p><span class="animate-number" data-value="8:05:38">0</span></p>
+            <p><span class="animate-number" data-value="08:05:38">0</span></p>
             <small></small>
         </div>
         <div class="stat-box">
             <h3>Final Run Time</h3>
-            <p><span class="animate-number" data-value="5:02:01">0</span></p>
+            <p><span class="animate-number" data-value="05:02:01">0</span></p>
             <small></small>
         </div>
         <div class="stat-box">
             <h3>Final Time</h3>
-            <p><span class="animate-number" data-value="15:08:56">0</span>mi</p>
+            <p><span class="animate-number" data-value="15:08:56">0</span></p>
             <small></small>
         </div>
     </div>
 
     <footer>
-        <p>&copy; 2024 Nobel Girmay - Ironman 2023</p>
+        <p>&copy; 2024 Nobel Girmay - Lake Placid Ironman 2023</p>
     </footer>
 
     <script>
