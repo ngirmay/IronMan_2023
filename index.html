@@ -308,22 +308,22 @@
     <div class="stat-container">
         <div class="stat-box">
             <h3>Total Training Days</h3>
-            <p><span class="animate-number" data-value="180"></span></p>
+            <p><span class="animate-number" data-value="180">0</span></p>
             <small>Over 6 months</small>
         </div>
         <div class="stat-box">
             <h3>Hours Trained</h3>
-            <p><span class="animate-number" data-value="720"></span></p>
+            <p><span class="animate-number" data-value="720">0</span></p>
             <small>~4 hours/day</small>
         </div>
         <div class="stat-box">
             <h3>Calories Burned</h3>
-            <p><span class="animate-number" data-value="540000"></span></p>
+            <p><span class="animate-number" data-value="540000">0</span></p>
             <small>During training</small>
         </div>
         <div class="stat-box">
             <h3>Total Distance</h3>
-            <p><span class="animate-number" data-value="140"></span>mi</p>
+            <p><span class="animate-number" data-value="140">0</span>mi</p>
             <small>Race day goal</small>
         </div>
     </div>
@@ -1215,7 +1215,7 @@
                     clearInterval(interval);
                 }
                 
-                number.textContent = currentValue.toFixed(1);
+                number.textContent = Math.round(currentValue);
             }, duration / steps);
         });
     
