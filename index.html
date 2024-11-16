@@ -5,276 +5,47 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Ironman 2023 Project</title>
     
-    <!-- Optimized font loading -->
-    <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;700&family=Roboto:wght@300;400;700&display=swap">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;700&family=Roboto:wght@300;400;700&display=swap" media="print" onload="this.media='all'">
-    
-    <!-- Deferred GSAP loading -->
-    <script defer src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.9.1/gsap.min.js"></script>
-    
+    <!-- Critical CSS only -->
     <style>
-        :root {
-            --primary: #1D3557;
-            --secondary: #457B9D;
-            --accent: #E63946;
-            --background: #F1FAEE;
-            --text-light: #F1FAEE;
-        }
-
-        body, html {
-            margin: 0;
-            padding: 0;
-            font-family: 'Roboto', sans-serif;
-            background-color: var(--background);
-            color: var(--primary);
-            height: 100%;
-            overflow-x: hidden;
-        }
-
-        * {
-            transition: all 0.3s ease;
-            box-sizing: border-box;
-        }
-
-        header {
-            background-color: var(--primary);
-            color: var(--text-light);
-            padding: 20px;
-            text-align: center;
-            letter-spacing: 2px;
-            position: relative;
-            z-index: 1;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-
-        header h1 {
-            margin: 0;
-            font-size: 2.5em;
-            font-family: 'Oswald', sans-serif;
-            text-transform: uppercase;
-        }
-
-        .open-btn {
-            font-size: 20px;
-            cursor: pointer;
-            background-color: var(--accent);
-            color: var(--text-light);
-            border: none;
-            padding: 15px;
-            position: fixed;
-            top: 20px;
-            left: 20px;
-            z-index: 4;
-            border-radius: 50%;
-            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
-            width: 60px;
-            height: 60px;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            transition: transform 0.3s ease;
-        }
-
-        .open-btn:hover {
-            background-color: var(--secondary);
-            transform: scale(1.1);
-        }
-
-        .sidebar {
-            height: 100%;
-            width: 250px;
-            position: fixed;
-            top: 0;
-            left: -250px;
-            background-color: var(--accent);
-            overflow-x: hidden;
-            transition: 0.5s;
-            padding-top: 60px;
-            font-family: 'Oswald', sans-serif;
-            z-index: 3;
-        }
-
-        .sidebar a {
-            padding: 15px 20px;
-            text-decoration: none;
-            font-size: 1.8em;
-            color: var(--text-light);
-            display: block;
-            transition: 0.3s;
-            font-weight: 700;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-        }
-
-        .sidebar a:hover {
-            background-color: var(--secondary);
-            padding-left: 25px;
-        }
-
-        .sidebar a.close-btn {
-            position: absolute;
-            top: 10px;
-            right: 10px;
-            font-size: 1.8em;
-            padding: 5px 10px;
-        }
-
-        .main-content {
-            margin-left: 0;
-            padding: 40px;
-            transition: margin-left 0.5s ease;
-            min-height: calc(100vh - 160px);
-        }
-
-        .content {
-            opacity: 0;
-            transform: translateY(20px);
-            transition: opacity 0.5s ease, transform 0.5s ease;
-            display: none;
-        }
-
-        .content.active {
-            opacity: 1;
-            transform: translateY(0);
-            display: block;
-        }
-
-        .visualization-container {
-            background: white;
-            border-radius: 10px;
-            overflow: hidden;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-            margin: 20px 0;
-            transition: transform 0.3s ease;
-            height: 450px;
-            opacity: 0;
-            transform: translateY(20px);
-        }
-
-        .visualization-container.visible {
-            opacity: 1;
-            transform: translateY(0);
-        }
-
-        .visualization-title {
-            background: var(--secondary);
-            color: var(--text-light);
-            padding: 15px;
-            margin: 0;
-            font-family: 'Oswald', sans-serif;
-            font-size: 1.2em;
-        }
-
-        .visualization-iframe {
-            width: 100%;
-            height: 100%;
-            border: none;
-            opacity: 0;
-            transition: opacity 0.3s;
-        }
-
-        .visualization-iframe.loaded {
-            opacity: 1;
-        }
-
-        .progress-bar {
-            width: 0;
-            height: 5px;
-            background-color: var(--accent);
-            position: fixed;
-            top: 0;
-            left: 0;
-            z-index: 5;
-            transition: width 0.1s ease;
-        }
-
-        .stat-container {
-            display: flex;
-            justify-content: space-around;
-            flex-wrap: wrap;
-            margin-top: 40px;
-        }
-
-        .stat-box {
-            background-color: var(--secondary);
-            color: var(--text-light);
-            padding: 20px;
-            border-radius: 10px;
-            margin: 10px;
-            width: 200px;
-            text-align: center;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-            transition: transform 0.3s ease;
-        }
-
-        .stat-box:hover {
-            transform: translateY(-5px);
-        }
-
-        .description-box {
-            background-color: #A8DADC;
-            color: var(--primary);
-            padding: 20px;
-            border-radius: 10px;
-            margin: 40px auto;
-            max-width: 800px;
-            font-size: 1.1em;
-            line-height: 1.6;
-            text-align: center;
-        }
-
-        #mySidebar.show {
-            left: 0;
-        }
-        
-        #main.active {
-            margin-left: 250px;
-        }
-
-        @media screen and (max-width: 768px) {
-            .sidebar {
-                width: 200px;
-                left: -200px;
-            }
-            .open-btn {
-                left: 10px;
-            }
-            .stat-box {
-                width: calc(50% - 20px);
-            }
-            .main-content {
-                padding: 20px;
-            }
-            header h1 {
-                font-size: 2em;
-            }
-        }
+        body,html{margin:0;padding:0;font-family:system-ui,-apple-system,sans-serif;background:#F1FAEE;color:#1D3557;height:100%;overflow-x:hidden}
+        .header{background:#1D3557;color:#F1FAEE;padding:20px;text-align:center}
+        .nav-btn{position:fixed;top:20px;left:20px;z-index:4;background:#E63946;color:#F1FAEE;border:none;padding:15px;cursor:pointer;border-radius:50%;width:50px;height:50px}
+        .sidebar{height:100%;width:250px;position:fixed;top:0;left:-250px;background:#E63946;transition:.3s;padding-top:60px;z-index:3}
+        .sidebar.show{left:0}
+        .sidebar a{padding:15px 20px;text-decoration:none;font-size:18px;color:#F1FAEE;display:block}
+        .main{padding:20px;transition:margin-left .3s}
+        .main.shifted{margin-left:250px}
+        .content{display:none}
+        .content.active{display:block}
+        .viz-container{background:#fff;border-radius:8px;margin:15px 0;overflow:hidden;height:450px;opacity:0;transform:translateY(20px)}
+        .viz-container.visible{opacity:1;transform:translateY(0);transition:opacity .5s,transform .5s}
+        .progress{position:fixed;top:0;left:0;height:3px;width:0;background:#E63946;z-index:5}
+        @media (max-width:768px){.sidebar{width:200px}.main.shifted{margin-left:200px}}
     </style>
 </head>
 <body>
-    <div class="progress-bar" id="progressBar"></div>
-
-    <header>
+    <div class="progress" id="progress"></div>
+    
+    <header class="header">
         <h1>Lake Placid Ironman 2023</h1>
     </header>
 
-    <button class="open-btn" onclick="toggleNav()">☰</button>
+    <button class="nav-btn" onclick="toggleNav()">☰</button>
 
-    <div id="mySidebar" class="sidebar">
-        <a href="javascript:void(0)" class="close-btn" onclick="toggleNav()">✖</a>
-        <a href="#intro" onclick="showSection('intro')">Intro</a>
-        <a href="#genetic_analysis" onclick="showSection('genetic_analysis')">Genetic Analysis</a>
-        <a href="#body_composition" onclick="showSection('body_composition')">Body Composition</a>
-        <a href="#swim" onclick="showSection('swim')">Swim</a>
-        <a href="#bike" onclick="showSection('bike')">Bike</a>
-        <a href="#run" onclick="showSection('run')">Run</a>
-        <a href="#diet_sleep" onclick="showSection('diet_sleep')">Diet & Sleep</a>
-        <a href="#final_thoughts" onclick="showSection('final_thoughts')">Final Thoughts</a>
-    </div>
+    <nav class="sidebar" id="sidebar">
+        <a href="#" onclick="toggleNav();return false">✕</a>
+        <a href="#intro" onclick="loadSection('intro')">Intro</a>
+        <a href="#genetic_analysis" onclick="loadSection('genetic_analysis')">Genetic Analysis</a>
+        <a href="#body_composition" onclick="loadSection('body_composition')">Body Composition</a>
+        <a href="#swim" onclick="loadSection('swim')">Swim</a>
+        <a href="#bike" onclick="loadSection('bike')">Bike</a>
+        <a href="#run" onclick="loadSection('run')">Run</a>
+        <a href="#diet_sleep" onclick="loadSection('diet_sleep')">Diet & Sleep</a>
+        <a href="#final_thoughts" onclick="loadSection('final_thoughts')">Final Thoughts</a>
+    </nav>
 
-    <div id="main" class="main-content">
+    <main class="main" id="main">
+        <div id="intro" class="content">
         <!-- Intro Section -->
 <div id="intro" class="content active">
     <h2 class="section-title">Introduction</h2>
@@ -1603,7 +1374,7 @@
     </div>
 </div>
 
-<!-- Intro Section -->
+<!-- Final Thoughts Section -->
 <div id="final_thoughts" class="content active">
     <h2 class="section-title">Final Thoughts</h2>
     
@@ -1642,137 +1413,97 @@
     </footer>
 
     <script>
-        // Performance optimized JavaScript
-        const visualizationObserver = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    const container = entry.target;
-                    container.classList.add('visible');
-                    
-                    // Lazy load iframe
-                    const iframe = container.querySelector('.visualization-iframe');
-                    if (iframe && !iframe.src && iframe.dataset.src) {
-                        iframe.src = iframe.dataset.src;
-                        iframe.onload = () => {
-                            iframe.classList.add('loaded');
-                            // Initialize any iframe-specific functionality
-                            if (typeof initializeVisualization === 'function') {
-                                initializeVisualization(iframe);
-                            }
-                        };
-                    }
-                    
-                    // Unobserve after loading
-                    visualizationObserver.unobserve(container);
-                }
-            });
-        }, {
-            threshold: 0.1,
-            rootMargin: '50px'
-        });
+        // Core functionality
+        const d=document,w=window,
+        sidebar=d.getElementById('sidebar'),
+        main=d.getElementById('main'),
+        progress=d.getElementById('progress');
 
-        // Initialize visualization observers
-        function initializeVisualizations() {
-            document.querySelectorAll('.visualization-container').forEach(container => {
-                if (!container.classList.contains('visible')) {
-                    visualizationObserver.observe(container);
-                }
-            });
+        // Navigation
+        function toggleNav(){
+            sidebar.classList.toggle('show');
+            main.classList.toggle('shifted');
         }
 
-        // Efficient navigation
-        function showSection(sectionId) {
-            const allSections = document.querySelectorAll('.content');
-            allSections.forEach(section => {
-                section.classList.remove('active');
-            });
+        // Section loading
+        function loadSection(id){
+            const section=d.getElementById(id);
+            if(!section)return;
             
-            const targetSection = document.getElementById(sectionId);
-            if (targetSection) {
-                targetSection.classList.add('active');
-                initializeVisualizations();
-                initializeStats(targetSection);
+            d.querySelectorAll('.content').forEach(s=>s.classList.remove('active'));
+            section.classList.add('active');
+            
+            // Load visualizations
+            if(!section.dataset.loaded){
+                section.querySelectorAll('iframe').forEach(iframe=>{
+                    if(iframe.dataset.src){
+                        iframe.src=iframe.dataset.src;
+                        iframe.removeAttribute('data-src');
+                    }
+                });
+                section.dataset.loaded='1';
             }
             
             toggleNav();
-            window.history.pushState({section: sectionId}, '', `#${sectionId}`);
+            observeVisuals(section);
+            w.history.pushState(null,'',`#${id}`);
         }
 
-        // Toggle navigation
-        function toggleNav() {
-            const sidebar = document.getElementById("mySidebar");
-            const main = document.getElementById("main");
-            
-            sidebar.classList.toggle("show");
-            main.classList.toggle("active");
-        }
-
-        // Efficient number animation
-        function animateValue(element, start, end, duration = 2000) {
-            if (!element) return;
-            
-            const startTime = performance.now();
-            const updateValue = (currentTime) => {
-                const elapsed = currentTime - startTime;
-                const progress = Math.min(elapsed / duration, 1);
-                
-                const value = Math.floor(start + (end - start) * progress);
-                element.textContent = value.toLocaleString();
-                
-                if (progress < 1) {
-                    requestAnimationFrame(updateValue);
+        // Visualization loading
+        const io=new IntersectionObserver(entries=>{
+            entries.forEach(entry=>{
+                if(entry.isIntersecting){
+                    entry.target.classList.add('visible');
+                    io.unobserve(entry.target);
                 }
-            };
-            
-            requestAnimationFrame(updateValue);
-        }
+            });
+        },{threshold:.1});
 
-        function initializeStats(container) {
-            const numbers = container.querySelectorAll('.animate-number');
-            numbers.forEach(num => {
-                const targetValue = parseInt(num.dataset.value || '0');
-                animateValue(num, 0, targetValue);
+        function observeVisuals(container){
+            container.querySelectorAll('.viz-container').forEach(viz=>{
+                if(!viz.classList.contains('visible'))io.observe(viz);
             });
         }
 
-        // Optimized scroll handler
-        let scrollTimeout;
-        window.onscroll = () => {
-            if (scrollTimeout) {
-                clearTimeout(scrollTimeout);
-            }
-            
-            scrollTimeout = setTimeout(() => {
-                const winScroll = document.documentElement.scrollTop;
-                const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
-                const scrolled = (winScroll / height) * 100;
-                requestAnimationFrame(() => {
-                    document.getElementById("progressBar").style.width = scrolled + "%";
+        // Scroll progress
+        let ticking=false;
+        w.addEventListener('scroll',()=>{
+            if(!ticking){
+                w.requestAnimationFrame(()=>{
+                    const h=d.documentElement,
+                    total=h.scrollHeight-h.clientHeight,
+                    current=h.scrollTop;
+                    progress.style.width=`${(current/total)*100}%`;
+                    ticking=false;
                 });
-            }, 10);
-        };
-
-        // Initialize page
-        document.addEventListener('DOMContentLoaded', () => {
-            // Load initial section based on URL hash
-            const hash = window.location.hash.slice(1) || 'intro';
-            showSection(hash);
-
-            // Handle navigation events
-            window.addEventListener('popstate', (event) => {
-                const sectionId = event.state?.section || 'intro';
-                showSection(sectionId);
-            });
-        });
-
-        // GSAP animations (will run only after GSAP is loaded)
-        window.addEventListener('load', () => {
-            if (typeof gsap !== 'undefined') {
-                gsap.from(".content h2", {duration: 1, opacity: 0, y: -50, ease: "power3.out"});
-                gsap.from(".description-box", {duration: 1, opacity: 0, y: 50, ease: "power3.out", delay: 0.5});
-                gsap.from(".stat-box", {duration: 1, opacity: 0, y: 30, ease: "power3.out", stagger: 0.2, delay: 1});
+                ticking=true;
             }
         });
+
+        // Initialize
+        d.addEventListener('DOMContentLoaded',()=>{
+            loadSection(w.location.hash.slice(1)||'intro');
+        });
+
+        w.addEventListener('popstate',()=>{
+            loadSection(w.location.hash.slice(1)||'intro');
+        });
+
+        // Lazy load non-critical resources
+        setTimeout(()=>{
+            // Load fonts
+            const f=d.createElement('link');
+            f.rel='stylesheet';
+            f.href='https://fonts.googleapis.com/css2?family=Oswald:wght@400;700&family=Roboto:wght@300;400;700&display=swap';
+            d.head.appendChild(f);
+            
+            // Load GSAP if needed
+            if(document.querySelector('[data-animation="gsap"]')){
+                const g=d.createElement('script');
+                g.src='https://cdnjs.cloudflare.com/ajax/libs/gsap/3.9.1/gsap.min.js';
+                d.body.appendChild(g);
+            }
+        },1000);
     </script>
 </body>
 </html>
