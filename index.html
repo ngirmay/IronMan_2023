@@ -927,6 +927,7 @@
                 </div>
                 <div class="expanded-content">
                     <p>Detailed breakdown of time spent in different heart rate zones</p>
+
                 </li>This is fun to see because you can zoom in week by week, month by month and see how long you were spending in a heart rate zone any given day - all the way to the right you can see the event day that essentially eclipses the entire graph </li> 
                 </div>
             </div>
@@ -1290,7 +1291,8 @@
                 <iframe class="visualization-iframe preview-mode" src="assets/visualizations/swim/metrics_comparison.html"></iframe>
             </div>
             <div class="expanded-content">
-                <p>Comparative metrics across 2 swims of my own v. a professional</p>
+                <p>Comparative metrics across Personal and Professional Swims</p>
+
                 <p>I was able to calculate stroke rate and body angles from videos of my own swims v a professionals: I used MediaPipe's (python package) pose module to extract wrist, hip, elbow, and shoulder positions via an x and y axixs and the associated coordinates can be tracked over time </p>
                 <p>From this we can see the stroke rate for the professional is much more efficent per stroke than myself - their body angle was roughly 40 degrees more perpendicular than myself (something I really need to work on)</p>
                 <p>    Metric	            Swim 1	Swim 2	Pro Swim<p>
@@ -1308,6 +1310,7 @@
             </div>
             <div class="expanded-content">
                 <p>Examination of body angle changes during swim sessions</p>
+
                 <p>My body angle is consistently to low - you can see the pro is much more stable than I am at keeping hip's and shoulders consistently in line with the water</p>
             </div>
         </div>
@@ -1319,8 +1322,9 @@
             </div>
             <div class="expanded-content">
                 <p>Examination of wrist angle changes during swim sessions</p>
+
                 <p>This shocked me the most - the wrist angle graph of the pro's looks almost like a heart beat (except for the camera angle change in the second half of the video)</p>
-                <p>Meanwhile my wrist angle looks like I'm </p>
+                <p>Meanwhile my wrist angle is inconsistent - good to note for the future technique sessions to focus on this</p>
             </div>
         </div>
 
@@ -1330,7 +1334,13 @@
                 <iframe class="visualization-iframe preview-mode" src="assets/visualizations/swim/avg_dps_swolf_over_time.html"></iframe>
             </div>
             <div class="expanded-content">
-                <p>Analysis of DPS (Distance Per Stroke) and SWOLF (Swim Golf) trends over time.</p>
+                <p>Analysis of DPS (Distance Per Stroke) and SWOLF (Swim Golf) trends over time</p>
+
+                <p>All graphs from this point on were captured via FORM swimming goggles - These changed the game in terms of performance in my training swims<p>
+                <p>My Distance Per Stroke has a clear upward trend as my training progressed and I could feel myself getting more efficent as time went on <p>
+                <p>SWOLF =  Time (seconds) + Stroke Count<p>
+                <p>Similar trend in my SWOLF where a downward trend indicates that its taking fewer strokes to cover the same distance<p>
+                <p>Notable peaks and valleys can be attriibuted to the fluctuations of each swim sessions focus (sprint sessions usually result in a higher SWOLF due to disproportionate increase in stroke count)<p>
             </div>
         </div>
 
@@ -1340,7 +1350,7 @@
                 <iframe class="visualization-iframe preview-mode" src="assets/visualizations/swim/calories_burned_total_distance.html"></iframe>
             </div>
             <div class="expanded-content">
-                <p>Correlation of calories burned with total swimming distance.</p>
+                <p>Correlation of calories burned with total swimming distance</p>
             </div>
         </div>
 
@@ -1350,7 +1360,8 @@
                 <iframe class="visualization-iframe preview-mode" src="assets/visualizations/swim/duration_avg_stroke_count_over_time.html"></iframe>
             </div>
             <div class="expanded-content">
-                <p>Analysis of stroke count changes throughout training.</p>
+                <p>Analysis of stroke count changes throughout training</p>
+                <p>Duration and Avg Stroke Count/Length exhibit inverse relationships in some areas. For example, longer durations (indicating longer swims) sometimes correspond to lower stroke efficiency<p>  
             </div>
         </div>
 
@@ -1360,17 +1371,7 @@
                 <iframe class="visualization-iframe preview-mode" src="assets/visualizations/swim/interval_distance_stroke_count_over_time.html"></iframe>
             </div>
             <div class="expanded-content">
-                <p>Breakdown of swim intervals by distance and stroke count.</p>
-            </div>
-        </div>
-
-        <div class="visualization-container expandable-viz">
-            <h3 class="visualization-title">Pace and Stroke Rate</h3>
-            <div class="visualization-content">
-                <iframe class="visualization-iframe preview-mode" src="assets/visualizations/swim/pace_avg_stroke_rate_over_time.html"></iframe>
-            </div>
-            <div class="expanded-content">
-                <p>Analysis of pace and average stroke rate over time.</p>
+                <p>Breakdown of swim intervals by distance and stroke count</p>
             </div>
         </div>
 
@@ -1431,7 +1432,10 @@
                 <iframe class="visualization-iframe preview-mode" src="assets/visualizations/bike/activity_counts.html"></iframe>
             </div>
             <div class="expanded-content">
-                <p>Overview of the distribution of biking activities throughout training.</p>
+                <p>Overview of the distribution of biking activities throughout training<p>
+
+                <p>These are speciifc wahoo workouts that can be done via bike trainer - You can see I liked to test my power metrics often with the 4DP test</p>
+                <p>Specifically the 4DP test is meant to measure NeuroMuscular Power (NM), Aerobic Power (MAP), Functional Threshold Power (FTP), and Anaerobic Capacity (AC)<p>
             </div>
         </div>
 
@@ -1441,7 +1445,9 @@
                 <iframe class="visualization-iframe preview-mode" src="assets/visualizations/bike/avg_power.html"></iframe>
             </div>
             <div class="expanded-content">
-                <p>Analysis of average power output during biking sessions.</p>
+                <p>Analysis of average power output during biking sessions</p>
+
+                <p>Figure shows a steady increase that suggests improvements in power output, likely due to consistent training and adaptations<p>
             </div>
         </div>
 
@@ -1451,7 +1457,10 @@
                 <iframe class="visualization-iframe preview-mode" src="assets/visualizations/bike/corr_matrix.html"></iframe>
             </div>
             <div class="expanded-content">
-                <p>Correlation matrix showing relationships between various biking metrics.</p>
+                <p>Correlation matrix showing relationships between various biking metrics</p>
+
+                <p>Being that there were so many metrics to stay on top of I created this correlation matrix to figure out which ones were relative enough to each other so that I didn't have to think of each one independently<p>
+                <p>This was essentially letting me know that normalized power is a little more relevant to track in comparison to average power<p>    
             </div>
         </div>
 
@@ -1461,7 +1470,9 @@
                 <iframe class="visualization-iframe preview-mode" src="assets/visualizations/bike/cumulative_tss.html"></iframe>
             </div>
             <div class="expanded-content">
-                <p>Cumulative Training Stress Score (TSS) over the training period.</p>
+                <p>Cumulative Training Stress Score (TSS) over the training period</p>
+
+                <p>TSS was an intersting new metric to capture and be aware of - I normally feel like I have a good sense of how fatigued my body is but this level of detail helped in knowning when to ease back<p>
             </div>
         </div>
 
@@ -1471,7 +1482,7 @@
                 <iframe class="visualization-iframe preview-mode" src="assets/visualizations/bike/distribution.html"></iframe>
             </div>
             <div class="expanded-content">
-                <p>Distribution of various biking metrics such as speed, power, and cadence.</p>
+                <p>Distribution of various biking metrics such as speed, power, and cadence</p>
             </div>
         </div>
 
@@ -1481,7 +1492,7 @@
                 <iframe class="visualization-iframe preview-mode" src="assets/visualizations/bike/duration_distribution.html"></iframe>
             </div>
             <div class="expanded-content">
-                <p>Analysis of session duration distributions across different biking workouts.</p>
+                <p>Analysis of session duration distributions across different biking workouts</p>
             </div>
         </div>
 
@@ -1491,7 +1502,8 @@
                 <iframe class="visualization-iframe preview-mode" src="assets/visualizations/bike/if_progression.html"></iframe>
             </div>
             <div class="expanded-content">
-                <p>Progression of intensity factor (IF) over time to assess training load.</p>
+                <p>Progression of intensity factor (IF) over time to assess training load</p>
+                
             </div>
         </div>
 
@@ -1501,7 +1513,7 @@
                 <iframe class="visualization-iframe preview-mode" src="assets/visualizations/bike/tss_distribution.html"></iframe>
             </div>
             <div class="expanded-content">
-                <p>Distribution of Training Stress Score (TSS) across different sessions.</p>
+                <p>Distribution of Training Stress Score (TSS) across different sessions</p>
             </div>
         </div>
 
@@ -1511,7 +1523,7 @@
                 <iframe class="visualization-iframe preview-mode" src="assets/visualizations/bike/tss_if_over_time.html"></iframe>
             </div>
             <div class="expanded-content">
-                <p>Trend of TSS and IF over the training period.</p>
+                <p>Trend of TSS and IF over the training period</p>
             </div>
         </div>
 
@@ -1521,7 +1533,7 @@
                 <iframe class="visualization-iframe preview-mode" src="assets/visualizations/bike/weekly_training_load.html"></iframe>
             </div>
             <div class="expanded-content">
-                <p>Weekly distribution of training load, indicating volume and intensity.</p>
+                <p>Weekly distribution of training load, indicating volume and intensity</p>
             </div>
         </div>
 
@@ -1531,7 +1543,7 @@
                 <iframe class="visualization-iframe preview-mode" src="assets/visualizations/bike/workout_comparison.html"></iframe>
             </div>
             <div class="expanded-content">
-                <p>Comparison of key metrics across different workout sessions.</p>
+                <p>Comparison of key metrics across different workout sessions</p>
             </div>
         </div>
     </div>
@@ -1552,7 +1564,7 @@
                 <iframe class="visualization-iframe preview-mode" src="assets/visualizations/run/enhanced_running_data_analysis.html"></iframe>
             </div>
             <div class="expanded-content">
-                <p>Comprehensive analysis of running metrics, including speed, endurance, and pacing.</p>
+                <p>Comprehensive analysis of running metrics, including speed, endurance, and pacing</p>
             </div>
         </div>
 
@@ -1562,7 +1574,7 @@
                 <iframe class="visualization-iframe preview-mode" src="assets/visualizations/run/heart_rate_cadence_over_time.html"></iframe>
             </div>
             <div class="expanded-content">
-                <p>Tracking heart rate and cadence variations over time during runs.</p>
+                <p>Tracking heart rate and cadence variations over time during runs</p>
             </div>
         </div>
 
@@ -1572,7 +1584,7 @@
                 <iframe class="visualization-iframe preview-mode" src="assets/visualizations/run/pace_distance_over_time.html"></iframe>
             </div>
             <div class="expanded-content">
-                <p>Analysis of pace trends and distance over the training period.</p>
+                <p>Analysis of pace trends and distance over the training period</p>
             </div>
         </div>
 
@@ -1582,7 +1594,7 @@
                 <iframe class="visualization-iframe preview-mode" src="assets/visualizations/run/weekly_mileage_before_feb_25_2023.html"></iframe>
             </div>
             <div class="expanded-content">
-                <p>Weekly mileage progression, highlighting endurance improvement.</p>
+                <p>Weekly mileage progression, highlighting endurance improvement</p>
             </div>
         </div>
     </div>
@@ -1593,7 +1605,7 @@
 <div id="diet_sleep" class="content">
     <h2 class="section-title">Diet & Sleep Analysis</h2>
     <div class="description-box">
-        <p>This section covers the impact of my diet and sleep on my overall training performance and recovery.</p>
+        <p>This section covers the impact of my diet and sleep on my overall training performance and recovery</p>
     </div>
 
     <div class="stat-container">
@@ -1614,7 +1626,7 @@
                 <iframe class="visualization-iframe preview-mode" src="assets/visualizations/diet_sleep/ironman_macronutrient_distribution_20241024_130557.html"></iframe>
             </div>
             <div class="expanded-content">
-                <p>Analysis of macronutrient intake distribution over the training period.</p>
+                <p>Analysis of macronutrient intake distribution over the training period</p>
             </div>
         </div>
 
@@ -1624,7 +1636,7 @@
                 <iframe class="visualization-iframe preview-mode" src="assets/visualizations/diet_sleep/ironman_weight_and_calories_over_time_20241024_130557.html"></iframe>
             </div>
             <div class="expanded-content">
-                <p>Correlation between weight changes and calorie intake over time.</p>
+                <p>Correlation between weight changes and calorie intake over time</p>
             </div>
         </div>
 
@@ -1634,7 +1646,7 @@
                 <iframe class="visualization-iframe preview-mode" src="assets/visualizations/diet_sleep/sleep_data_analysis_20241024_130520.html"></iframe>
             </div>
             <div class="expanded-content">
-                <p>Detailed analysis of sleep patterns and their impact on recovery.</p>
+                <p>Detailed analysis of sleep patterns and their impact on recovery</p>
             </div>
         </div>
     </div>
