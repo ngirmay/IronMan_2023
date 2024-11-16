@@ -1661,65 +1661,131 @@
     </footer>
 
     <script>
-        function openNav() {
-            document.getElementById("mySidebar").classList.add("show");
-            document.getElementById("main").classList.add("active");
-        }
-
-        function closeNav() {
-            document.getElementById("mySidebar").classList.remove("show");
-            document.getElementById("main").classList.remove("active");
-        }
-
-        function openTab(evt, tabName) {
-            var i, content;
-            content = document.getElementsByClassName("content");
-            for (i = 0; i < content.length; i++) {
-                content[i].classList.remove("active");
+        // Lazy load iframes using Intersection Observer
+        const observerOptions = {
+            root: null,
+            rootMargin: '50px',
+            threshold: 0.1
+        };
+        
+        const iframeObserver = new IntersectionObserver((entries, observer) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const iframe = entry.target;
+                    if (iframe.dataset.src) {
+                        iframe.src = iframe.dataset.src;
+                        iframe.removeAttribute('data-src');
+                        iframe.classList.add('loaded');
+                    }
+                    observer.unobserve(iframe);
+                }
+            });
+        }, observerOptions);
+        
+        // Convert existing iframes to lazy load
+        document.querySelectorAll('.visualization-iframe').forEach(iframe => {
+            const currentSrc = iframe.src;
+            if (currentSrc) {
+                iframe.dataset.src = currentSrc;
+                iframe.removeAttribute('src');
+                iframeObserver.observe(iframe);
             }
-            document.getElementById(tabName).classList.add("active");
-            animateNumbers();
-            closeNav();
-        }
-
-        function animateNumbers() {
-            const numbers = document.querySelectorAll('.animate-number');
+        });
+        
+        // Optimize animations with RequestAnimationFrame
+        function optimizedAnimateNumbers() {
+            const numbers = document.querySelectorAll('.animate-number:not(.animated)');
             numbers.forEach(num => {
-                const finalValue = parseInt(num.getAttribute('data-value'));
-                const duration = 2000; // 2 seconds
+                num.classList.add('animated');
+                const finalValue = parseInt(num.dataset.value);
+                const duration = 1000;
                 const startTime = performance.now();
                 
-                function updateNumber(currentTime) {
-                    const elapsedTime = currentTime - startTime;
-                    if (elapsedTime < duration) {
-                        const progress = elapsedTime / duration;
-                        const currentValue = Math.round(finalValue * progress);
-                        num.textContent = currentValue.toLocaleString();
+                const updateNumber = (currentTime) => {
+                    const elapsed = currentTime - startTime;
+                    const progress = Math.min(elapsed / duration, 1);
+                    
+                    if (progress < 1) {
+                        num.textContent = Math.floor(finalValue * progress).toLocaleString();
                         requestAnimationFrame(updateNumber);
                     } else {
                         num.textContent = finalValue.toLocaleString();
                     }
-                }
+                };
                 
                 requestAnimationFrame(updateNumber);
             });
         }
-
-        // Progress bar animation
-        window.onscroll = function() {
-            var winScroll = document.body.scrollTop || document.documentElement.scrollTop;
-            var height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
-            var scrolled = (winScroll / height) * 100;
-            document.getElementById("progressBar").style.width = scrolled + "%";
-        };
-
-        // Initial animation
-        animateNumbers();
-
-        // GSAP animations
-        gsap.from(".content h2", {duration: 1, opacity: 0, y: -50, ease: "power3.out"});
-        gsap.from(".description-box", {duration: 1, opacity: 0, y: 50, ease: "power3.out", delay: 0.5});
-        gsap.from(".stat-box", {duration: 1, opacity: 0, y: 30, ease: "power3.out", stagger: 0.2, delay: 1});
-    </script>
+        
+        // Optimize scroll handling
+        let scrollTimeout;
+        const progressBar = document.getElementById('progressBar');
+        window.addEventListener('scroll', () => {
+            if (scrollTimeout) {
+                window.cancelAnimationFrame(scrollTimeout);
+            }
+            
+            scrollTimeout = window.requestAnimationFrame(() => {
+                const winScroll = window.pageYOffset;
+                const height = document.documentElement.scrollHeight - window.innerHeight;
+                const scrolled = (winScroll / height) * 100;
+                progressBar.style.width = `${scrolled}%`;
+            });
+        }, { passive: true });
+        
+        // Optimize tab switching
+        function optimizedOpenTab(evt, tabName) {
+            requestAnimationFrame(() => {
+                document.querySelectorAll('.content').forEach(content => {
+                    content.classList.remove('active');
+                });
+                
+                const targetTab = document.getElementById(tabName);
+                targetTab.classList.add('active');
+                
+                // Lazy load iframes in the new tab
+                targetTab.querySelectorAll('.visualization-iframe').forEach(iframe => {
+                    if (!iframe.src && iframe.dataset.src) {
+                        iframeObserver.observe(iframe);
+                    }
+                });
+                
+                optimizedAnimateNumbers();
+                closeNav();
+            });
+        }
+        
+        // Replace original openTab function
+        window.openTab = optimizedOpenTab;
+        
+        // Optimize sidebar
+        const sidebar = document.getElementById('mySidebar');
+        const main = document.getElementById('main');
+        
+        function optimizedToggleNav() {
+            requestAnimationFrame(() => {
+                sidebar.classList.toggle('show');
+                main.classList.toggle('active');
+            });
+        }
+        
+        // Replace original nav functions
+        window.openNav = optimizedToggleNav;
+        window.closeNav = optimizedToggleNav;
+        
+        // Initialize on page load
+        document.addEventListener('DOMContentLoaded', () => {
+            // Defer GSAP animations
+            setTimeout(() => {
+                if (typeof gsap !== 'undefined') {
+                    gsap.from(".content h2", {duration: 0.5, opacity: 0, y: -30});
+                    gsap.from(".description-box", {duration: 0.5, opacity: 0, y: 30, delay: 0.2});
+                    gsap.from(".stat-box", {duration: 0.5, opacity: 0, y: 20, stagger: 0.1, delay: 0.3});
+                }
+            }, 100);
+            
+            optimizedAnimateNumbers();
+        }, { passive: true });
+        </script>
 </body>
 </html>    
