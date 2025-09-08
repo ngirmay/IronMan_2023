@@ -42,7 +42,7 @@ Comprehensive data analysis of training and performance metrics for the Lake Pla
 - **Cadence:** Maintained 170-175 spm throughout race
 
 ### Body Composition
-- **Weight:** 185 lbs to 175 lbs (5.4% reduction)
+- **Weight:** 175 lbs to 160 lbs 
 - **Body Fat:** 18% to 14%
 - **Lean Mass:** Maintained at ~150 lbs
 - **VO2 Max:** Improved from 52 to 58 ml/kg/min
