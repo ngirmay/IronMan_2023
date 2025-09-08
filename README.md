@@ -23,7 +23,7 @@ Visit the interactive dashboard: [https://ngirmay.github.io/IronMan_2023/](https
 - **Actionable Insight:** Focus on aerobic base building over high-intensity work
 
 ### 3. **Body Composition Evolution**
-- **Weight Change:** 185 lbs → 175 lbs (10 lb reduction)
+- **Weight Change:** 170 lbs → 160 lbs (10 lb reduction)
 - **Body Fat:** 18% → 14% over training period
 - **Lean Mass:** Maintained at ~150 lbs despite caloric deficit
 - **Peak Performance Window:** Achieved 2 weeks before race
