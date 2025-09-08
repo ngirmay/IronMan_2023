@@ -5,7 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Ironman 2023 Project</title>
     <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;700&family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.9.1/gsap.min.js"></script>
     <style>
         body, html {
             margin: 0;
@@ -142,7 +141,8 @@
             color: #1D3557;
             padding: 20px;
             border-radius: 10px;
-            margin: 40px 0;
+            margin: 40px auto;
+            max-width: 800px;
             font-size: 1.2em;
             line-height: 1.6;
             box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
@@ -153,10 +153,15 @@
             transform: scale(1.02);
         }
 
+        .description-box h3 {
+            color: #1D3557;
+            margin-bottom: 15px;
+        }
+
         /* Visualization Styles */
         .visualization-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(500px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(min(100%, 500px), 1fr));
             gap: 20px;
             margin: 40px 0;
         }
@@ -251,23 +256,341 @@
             font-weight: bold;
         }
 
+        .stat-box small {
+            display: block;
+            margin-top: 5px;
+            color: #F1FAEE;
+            font-size: 0.8em;
+            opacity: 0.8;
+        }
+
         .animate-number {
             display: inline-block;
         }
 
+        .course-overview {
+            margin-top: 40px;
+        }
+
+        .course-overview h3 {
+            text-align: center;
+            color: #1D3557;
+            margin: 40px 0 20px;
+        }
+
+        .visualization-image {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+        }
+        
+        /* Mobile-specific image handling */
         @media screen and (max-width: 768px) {
-            .sidebar {
-                width: 200px;
-                left: -200px;
+            .visualization-image {
+                object-fit: cover;
+                object-position: center;
             }
+        }
+
+        .visualization-content {
+            position: relative;
+            overflow: hidden;
+            background: white;
+            height: calc(100% - 44px);
+        }
+
+        .expandable-viz {
+            cursor: pointer;
+        }
+
+        .expandable-viz:hover {
+            transform: scale(1.02);
+        }
+
+        .expanded-content {
+            display: none;
+            padding: 20px;
+            background: #f8f9fa;
+            border-top: 1px solid #dee2e6;
+        }
+
+        .expanded-content ul {
+            list-style: none;
+            padding: 15px;
+        }
+
+        .expanded-content ul li {
+            margin: 8px 0;
+            font-size: 0.9em;
+            color: #1D3557;
+        }
+
+        /* Modal Styles */
+        .visualization-modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            z-index: 1000;
+            overflow: auto;
+        }
+
+        .modal-content {
+            position: relative;
+            background: white;
+            margin: 20px auto;
+            padding: 20px;
+            width: 95%;
+            max-width: 1800px;
+            height: 90vh;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+            display: flex;
+            flex-direction: column;
+        }
+
+        .close-modal {
+            position: absolute;
+            right: 20px;
+            top: 20px;
+            font-size: 30px;
+            cursor: pointer;
+            color: #1D3557;
+            z-index: 1100;
+            background: white;
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+        }
+        
+        .close-modal:hover {
+            background: #f0f0f0;
+            transform: scale(1.1);
+        }
+        
+        .modal-content .visualization-title {
+            background: #457B9D;
+            color: #F1FAEE;
+            padding: 15px;
+            margin: -20px -20px 10px -20px;
+            font-family: 'Oswald', sans-serif;
+            font-size: 1.4em;
+            border-radius: 10px 10px 0 0;
+        }
+
+        .modal-content .visualization-content {
+            flex: 1;
+            overflow: hidden;
+            margin: 10px 0;
+        }
+
+        .modal-content .visualization-iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+            transform: none;
+        }
+
+        .modal-content .expanded-content {
+            max-height: 150px;
+            overflow-y: auto;
+            padding: 15px;
+            background: #f8f9fa;
+            border-radius: 5px;
+            margin-top: 10px;
+        }
+
+        .fade-in {
+            animation: fadeIn 0.3s ease-in;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        /* Loading states */
+        .loading-spinner {
+            border: 4px solid #f3f3f3;
+            border-top: 4px solid #457B9D;
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            animation: spin 1s linear infinite;
+            margin: 20px auto;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        .viz-placeholder {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100%;
+            background: #f8f9fa;
+        }
+
+        /* Mobile Optimizations */
+        @media screen and (max-width: 768px) {
+            /* Navigation */
+            .sidebar {
+                width: 80%;
+                left: -80%;
+                max-width: 300px;
+            }
+            
+            .sidebar.show {
+                left: 0;
+            }
+            
+            .sidebar a {
+                font-size: 1.4em;
+                padding: 20px;
+            }
+            
             .open-btn {
                 left: 10px;
+                top: 10px;
+                width: 50px;
+                height: 50px;
             }
+            
+            /* Header */
+            header h1 {
+                font-size: 1.8em;
+                padding: 10px;
+            }
+            
+            /* Main Content */
+            .main-content {
+                padding: 20px 15px;
+            }
+            
+            .main-content.active {
+                margin-left: 0;
+            }
+            
+            /* Stats */
+            .stat-container {
+                flex-direction: column;
+                align-items: center;
+            }
+            
             .stat-box {
-                width: calc(50% - 20px);
+                width: 100%;
+                max-width: 300px;
+                margin: 10px 0;
             }
+            
+            /* Visualizations */
             .visualization-grid {
                 grid-template-columns: 1fr;
+                gap: 15px;
+            }
+            
+            .visualization-container {
+                height: 400px;
+                margin-bottom: 15px;
+            }
+            
+            /* Description Boxes */
+            .description-box {
+                padding: 15px;
+                font-size: 1em;
+                margin: 20px 10px;
+            }
+            
+            /* Modal for Mobile */
+            .modal-content {
+                width: 100%;
+                height: 100vh;
+                margin: 0;
+                border-radius: 0;
+                padding: 15px;
+            }
+            
+            .close-modal {
+                position: fixed;
+                right: 15px;
+                top: 15px;
+                z-index: 1101;
+            }
+            
+            .modal-content .visualization-content {
+                height: 60vh;
+            }
+            
+            .modal-content .expanded-content {
+                max-height: 20vh;
+                font-size: 0.9em;
+            }
+        }
+        
+        @media screen and (max-width: 480px) {
+            /* Extra small devices */
+            header h1 {
+                font-size: 1.5em;
+            }
+            
+            .content h2 {
+                font-size: 1.8em;
+            }
+            
+            .visualization-container {
+                height: 350px;
+            }
+            
+            .stat-box p {
+                font-size: 1.8em;
+            }
+            
+            .visualization-title {
+                font-size: 1em;
+                padding: 12px;
+            }
+        }
+        
+        /* Touch-friendly enhancements */
+        @media (hover: none) and (pointer: coarse) {
+            /* Make clickable areas larger for touch */
+            .expandable-viz {
+                min-height: 100px;
+            }
+            
+            .viz-placeholder p {
+                font-size: 1.2em;
+                padding: 20px;
+            }
+            
+            .close-modal {
+                width: 50px;
+                height: 50px;
+                font-size: 35px;
+            }
+        }
+        
+        /* Landscape mode adjustments */
+        @media screen and (max-width: 768px) and (orientation: landscape) {
+            .visualization-container {
+                height: 80vh;
+            }
+            
+            .modal-content {
+                height: 100vh;
+            }
+            
+            .modal-content .visualization-content {
+                height: 70vh;
             }
         }
     </style>
@@ -295,1484 +618,177 @@
 
     <div id="main" class="main-content">
         <!-- Intro Section -->
-<div id="intro" class="content active">
-    <h2 class="section-title">Introduction</h2>
-    
-    <!-- Personal Journey Overview -->
-    <div class="description-box">
-        <h3 style="color: #1D3557; margin-bottom: 15px;">My Ironman Journey</h3>
-        <p>Welcome to my Lake Placid Ironman 2023 journey. This project documents my 6-month training and delves into the details of my improvement across 3 athletic events. </p>
-    </div>
-
-    <!-- Key Stats -->
-    <div class="stat-container">
-        <div class="stat-box">
-            <h3>Total Training Days</h3>
-            <p><span class="animate-number" data-value="180">0</span></p>
-            <small>Over 6 months</small>
-        </div>
-        <div class="stat-box">
-            <h3>Hours Trained</h3>
-            <p><span class="animate-number" data-value="720">0</span></p>
-            <small>~4 hours/day</small>
-        </div>
-        <div class="stat-box">
-            <h3>Calories Burned</h3>
-            <p><span class="animate-number" data-value="540,000">0</span></p>
-            <small>During training</small>
-        </div>
-        <div class="stat-box">
-            <h3>Total Distance</h3>
-            <p><span class="animate-number" data-value="140">0</span></p>
-            <small>Miles on race day</small>
-        </div>
-    </div>
-
-    <!-- Course Overview -->
-    <div class="course-overview">
-        <h3 style="text-align: center; color: #1D3557; margin: 40px 0 20px;">The Lake Placid Challenge</h3>
-        
-        <div class="visualization-grid">
-            <div class="visualization-container expandable-viz">
-                <h3 class="visualization-title">Swim Course - Mirror Lake</h3>
-                <div class="visualization-content">
-                    <img src="course_maps/IM24_LP_CourseMap_Swim_081423_cc-1_large.webp" alt="Swim Course Map" class="visualization-image">
-                </div>
-                <div class="expanded-content">
-                    <ul style="list-style: none; padding: 15px;">
-                        <li>🏊‍♂️ Notes: Very beautiful sunrise as over 2000 athletes prepare for a long day ahead </li>
-                        <li>💧 Two 1.2-mile loops</li>
-                        <li>🌡️ Average water temp: 68-72°F</li>
-                        <li>⏱️ Cut-off time: 2:20</li>
-                    </ul>
-                </div>
-            </div>
+        <div id="intro" class="content active">
+            <h2 class="section-title">Introduction</h2>
             
-            <div class="visualization-container expandable-viz">
-                <h3 class="visualization-title">Bike Course - Adirondacks</h3>
-                <div class="visualization-content">
-                    <img src="course_maps/IM24_LP_CourseMap_Bike_081423_cc-1_large.webp" alt="Bike Course Map" class="visualization-image">
-                </div>
-                <div class="expanded-content">
-                    <ul style="list-style: none; padding: 15px;">
-                        <li>🚴‍♂️ Notes: Hilly roads with lots of speed on descents and effort on climbing - occasional downpours of rain made for a difficult section  </li>
-                        <li>⛰️ Elevation gain: 6,700 feet</li>
-                        <li>🔄 Two 56-mile loops</li>
-                        <li>⏱️ Cut-off time: 10:30</li>
-                    </ul>
-                </div>
+            <!-- Personal Journey Overview -->
+            <div class="description-box">
+                <h3>My Ironman Journey</h3>
+                <p>Welcome to my Lake Placid Ironman 2023 journey. This project documents my 6-month training and delves into the details of my improvement across 3 athletic events.</p>
             </div>
-            
-            <div class="visualization-container expandable-viz">
-                <h3 class="visualization-title">Run Course - Lake Placid</h3>
-                <div class="visualization-content">
-                    <img src="course_maps/IM24_LP_CourseMap_Run_081423_cc-1_large.webp" alt="Run Course Map" class="visualization-image">
+
+            <!-- Key Stats -->
+            <div class="stat-container">
+                <div class="stat-box">
+                    <h3>Total Training Days</h3>
+                    <p><span class="animate-number" data-value="180">0</span></p>
+                    <small>Over 6 months</small>
                 </div>
-                <div class="expanded-content">
-                    <ul style="list-style: none; padding: 15px;">
-                        <li>🏃‍♂️ Notes: Mild hills with large crowds cheering you on as you begin your final loop</li>
-                        <li>⛰️ Elevation gain: 1,500 feet</li>
-                        <li>🔄 Two 13.1-mile loops</li>
-                        <li>⏱️ Cut-off time: 17:00</li>
-                    </ul>
+                <div class="stat-box">
+                    <h3>Hours Trained</h3>
+                    <p><span class="animate-number" data-value="720">0</span></p>
+                    <small>~4 hours/day</small>
                 </div>
-            </div>
-        </div>
-    </div>
-</div>
-
-<style>
-    .course-content {
-        display: flex;
-        flex-direction: column;
-        height: 100%;
-    }
-
-    .course-details {
-        background: rgba(29, 53, 87, 0.05);
-        border-top: 3px solid #457B9D;
-        margin-top: auto;
-    }
-
-    .course-details ul li {
-        margin: 8px 0;
-        font-size: 0.9em;
-        color: #1D3557;
-    }
-
-    .stat-box small {
-        display: block;
-        margin-top: 5px;
-        color: #F1FAEE;
-        font-size: 0.8em;
-        opacity: 0.8;
-    }
-
-    .description-box {
-        max-width: 800px;
-        margin: 0 auto 40px;
-        line-height: 1.8;
-    }
-
-    .description-box p {
-        font-size: 1.1em;
-    }
-
-    .visualization-image {
-        width: 100%;
-        height: 100%;
-        object-fit: contain;
-    }
-</style>
-
-
-        <!-- Genetic Analysis Section -->
-<div id="genetic_analysis" class="content">
-    <h2 class="section-title">GENETIC ANALYSIS</h2>
-    
-    <div class="description-box genetic-overview">
-        <p>This section delves into my genetic makeup based off SNP genotyping (sequencing outsourced to selfdecode). I was able to play around with the data and make a mock report by creating an in house SNP database based on specific genetic markers that influence athletic performance and attributing "scores" to each associated gene</p>
-    </div>
-    
-    <!-- Performance Report Container -->
-    <div class="visualization-container report-container expandable-viz">
-        <h3 class="visualization-title">Genetic Performance Report</h3>
-        <div class="visualization-content">
-            <iframe 
-                class="visualization-iframe preview-mode" 
-                src="assets/visualizations/genetic_analysis/genetic_performance_report.html"
-                scrolling="no"
-            ></iframe>
-        </div>
-        <div class="expanded-content">
-            <p>Scores were calculated by taking 20 known gene variations associated with athletic performance via scientific literature and comparing my own SNP data through normalized scoring. A future balanced score will be added to determine the overal flexibility of athletic performance<p>
-                   
-                <p>2 = optimal score<p>
-                <p>1 = Neutral variant<p>
-                <p>0.5 = less than optimal variant<p> 
-                <p>0.1 = Non-optimal variant </p>
-        </div>
-    </div>
- 
-    <!-- Athletics Overview Container -->
-    <div class="visualization-container overview-container expandable-viz">
-        <h3 class="visualization-title">Athletic Genetics Overview</h3>
-        <div class="visualization-content">
-            <iframe 
-                class="visualization-iframe preview-mode" 
-                src="assets/visualizations/genetic_analysis/athletic_genetics_overview_20241024_132540.html"
-                scrolling="no"
-            ></iframe>
-        </div>
-        <div class="expanded-content">
-            <p>This detailed overview analyzes key genetic markers that influence athletic performance. The analysis includes the following:</p>
-
-        <p>1. Effect Size vs. Endurance/Power Bias: Show a mix of both power and endurance potential, with strong markers like ACTN3 favoring power and ACE favoring endurance performance<p>
-
-        <p>2. Distribution of Genentic Pathways: All genes analyzed have strong scientific backing, with evidence quality scores above 75%<p> 
-
-        <p>3. Evidence Quality by Gene: Most genes are involved in energy metabolism and muscle composition<p>
-
-        <p>4. Genes Ranked by Effect Size: ACTN3 and ACE have the strongest influence on athletic performance, with other genes providing moderate to significant effects<p>
-        </div>
-    </div>
- </div>
- 
- <style>
- .section-title {
-    text-align: center;
-    color: #1D3557;
-    font-size: 2.5em;
-    margin-bottom: 30px;
-    text-transform: uppercase;
-    letter-spacing: 2px;
- }
- 
- .genetic-overview {
-    background-color: #A8DADC;
-    border-radius: 10px;
-    padding: 25px;
-    margin: 40px auto;
-    max-width: 1000px;
-    text-align: center;
-    font-size: 1.1em;
-    line-height: 1.6;
-    color: #1D3557;
- }
- 
- .visualization-container {
-    background: white;
-    border-radius: 10px;
-    overflow: hidden;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-    margin: 60px auto;
-    transition: transform 0.3s ease;
-    width: 95%;
-    max-width: 1800px;
-    position: relative;
- }
- 
- .visualization-title {
-    background: #457B9D;
-    color: #F1FAEE;
-    padding: 15px;
-    margin: 0;
-    font-size: 1.2em;
-    text-align: center;
- }
- 
- .visualization-content {
-    position: relative;
-    overflow: hidden;
-    background: white;
-    height: 100%;
- }
- 
- .expandable-viz {
-    cursor: pointer;
- }
- 
- .expandable-viz:hover {
-    transform: scale(1.02);
- }
- 
- .expanded-content {
-    display: none;
-    padding: 20px;
-    background: #f8f9fa;
-    border-top: 1px solid #dee2e6;
- }
- 
- .visualization-modal {
-    display: none;
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(0, 0, 0, 0.8);
-    z-index: 1000;
-    overflow: auto;
- }
- 
- .modal-content {
-    position: relative;
-    background: white;
-    margin: 40px auto;
-    padding: 30px;
-    width: 95%;
-    max-width: 1800px;
-    min-height: 800px;
-    border-radius: 10px;
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
- }
- 
- .close-modal {
-    position: absolute;
-    right: 20px;
-    top: 20px;
-    font-size: 24px;
-    cursor: pointer;
-    color: #1D3557;
-    z-index: 1100;
- }
- 
- .report-container {
-    height: 450px;
- }
- 
- .overview-container {
-    height: 450px;
- }
- 
- .visualization-iframe {
-    width: 100%;
-    height: 100%;
-    border: none;
- }
- 
- .visualization-iframe.preview-mode {
-    width: 100%;
-    height: 150%;
-    border: none;
-    position: absolute;
-    top: 0;
-    left: 0;
-    transform: scale(0.8) translateY(-15%);
-    transform-origin: top center;
- }
- 
- .modal .visualization-iframe {
-    height: 1200px;
-    position: relative;
-    transform: none;
-    overflow-y: auto;
- }
- 
- .fade-in {
-    animation: fadeIn 0.3s ease-in;
- }
- 
- @keyframes fadeIn {
-    from { opacity: 0; }
-    to { opacity: 1; }
- }
- 
- @media (max-width: 1400px) {
-    .report-container {
-        height: 400px;
-    }
-    
-    .overview-container {
-        height: 400px;
-    }
-    
-    .visualization-iframe.preview-mode {
-        transform: scale(0.75) translateY(-15%);
-    }
- }
- 
- @media (max-width: 768px) {
-    .report-container {
-        height: 350px;
-    }
-    
-    .overview-container {
-        height: 350px;
-    }
-    
-    .visualization-iframe.preview-mode {
-        transform: scale(0.7) translateY(-15%);
-    }
- 
-    .section-title {
-        font-size: 2em;
-    }
- 
-    .genetic-overview {
-        margin: 15px;
-        padding: 20px;
-        font-size: 1em;
-    }
- 
-    .modal-content {
-        width: 98%;
-        margin: 10px auto;
-        padding: 15px;
-    }
- }
- </style>
- 
- <script>
- document.addEventListener('DOMContentLoaded', function() {
-    const expandableVizs = document.querySelectorAll('.expandable-viz');
-    
-    expandableVizs.forEach(viz => {
-        viz.addEventListener('click', function() {
-            const modal = document.createElement('div');
-            modal.className = 'visualization-modal fade-in';
-            
-            const title = this.querySelector('.visualization-title').cloneNode(true);
-            const content = this.querySelector('.visualization-content').cloneNode(true);
-            const description = this.querySelector('.expanded-content').cloneNode(true);
-            
-            // Update iframe for modal view
-            const iframe = content.querySelector('iframe');
-            if (iframe) {
-                iframe.classList.remove('preview-mode');
-                iframe.scrolling = 'auto';
-                iframe.style.height = '1200px';
-                iframe.style.position = 'relative';
-                iframe.style.transform = 'none';
-            }
-            
-            modal.innerHTML = `
-                <div class="modal-content">
-                    <span class="close-modal">&times;</span>
-                    ${title.outerHTML}
-                    ${content.outerHTML}
-                    ${description.outerHTML}
+                <div class="stat-box">
+                    <h3>Calories Burned</h3>
+                    <p><span class="animate-number" data-value="540000">0</span></p>
+                    <small>During training</small>
                 </div>
-            `;
-            
-            document.body.appendChild(modal);
-            modal.style.display = 'block';
-            document.body.style.overflow = 'hidden';
-            
-            modal.querySelector('.expanded-content').style.display = 'block';
-            
-            const closeBtn = modal.querySelector('.close-modal');
-            closeBtn.onclick = function() {
-                modal.classList.remove('fade-in');
-                setTimeout(() => {
-                    modal.remove();
-                    document.body.style.overflow = 'auto';
-                }, 300);
-            };
-            
-            modal.onclick = function(e) {
-                if (e.target === modal) {
-                    closeBtn.click();
-                }
-            };
-        });
-    });
- });
- </script>
-
-        <!-- Body Composition Section -->
-<div id="body_composition" class="content">
-    <h2 class="section-title">BODY COMPOSITION</h2>
-    
-    <div class="description-box">
-        <p>This section explores how my body composition evolved throughout my Ironman training, with a focus on metrics like BMI, body fat percentage, lean mass, and cardiovascular indicators.</p>
-    </div>
-    
-    <!-- Key Metrics Stats -->
-    <div class="stat-container">
-        <div class="stat-box">
-            <h3>BMI</h3>
-            <p><span class="animate-number" data-value="23">0</span></p>
-            <small>Healthy Range</small>
-        </div>
-        <div class="stat-box">
-            <h3>Body Fat %</h3>
-            <p><span class="animate-number" data-value="12">0</span></p>
-            <small>Athletic Range</small>
-        </div>
-        <div class="stat-box">
-            <h3>Lean Mass (lb)</h3>
-            <p><span class="animate-number" data-value="160">0</span></p>
-            <small>Peak Training</small>
-        </div>
-    </div>
-
-    <!-- Body Composition Trends -->
-    <div class="metrics-section">
-        <h3 class="subsection-title">Body Composition Analysis</h3>
-        <div class="visualization-grid">
-            <div class="visualization-container expandable-viz">
-                <h3 class="visualization-title">Body Fat Percentage Trends</h3>
-                <div class="visualization-content">
-                    <iframe 
-                        class="visualization-iframe preview-mode" 
-                        src="assets/visualizations/body_composition/body_fat_percentage_over_time_20241024_134949.html"
-                        scrolling="no"
-                    ></iframe>
-                </div>
-                <div class="expanded-content">
-                    <p>Trend analysis of body fat percentage - I still remember the mcdonalds nuggest and fries after - clearly had a little rebound after the event but cleaned up in the following weeks.</p>
+                <div class="stat-box">
+                    <h3>Total Distance</h3>
+                    <p><span class="animate-number" data-value="140">0</span></p>
+                    <small>Miles on race day</small>
                 </div>
             </div>
 
-            <div class="visualization-container expandable-viz">
-                <h3 class="visualization-title">Body Mass Evolution</h3>
-                <div class="visualization-content">
-                    <iframe 
-                        class="visualization-iframe preview-mode" 
-                        src="assets/visualizations/body_composition/body_mass_over_time_20241024_134949.html"
-                        scrolling="no"
-                    ></iframe>
-                </div>
-                <div class="expanded-content">
-                    <p>Trend analysis of body mass with added target weight - identical trend but nice to see weight in pounds </p>
-                </div>
-            </div>
-
-            <div class="visualization-container expandable-viz">
-                <h3 class="visualization-title">Body Mass vs Body Fat</h3>
-                <div class="visualization-content">
-                    <iframe 
-                        class="visualization-iframe preview-mode" 
-                        src="assets/visualizations/body_composition/comparison_body_mass_body_fat_20241024_134949.html"
-                        scrolling="no"
-                    ></iframe>
-                </div>
-                <div class="expanded-content">
-                    <p>Comparative analysis of body mass and body fat percentage relationships. Nothing out of order here.</p>
-                </div>
-            </div>
-
-            <div class="visualization-container expandable-viz">
-                <h3 class="visualization-title">Lean Body Mass Trends</h3>
-                <div class="visualization-content">
-                    <iframe 
-                        class="visualization-iframe preview-mode" 
-                        src="assets/visualizations/body_composition/lean_body_mass_over_time_20241024_134949.html"
-                        scrolling="no"
-                    ></iframe>
-                </div>
-                <div class="expanded-content">
-                    <p>Tracking of lean body mass changes during the same period. I noticed the loss of bodyfat but also the loss of muscle mass - I was considerably weaker throughout my lifts and in retrospect would add more lifting to training diet.</p>
-                </div>
-            </div>
-
-            <div class="visualization-container expandable-viz">
-                <h3 class="visualization-title">Pro Height Distribution Analysis</h3>
-                <div class="visualization-content">
-                    <iframe 
-                        class="visualization-iframe preview-mode" 
-                        src="assets/visualizations/body_composition/height_distribution_20241024_135255.html"
-                        scrolling="no"
-                    ></iframe>
-                </div>
-                <div class="expanded-content">
-                    <p>Height Distribution of pro triathletes.</p>
-                </div>
-            </div>
-
-            <div class="visualization-container expandable-viz">
-                <h3 class="visualization-title">Pro Body Mass Distribution</h3>
-                <div class="visualization-content">
-                    <iframe 
-                        class="visualization-iframe preview-mode" 
-                        src="assets/visualizations/body_composition/weight_distribution_20241024_135255.html"
-                        scrolling="no"
-                    ></iframe>
-                </div>
-                <div class="expanded-content">
-                    <p>Weight Distribution of pro triathletes.</p>
-                </div>
-            </div>
-
-            <div class="visualization-container expandable-viz">
-                <h3 class="visualization-title">Pro Height vs Weight Analysis</h3>
-                <div class="visualization-content">
-                    <iframe 
-                        class="visualization-iframe preview-mode" 
-                        src="assets/visualizations/body_composition/height_weight_regression_20241024_135255.html"
-                        scrolling="no"
-                    ></iframe>
-                </div>
-                <div class="expanded-content">
-                    <p>Graph compares height and weight distributions between PRO triathletes sourced from (protriathletes.org - orange dots) and Rio 2016 Olympian triathletes (teal dots), showing a moderate positive correlation (R²=0.59) between height and weight, with most elite athletes falling within a specific range of proportions - in this case olympians from 2016 seem to weigh less on average than the PRO triatheltes (given that the PRO triathlete data was sourced as recently as 2024 I think there might be a trend towards slightly heavier triathletes in the future)</p>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- Cardiovascular Metrics -->
-    <div class="metrics-section">
-        <h3 class="subsection-title">Cardiovascular Performance</h3>
-        <div class="visualization-grid">
-            <div class="visualization-container expandable-viz">
-                <h3 class="visualization-title">Heart Rate by Activity</h3>
-                <div class="visualization-content">
-                    <iframe 
-                        class="visualization-iframe preview-mode" 
-                        src="assets/visualizations/body_composition/heart_rate_vs_activity_type_20241024_135605.html"
-                        scrolling="no"
-                    ></iframe>
-                </div>
-                <div class="expanded-content">
-                    <p>Analysis of heart rate patterns across different training activities. What I found that even though I was super out of breathing during swimming (poor technique plus inexperience) my heart rate was super low - this lead to me being in optimal fat burning range which explains that pretty fast drop from end of september to December where I was doing mostly swim training.</p>
+            <!-- Course Overview -->
+            <div class="course-overview">
+                <h3>The Lake Placid Challenge</h3>
                 
-                </li>Also interesting to note here that my range of heart rate during my runs was larger than any other activity - I think I feel most comfortable with the variation I can give me run workouts as that's the activity I'm most familar with</li>
-                </div>
-            </div>
-
-            <div class="visualization-container expandable-viz">
-                <h3 class="visualization-title">Base Heart Rate Zones</h3>
-                <div class="visualization-content">
-                    <iframe 
-                        class="visualization-iframe preview-mode" 
-                        src="assets/visualizations/body_composition/heart_rate_zones_20241024_140507.html"
-                        scrolling="no"
-                    ></iframe>
-                </div>
-                <div class="expanded-content">
-                    <p>Distribution of training time across base heart rate zones</p>
-
-                </li>Now this was super intersting for me to find out - I had initially calculated my heart rate zones with some website I found on the internet - only to find out there were multiple ways to calculate them after all the training.</li>
-                </li>Based of the MHR (maximum heart rate) calculator I used online I had a fairly optimal distribution of time spent in zone 1/2 (endurance focused)</li>
-                  <p>However based on the Karvonen method I spent 76.8% of my time in Zone 1! I will definitely reassess my zone calculation for the next event <p>
-                </li>Basic MHR formula: MHR = 220 - Age </li>
-                  <p>Targeted Heart Rate at 70% using Karvonen formula: THR = ((MHR - RHR) x 0.70) + RHR<p>
-                </div>
-            </div>
-
-            <div class="visualization-container expandable-viz">
-                <h3 class="visualization-title">Karvonen Heart Rate Zones</h3>
-                <div class="visualization-content">
-                    <iframe 
-                        class="visualization-iframe preview-mode" 
-                        src="assets/visualizations/body_composition/heart_rate_zones_Karvonen_20241024_140347.html"
-                        scrolling="no"
-                    ></iframe>
-                </div>
-                <div class="expanded-content">
-                    <p>Karvonen heart rate zones in more dramatic bar graph fashion</p>
-                </div>
-            </div>
-
-            <div class="visualization-container expandable-viz">
-                <h3 class="visualization-title">MHR Heart Rate Zones</h3>
-                <div class="visualization-content">
-                    <iframe 
-                        class="visualization-iframe preview-mode" 
-                        src="assets/visualizations/body_composition/heart_rate_zones_MHR_20241024_140347.html"
-                        scrolling="no"
-                    ></iframe>
-                </div>
-                <div class="expanded-content">
-                    <p>Maximum heart rate zones used during training</p>
-                </div>
-            </div>
-
-            <div class="visualization-container expandable-viz">
-                <h3 class="visualization-title">Time in Zones Analysis</h3>
-                <div class="visualization-content">
-                    <iframe 
-                        class="visualization-iframe preview-mode" 
-                        src="assets/visualizations/body_composition/time_spent_in_zones_all_20241024_140347.html"
-                        scrolling="no"
-                    ></iframe>
-                </div>
-                <div class="expanded-content">
-                    <p>Detailed breakdown of time spent in different heart rate zones</p>
-
-                </li>This is fun to see because you can zoom in week by week, month by month and see how long you were spending in a heart rate zone any given day - all the way to the right you can see the event day that essentially eclipses the entire graph </li> 
-                </div>
-            </div>
-
-            <div class="visualization-container expandable-viz">
-                <h3 class="visualization-title">HRV Trends</h3>
-                <div class="visualization-content">
-                    <iframe 
-                        class="visualization-iframe preview-mode" 
-                        src="assets/visualizations/body_composition/hrv_trend_20241024_141310.html"
-                        scrolling="no"
-                    ></iframe>
-                </div>
-                <div class="expanded-content">
-                    <p>Heart rate variability trends throughout training period.</p>
-
-                </li>Now let's get a litte more technical - plotted here is the rolling average of my HRV (heart rate variablity) over the course of roughly two years - with many more data points during the training cycle</li>
-                  <p>What can be noticed are sharp ups and downs during those training periods - peaks corresponding to good recovery days and troughs to hard training days/inadequate recovery/possible accumulation of fatigue<p>
-                </li>Despite the volatility, the overall trend line (red dashed) continues its gradual decline - this is normal as the boody responds/adapts to progressive overload and potentially indicates a shift to a more sympathetic nervous system activity.</li>
-                </li>In the future I would love to incorporate more HRV monitoring during my training - gives me a good sense of exactly how hard was a hard workout and my recovery time - the goal is to really master the occasional super-compensation (higher than baseline) to find the best windows for peak performance</li>
-                </div>
-            </div>
-
-            <div class="visualization-container expandable-viz">
-                <h3 class="visualization-title">VO2 Max Trends</h3>
-                <div class="visualization-content">
-                    <iframe 
-                        class="visualization-iframe preview-mode" 
-                        src="assets/visualizations/body_composition/vo2_max_trend_20241024_141609.html"
-                        scrolling="no"
-                    ></iframe>
-                </div>
-                <div class="expanded-content">
-                    <p>Progression of VO2 Max measurements during training</p>
-
-                <p>I would take this graph with alot of salt being that its coming from apple watch data - but it does show I normally have a stable VO2 max oof around 55ml/min/kg and the training shock lowered that to roughly 49ml/min/kg and then gradually improved<p>
-
-                </li>The classic "train-adapt-improve" cycle</li>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-        
-<style>
-    .section-title {
-        text-align: center;
-        color: #1D3557;
-        font-size: 2.5em;
-        margin-bottom: 30px;
-        text-transform: uppercase;
-        letter-spacing: 2px;
-    }
-    
-    .subsection-title {
-        text-align: center;
-        color: #1D3557;
-        font-size: 1.8em;
-        margin: 40px 0 20px;
-        letter-spacing: 1px;
-    }
-    
-    .description-box {
-        background-color: #A8DADC;
-        border-radius: 10px;
-        padding: 25px;
-        margin: 20px auto;
-        max-width: 800px;
-        text-align: center;
-        font-size: 1.1em;
-        line-height: 1.6;
-        color: #1D3557;
-    }
-    
-    /* Stats Styling */
-    .stat-container {
-        display: flex;
-        justify-content: center;
-        flex-wrap: wrap;
-        gap: 20px;
-        margin: 40px 0;
-    }
-    
-    .stat-box {
-        background-color: #457B9D;
-        color: #F1FAEE;
-        padding: 25px 40px;
-        border-radius: 10px;
-        text-align: center;
-        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-        min-width: 200px;
-    }
-    
-    .stat-box h3 {
-        margin-bottom: 10px;
-        font-size: 1.2em;
-    }
-    
-    .stat-box p {
-        font-size: 2.2em;
-        font-weight: bold;
-        margin: 10px 0;
-    }
-    
-    .stat-box small {
-        display: block;
-        opacity: 0.8;
-        font-size: 0.9em;
-        margin-top: 5px;
-    }
-    
-    /* Visualization Grid Styling */
-    .metrics-section {
-        margin: 60px 0;
-    }
-    
-    .visualization-grid {
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(600px, 1fr));
-        gap: 20px;
-        margin: 20px 0;
-    }
-    
-    .visualization-container {
-        background: white;
-        border-radius: 10px;
-        overflow: hidden;
-        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-        height: 350px;
-        position: relative;
-    }
-    
-    .visualization-title {
-        background: #457B9D;
-        color: #F1FAEE;
-        padding: 15px;
-        margin: 0;
-        font-size: 1.2em;
-        text-align: center;
-    }
-    
-    .visualization-content {
-        position: relative;
-        overflow: hidden;
-        background: white;
-        height: 100%;
-    }
-    
-    /* Expandable Visualization Styling */
-    .expandable-viz {
-        cursor: pointer;
-        transition: transform 0.3s ease;
-    }
-    
-    .expandable-viz:hover {
-        transform: scale(1.02);
-    }
-    
-    .expanded-content {
-        display: none;
-        padding: 20px;
-        background: #f8f9fa;
-        border-top: 1px solid #dee2e6;
-    }
-    
-    .visualization-iframe {
-        width: 100%;
-        height: 100%;
-        border: none;
-    }
-    
-    .visualization-iframe.preview-mode {
-        width: 100%;
-        height: 150%;
-        border: none;
-        position: absolute;
-        top: 0;
-        left: 0;
-        transform: scale(0.7) translateY(-20%);
-        transform-origin: top center;
-    }
-    
-    /* Modal Styling */
-    .visualization-modal {
-        display: none;
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        background: rgba(0, 0, 0, 0.8);
-        z-index: 1000;
-        overflow: auto;
-    }
-    
-    .modal-content {
-        position: relative;
-        background: white;
-        margin: 40px auto;
-        padding: 20px;
-        width: 80%;
-        max-width: 1200px; /* Smaller max-width for better visibility */
-        min-height: 600px; /* Reduced height for full view */
-        border-radius: 10px;
-        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
-    }
-    
-    .close-modal {
-        position: absolute;
-        right: 20px;
-        top: 20px;
-        font-size: 24px;
-        cursor: pointer;
-        color: #1D3557;
-        z-index: 1100;
-    }
-    
-    .fade-in {
-        animation: fadeIn 0.3s ease-in;
-    }
-    
-    @keyframes fadeIn {
-        from { opacity: 0; }
-        to { opacity: 1; }
-    }
-    
-    /* Responsive Design */
-    @media (max-width: 1400px) {
-        .visualization-grid {
-            grid-template-columns: 1fr;
-        }
-        
-        .visualization-container {
-            height: 300px;
-        }
-        
-        .visualization-iframe.preview-mode {
-            transform: scale(0.65) translateY(-20%);
-        }
-    }
-    
-    @media (max-width: 768px) {
-        .stat-box {
-            width: 100%;
-            max-width: 300px;
-        }
-        
-        .visualization-container {
-            height: 250px;
-        }
-        
-        .visualization-iframe.preview-mode {
-            transform: scale(0.6) translateY(-20%);
-        }
-    
-        .section-title {
-            font-size: 2em;
-        }
-    
-        .modal-content {
-            width: 95%;
-            margin: 10px auto;
-            padding: 15px;
-            min-height: 500px; /* Adjusted for smaller screens */
-        }
-    }
-</style>
-
-<script>
-    document.addEventListener('DOMContentLoaded', function() {
-        // Number Animation
-        const animateNumbers = document.querySelectorAll('.animate-number');
-        
-        animateNumbers.forEach(number => {
-            const targetValue = number.dataset.value;
-            const duration = 2000; // Animation duration in ms
-            const steps = 60; // Number of animation steps
-
-            if (targetValue.includes(':')) {
-                // Handle time values (HH:MM:SS)
-                const [hours, minutes, seconds] = targetValue.split(':').map(Number);
-                const totalSeconds = hours * 3600 + minutes * 60 + seconds;
-                const stepValue = totalSeconds / steps;
-                let currentStep = 0;
-                let currentSeconds = 0;
-
-                const interval = setInterval(() => {
-                    currentStep++;
-                    currentSeconds += stepValue;
-
-                    if (currentStep >= steps) {
-                        currentSeconds = totalSeconds;
-                        clearInterval(interval);
-                    }
-
-                    const h = Math.floor(currentSeconds / 3600);
-                    const m = Math.floor((currentSeconds % 3600) / 60);
-                    const s = Math.floor(currentSeconds % 60);
-
-                    number.textContent = `${h}:${m.toString().padStart(2, '0')}:${s
-                        .toString()
-                        .padStart(2, '0')}`;
-                }, duration / steps);
-            } else {
-                // Handle numeric values
-                const numericValue = parseFloat(targetValue.replace(/,/g, ''));
-                const stepValue = numericValue / steps;
-                let currentStep = 0;
-                let currentValue = 0;
-
-                const interval = setInterval(() => {
-                    currentStep++;
-                    currentValue += stepValue;
-
-                    if (currentStep >= steps) {
-                        currentValue = numericValue;
-                        clearInterval(interval);
-                    }
-
-                    number.textContent = Math.round(currentValue).toLocaleString();
-                }, duration / steps);
-            }
-        });
-
-        // Expandable Visualizations
-        const expandableVizs = document.querySelectorAll('.expandable-viz');
-        
-        expandableVizs.forEach(viz => {
-            viz.addEventListener('click', function() {
-                const modal = document.createElement('div');
-                modal.className = 'visualization-modal fade-in';
-                
-                const title = this.querySelector('.visualization-title').cloneNode(true);
-                const content = this.querySelector('.visualization-content').cloneNode(true);
-                const description = this.querySelector('.expanded-content').cloneNode(true);
-                
-                // Update iframe for modal view
-                const iframe = content.querySelector('iframe');
-                if (iframe) {
-                    iframe.classList.remove('preview-mode');
-                    iframe.scrolling = 'auto';
-                    iframe.style.height = '800px'; // Smaller height for better fit
-                    iframe.style.position = 'relative';
-                    iframe.style.transform = 'none';
-                }
-                
-                modal.innerHTML = `
-                    <div class="modal-content">
-                        <span class="close-modal">&times;</span>
-                        ${title.outerHTML}
-                        ${content.outerHTML}
-                        ${description.outerHTML}
+                <div class="visualization-grid">
+                    <div class="visualization-container expandable-viz">
+                        <h3 class="visualization-title">Swim Course - Mirror Lake</h3>
+                        <div class="visualization-content">
+                            <img src="course_maps/IM24_LP_CourseMap_Swim_081423_cc-1_large.webp" alt="Swim Course Map" class="visualization-image" loading="lazy">
+                        </div>
+                        <div class="expanded-content">
+                            <ul>
+                                <li>🏊‍♂️ Notes: Very beautiful sunrise as over 2000 athletes prepare for a long day ahead</li>
+                                <li>💧 Two 1.2-mile loops</li>
+                                <li>🌡️ Average water temp: 68-72°F</li>
+                                <li>⏱️ Cut-off time: 2:20</li>
+                            </ul>
+                        </div>
                     </div>
-                `;
-                
-                document.body.appendChild(modal);
-                modal.style.display = 'block';
-                document.body.style.overflow = 'hidden';
-                
-                modal.querySelector('.expanded-content').style.display = 'block';
-                
-                const closeBtn = modal.querySelector('.close-modal');
-                closeBtn.onclick = function() {
-                    modal.classList.remove('fade-in');
-                    setTimeout(() => {
-                        modal.remove();
-                        document.body.style.overflow = 'auto';
-                    }, 300);
-                };
-                
-                modal.onclick = function(e) {
-                    if (e.target === modal) {
-                        closeBtn.click();
-                    }
-                };
-            });
-        });
-    });
-</script>
-
-
-
-        <!-- Swim Section -->
-<div id="swim" class="content">
-    <h2 class="section-title">Swim Performance</h2>
-    <div class="description-box">
-        <p>An analysis of my swim performance during the Ironman training, focusing on improvements in pace, distance, and technique.</p>
-    </div>
-
-    <div class="visualization-grid">
-        <div class="visualization-container expandable-viz">
-            <h3 class="visualization-title">Performance Metrics</h3>
-            <div class="visualization-content">
-                <iframe class="visualization-iframe preview-mode" src="assets/visualizations/swim/metrics_comparison.html"></iframe>
-            </div>
-            <div class="expanded-content">
-                <p>Comparative metrics across Personal and Professional Swims</p>
-
-                <p>I was able to calculate stroke rate and body angles from videos of my own swims v a professionals: I used MediaPipe's (python package) pose module to extract wrist, hip, elbow, and shoulder positions via an x and y axixs and the associated coordinates can be tracked over time </p>
-
-                <p>From this we can see the stroke rate for the professional is much more efficent per stroke than myself - their body angle was roughly 40 degrees more perpendicular than myself (something I really need to work on)</p>
-
-                <p>    Metric	            Swim 1	Swim 2	Pro Swim<p>
-                    <p>Stroke Rate	        94.0	84.4	74.6</p>
-                    <p>Average Body Angle	129.7	130.0	162.8</p>
-                    <p>Duration	            13.6	13.3	30.0</p>
-                <p>The following graphs go more into detail of the pro's v my body angles <p>
-            </div>
-        </div>
-       
-        <div class="visualization-container expandable-viz">
-            <h3 class="visualization-title">Body Angle Analysis</h3>
-            <div class="visualization-content">
-                <iframe class="visualization-iframe preview-mode" src="assets/visualizations/swim/body_angle_analysis.html"></iframe>
-            </div>
-            <div class="expanded-content">
-                <p>Examination of body angle changes during swim sessions</p>
-
-                <p>My body angle is consistently to low - you can see the pro is much more stable than I am at keeping hip's and shoulders consistently in line with the water</p>
+                    
+                    <div class="visualization-container expandable-viz">
+                        <h3 class="visualization-title">Bike Course - Adirondacks</h3>
+                        <div class="visualization-content">
+                            <img src="course_maps/IM24_LP_CourseMap_Bike_081423_cc-1_large.webp" alt="Bike Course Map" class="visualization-image" loading="lazy">
+                        </div>
+                        <div class="expanded-content">
+                            <ul>
+                                <li>🚴‍♂️ Notes: Hilly roads with lots of speed on descents and effort on climbing</li>
+                                <li>⛰️ Elevation gain: 6,700 feet</li>
+                                <li>🔄 Two 56-mile loops</li>
+                                <li>⏱️ Cut-off time: 10:30</li>
+                            </ul>
+                        </div>
+                    </div>
+                    
+                    <div class="visualization-container expandable-viz">
+                        <h3 class="visualization-title">Run Course - Lake Placid</h3>
+                        <div class="visualization-content">
+                            <img src="course_maps/IM24_LP_CourseMap_Run_081423_cc-1_large.webp" alt="Run Course Map" class="visualization-image" loading="lazy">
+                        </div>
+                        <div class="expanded-content">
+                            <ul>
+                                <li>🏃‍♂️ Notes: Mild hills with large crowds cheering you on</li>
+                                <li>⛰️ Elevation gain: 1,500 feet</li>
+                                <li>🔄 Two 13.1-mile loops</li>
+                                <li>⏱️ Cut-off time: 17:00</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
 
-        <div class="visualization-container expandable-viz">
-            <h3 class="visualization-title">Wrist Angle Analysis</h3>
-            <div class="visualization-content">
-                <iframe class="visualization-iframe preview-mode" src="assets/visualizations/swim/wrist_position_analysis.html"></iframe>
+        <!-- Other sections with lazy loading -->
+        <div id="genetic_analysis" class="content">
+            <h2>Genetic Analysis</h2>
+            <div class="description-box">
+                <p>Loading genetic analysis data...</p>
             </div>
-            <div class="expanded-content">
-                <p>Examination of wrist angle changes during swim sessions</p>
-
-                <p>This shocked me the most - the wrist angle graph of the pro's looks almost like a heart beat (except for the camera angle change in the second half of the video)</p>
-
-                <p>Meanwhile my wrist angle is inconsistent - good to note for the future technique sessions to focus on this</p>
+            <div class="visualization-grid" id="genetic-viz-grid">
+                <!-- Will be loaded dynamically -->
             </div>
         </div>
 
-        <div class="visualization-container expandable-viz">
-            <h3 class="visualization-title">DPS and SWOLF Trends</h3>
-            <div class="visualization-content">
-                <iframe class="visualization-iframe preview-mode" src="assets/visualizations/swim/avg_dps_swolf_over_time.html"></iframe>
+        <div id="body_composition" class="content">
+            <h2>Body Composition</h2>
+            <div class="description-box">
+                <p>Loading body composition data...</p>
             </div>
-            <div class="expanded-content">
-                <p>Analysis of DPS (Distance Per Stroke) and SWOLF (Swim Golf) trends over time</p>
-
-                <p>All graphs from this point on were captured via FORM swimming goggles - These changed the game in terms of performance in my training swims<p>
-
-                <p>My Distance Per Stroke has a clear upward trend as my training progressed and I could feel myself getting more efficent as time went on <p>
-
-                <p>SWOLF =  Time (seconds) + Stroke Count<p>
-                <p>Similar trend in my SWOLF where a downward trend indicates that its taking fewer strokes to cover the same distance<p>
-                <p>Notable peaks and valleys can be attriibuted to the fluctuations of each swim sessions focus (sprint sessions usually result in a higher SWOLF due to disproportionate increase in stroke count)<p>
+            <div class="visualization-grid" id="body-viz-grid">
+                <!-- Will be loaded dynamically -->
             </div>
         </div>
 
-        <div class="visualization-container expandable-viz">
-            <h3 class="visualization-title">Energy Expenditure</h3>
-            <div class="visualization-content">
-                <iframe class="visualization-iframe preview-mode" src="assets/visualizations/swim/calories_burned_total_distance.html"></iframe>
+        <div id="swim" class="content">
+            <h2>Swim Performance</h2>
+            <div class="description-box">
+                <p>Loading swim performance data...</p>
             </div>
-            <div class="expanded-content">
-                <p>Correlation of calories burned with total swimming distance</p>
-            </div>
-        </div>
-
-        <div class="visualization-container expandable-viz">
-            <h3 class="visualization-title">Stroke Analysis</h3>
-            <div class="visualization-content">
-                <iframe class="visualization-iframe preview-mode" src="assets/visualizations/swim/duration_avg_stroke_count_over_time.html"></iframe>
-            </div>
-            <div class="expanded-content">
-                <p>Analysis of stroke count changes throughout training</p>
-
-                <p>Duration and Avg Stroke Count/Length exhibit inverse relationships in some areas. For example, longer durations (indicating longer swims) sometimes correspond to lower stroke efficiency<p>  
+            <div class="visualization-grid" id="swim-viz-grid">
+                <!-- Will be loaded dynamically -->
             </div>
         </div>
 
-        <div class="visualization-container expandable-viz">
-            <h3 class="visualization-title">Interval Analysis</h3>
-            <div class="visualization-content">
-                <iframe class="visualization-iframe preview-mode" src="assets/visualizations/swim/interval_distance_stroke_count_over_time.html"></iframe>
+        <div id="bike" class="content">
+            <h2>Bike Performance</h2>
+            <div class="description-box">
+                <p>Loading bike performance data...</p>
             </div>
-            <div class="expanded-content">
-                <p>Breakdown of swim intervals by distance and stroke count</p>
-            </div>
-        </div>
-
-        <div class="visualization-container expandable-viz">
-            <h3 class="visualization-title">Form Analysis 1</h3>
-            <div class="visualization-content">
-                <iframe class="visualization-iframe preview-mode" src="assets/visualizations/swim/key_frame_comparison_1.html"></iframe>
-            </div>
-            <div class="expanded-content">
-                <p>Key frame comparison for form analysis (session 1).</p>
+            <div class="visualization-grid" id="bike-viz-grid">
+                <!-- Will be loaded dynamically -->
             </div>
         </div>
 
-        <div class="visualization-container expandable-viz">
-            <h3 class="visualization-title">Form Analysis 2</h3>
-            <div class="visualization-content">
-                <iframe class="visualization-iframe preview-mode" src="assets/visualizations/swim/key_frame_comparison_2.html"></iframe>
+        <div id="run" class="content">
+            <h2>Run Performance</h2>
+            <div class="description-box">
+                <p>Loading run performance data...</p>
             </div>
-            <div class="expanded-content">
-                <p>Key frame comparison for form analysis (session 2).</p>
-            </div>
-        </div>
-
-        <div class="visualization-container expandable-viz">
-            <h3 class="visualization-title">Form Analysis 3</h3>
-            <div class="visualization-content">
-                <iframe class="visualization-iframe preview-mode" src="assets/visualizations/swim/key_frame_comparison_3.html"></iframe>
-            </div>
-            <div class="expanded-content">
-                <p>Key frame comparison for form analysis (session 3).</p>
+            <div class="visualization-grid" id="run-viz-grid">
+                <!-- Will be loaded dynamically -->
             </div>
         </div>
 
-        <div class="visualization-container expandable-viz">
-            <h3 class="visualization-title">Form Analysis 4</h3>
-            <div class="visualization-content">
-                <iframe class="visualization-iframe preview-mode" src="assets/visualizations/swim/key_frame_comparison_4.html"></iframe>
+        <div id="diet_sleep" class="content">
+            <h2>Diet & Sleep Analysis</h2>
+            <div class="description-box">
+                <p>Loading diet and sleep data...</p>
             </div>
-            <div class="expanded-content">
-                <p>Key frame comparison for form analysis (session 4).</p>
-            </div>
-        </div>
-    </div>
-</div>
-
-
-        <!-- Bike Section -->
-<div id="bike" class="content">
-    <h2 class="section-title">Bike Performance</h2>
-    <div class="description-box">
-        <p>A deep dive into my biking sessions, covering distance, power, and cadence trends throughout training.</p>
-    </div>
-
-    <div class="visualization-grid">
-        <div class="visualization-container expandable-viz">
-            <h3 class="visualization-title">Activity Distribution</h3>
-            <div class="visualization-content">
-                <iframe class="visualization-iframe preview-mode" src="assets/visualizations/bike/activity_counts.html"></iframe>
-            </div>
-            <div class="expanded-content">
-                <p>Overview of the distribution of biking activities throughout training<p>
-
-                <p>These are speciifc wahoo workouts that can be done via bike trainer - You can see I liked to test my power metrics often with the 4DP test</p>
-
-                <p>Specifically the 4DP test is meant to measure NeuroMuscular Power (NM), Aerobic Power (MAP), Functional Threshold Power (FTP), and Anaerobic Capacity (AC)<p>
+            <div class="visualization-grid" id="diet-viz-grid">
+                <!-- Will be loaded dynamically -->
             </div>
         </div>
 
-        <div class="visualization-container expandable-viz">
-            <h3 class="visualization-title">Power Analysis</h3>
-            <div class="visualization-content">
-                <iframe class="visualization-iframe preview-mode" src="assets/visualizations/bike/avg_power.html"></iframe>
+        <div id="final_thoughts" class="content">
+            <h2>Final Thoughts</h2>
+            <div class="description-box">
+                <h3>My Ironman Journey</h3>
+                <p>Looking back on training, the data reflects a story of gradual progress and adaptation.</p>
             </div>
-            <div class="expanded-content">
-                <p>Analysis of average power output during biking sessions</p>
-
-                <p>Figure shows a steady increase that suggests improvements in power output, likely due to consistent training and adaptations<p>
+            <div class="stat-container">
+                <div class="stat-box">
+                    <h3>Final Swim Time</h3>
+                    <p><span class="animate-number" data-value="01:38:16">0</span></p>
+                </div>
+                <div class="stat-box">
+                    <h3>Final Bike Time</h3>
+                    <p><span class="animate-number" data-value="08:05:38">0</span></p>
+                </div>
+                <div class="stat-box">
+                    <h3>Final Run Time</h3>
+                    <p><span class="animate-number" data-value="05:02:01">0</span></p>
+                </div>
+                <div class="stat-box">
+                    <h3>Final Finish Time</h3>
+                    <p><span class="animate-number" data-value="15:08:56">0</span></p>
+                </div>
             </div>
-        </div>
-
-        <div class="visualization-container expandable-viz">
-            <h3 class="visualization-title">Correlation Analysis</h3>
-            <div class="visualization-content">
-                <iframe class="visualization-iframe preview-mode" src="assets/visualizations/bike/corr_matrix.html"></iframe>
-            </div>
-            <div class="expanded-content">
-                <p>Correlation matrix showing relationships between various biking metrics</p>
-
-                <p>Being that there were so many metrics to stay on top of I created this correlation matrix to figure out which ones were relative enough to each other so that I didn't have to think of each one independently<p>
-
-                <p>This was essentially letting me know that normalized power is a little more relevant to track in comparison to average power<p>    
-            </div>
-        </div>
-
-        <div class="visualization-container expandable-viz">
-            <h3 class="visualization-title">Training Stress Score</h3>
-            <div class="visualization-content">
-                <iframe class="visualization-iframe preview-mode" src="assets/visualizations/bike/cumulative_tss.html"></iframe>
-            </div>
-            <div class="expanded-content">
-                <p>Cumulative Training Stress Score (TSS) over the training period</p>
-
-                <p>TSS was an intersting new metric to capture and be aware of - I normally feel like I have a good sense of how fatigued my body is but this level of detail helped in knowning when to ease back<p>
-            </div>
-        </div>
-
-        <div class="visualization-container expandable-viz">
-            <h3 class="visualization-title">Metric Distribution</h3>
-            <div class="visualization-content">
-                <iframe class="visualization-iframe preview-mode" src="assets/visualizations/bike/distribution.html"></iframe>
-            </div>
-            <div class="expanded-content">
-                <p>Distribution of various biking metrics such as speed, power, and cadence</p>
-            </div>
-        </div>
-
-        <div class="visualization-container expandable-viz">
-            <h3 class="visualization-title">Duration Analysis</h3>
-            <div class="visualization-content">
-                <iframe class="visualization-iframe preview-mode" src="assets/visualizations/bike/duration_distribution.html"></iframe>
-            </div>
-            <div class="expanded-content">
-                <p>Analysis of session duration distributions across different biking workouts</p>
-            </div>
-        </div>
-
-        <div class="visualization-container expandable-viz">
-            <h3 class="visualization-title">Training Intensity</h3>
-            <div class="visualization-content">
-                <iframe class="visualization-iframe preview-mode" src="assets/visualizations/bike/if_progression.html"></iframe>
-            </div>
-            <div class="expanded-content">
-                <p>Progression of intensity factor (IF) over time to assess training load</p>
-
-                <p>Bike IF and Run IF cluster around 0.7 to 0.9, suggesting most sessions were in the moderate-intensity zone<p>
-
-                <p>High-intensity spikes indicate effective inclusion of harder efforts for threshold development and or VO2 max improvement<p>
-            </div>
-        </div>
-
-        <div class="visualization-container expandable-viz">
-            <h3 class="visualization-title">TSS Distribution</h3>
-            <div class="visualization-content">
-                <iframe class="visualization-iframe preview-mode" src="assets/visualizations/bike/tss_distribution.html"></iframe>
-            </div>
-            <div class="expanded-content">
-                <p>Distribution of Training Stress Score (TSS) across different sessions</p>
-            </div>
-        </div>
-
-        <div class="visualization-container expandable-viz">
-            <h3 class="visualization-title">TSS Over Time</h3>
-            <div class="visualization-content">
-                <iframe class="visualization-iframe preview-mode" src="assets/visualizations/bike/tss_if_over_time.html"></iframe>
-            </div>
-            <div class="expanded-content">
-                <p>Trend of TSS and IF over the training period</p>
-
-                <p>Siimilar sort of trend here where a stable TSS over time is dicating most of the training period and then some higher days for harder training days<p>
-            </div>
-        </div>
-
-        <div class="visualization-container expandable-viz">
-            <h3 class="visualization-title">Weekly Load</h3>
-            <div class="visualization-content">
-                <iframe class="visualization-iframe preview-mode" src="assets/visualizations/bike/weekly_training_load.html"></iframe>
-            </div>
-            <div class="expanded-content">
-                <p>Weekly distribution of training load, indicating volume and intensity</p>
-
-                <p>Nice to see that I was increasing training load as the weeks progressed<p>
-            </div>
-        </div>
-
-        <div class="visualization-container expandable-viz">
-            <h3 class="visualization-title">Workout Comparison</h3>
-            <div class="visualization-content">
-                <iframe class="visualization-iframe preview-mode" src="assets/visualizations/bike/workout_comparison.html"></iframe>
-            </div>
-            <div class="expanded-content">
-                <p>Comparison of key metrics across different workout sessions</p>
-
-                <p>A portion of my workouts were captured via apple watch and another portion by wahoo - overall I think wahoo will be the best bet moving forward for tracking biking data<p>
-            </div>
-        </div>
-    </div>
-</div>
-
-
-        <!-- Run Section -->
-<div id="run" class="content">
-    <h2 class="section-title">Run Performance</h2>
-    <div class="description-box">
-        <p>This section focuses on my running performance, showcasing my progress in speed, endurance, and pacing strategies.</p>
-    </div>
-
-    <div class="visualization-grid">
-        <div class="visualization-container expandable-viz">
-            <h3 class="visualization-title">Running Analysis</h3>
-            <div class="visualization-content">
-                <iframe class="visualization-iframe preview-mode" src="assets/visualizations/run/enhanced_running_data_analysis.html"></iframe>
-            </div>
-            <div class="expanded-content">
-                <p>Comprehensive analysis of running metrics, including speed, endurance, and pacing</p>
-
-                <p>Being that I feel very comfortable with my ability to self-train my runs I wanted to take a deeper look at somethings that I haven't before<p>
-
-                <p>1. Calories burned per Mile vs. Pace: A general trend emerges: faster paces (lower min/mile) tend to correlate with lower calories burned per mile, while slower paces see higher calorie burn per mile & Outliers exist at very slow paces (>15 min/mile) with exceptionally high calorie burns, potentially due to walks, steep elevation, or strenuous conditions <p>
-
-                <p>2. Calorie Efficiency Over Time: Significant variability across sessions, with clusters of higher calorie burn during earlier periods (e.g., Jan 2023) and lower values in recent sessions - Larger bubbles (longer runs) generally align with moderate calorie burn per mile, suggesting standardized running efficiency during these sessions<p>
-
-                <p>3. Impact of Temperature on Calorie Burn: Calorie burn per mile seems relatively stable across most temperatures but shows slight increases in colder conditions (below ~50°F) <p>
-
-                <p>4. Impact of elevatioon Gain on Calorie Burn: Higher elevation gains (>400m) correspond to significantly higher calorie burn per mile, as expected due to the added strain of climbing <p>    
-            </div>
-        </div>
-
-        <div class="visualization-container expandable-viz">
-            <h3 class="visualization-title">Heart Rate and Cadence</h3>
-            <div class="visualization-content">
-                <iframe class="visualization-iframe preview-mode" src="assets/visualizations/run/heart_rate_cadence_over_time.html"></iframe>
-            </div>
-            <div class="expanded-content">
-                <p>Tracking heart rate and cadence variations over time during runs</p>
-
-                <p>Something I learned was that during these very long distance events you want to have a faster cadence being that it means your foot is striking the ground for less duration of time and this is better for accumulation of fatigue/normal wear and tear of joints<p>
-
-                <p>However my cadence is usally a steady 130's-140's during these runs - I was adviced that 180 is a good number and tried it once and it just felt wrong<p>
-            </div>
-        </div>
-
-        <div class="visualization-container expandable-viz">
-            <h3 class="visualization-title">Pace Analysis</h3>
-            <div class="visualization-content">
-                <iframe class="visualization-iframe preview-mode" src="assets/visualizations/run/pace_distance_over_time.html"></iframe>
-            </div>
-            <div class="expanded-content">
-                <p>Analysis of pace trends and distance over the training period</p>
-
-                <p>Nice graph to show my pace given a distance - You can see the two outliers - one being a really long race where I kept a decent pace (~11min for 50k) and a very short run where I tried that 180 steps per minute cadence<p>
-
-            </div>
-        </div>
-
-        <div class="visualization-container expandable-viz">
-            <h3 class="visualization-title">Weekly Distance</h3>
-            <div class="visualization-content">
-                <iframe class="visualization-iframe preview-mode" src="assets/visualizations/run/weekly_mileage_before_feb_25_2023.html"></iframe>
-            </div>
-            <div class="expanded-content">
-                <p>Weekly mileage progression</p>
-            </div>
-        </div>
-    </div>
-</div>
-
-
-        <!-- Diet & Sleep Section -->
-<div id="diet_sleep" class="content">
-    <h2 class="section-title">Diet & Sleep Analysis</h2>
-    <div class="description-box">
-        <p>This section covers the impact of my diet and sleep on my overall training performance and recovery</p>
-    </div>
-
-    <div class="stat-container">
-        <div class="stat-box">
-            <h3>Average Calories Consumed</h3>
-            <p><span class="animate-number" data-value="3000">0</span></p>
-        </div>
-        <div class="stat-box">
-            <h3>Average Sleep (hours)</h3>
-            <p><span class="animate-number" data-value="8">0</span></p>
-        </div>
-    </div>
-
-    <div class="visualization-grid">
-        <div class="visualization-container expandable-viz">
-            <h3 class="visualization-title">Macronutrient Distribution</h3>
-            <div class="visualization-content">
-                <iframe class="visualization-iframe preview-mode" src="assets/visualizations/diet_sleep/ironman_macronutrient_distribution_20241024_130557.html"></iframe>
-            </div>
-            <div class="expanded-content">
-                <p>Analysis of macronutrient intake distribution over the training period</p>
-
-                <p>I had a fairly similar diet during training as I did during normal day to day life - Granted I also ate much more after days that were specifically brutal (Chipotle was my go to)<p>
-
-                <p>Overall my diet served me well and was something I didn't have to think about much during training since I was already used to tracking macros<p>
-            </div>
-        </div>
-
-        <div class="visualization-container expandable-viz">
-            <h3 class="visualization-title">Weight and Calories</h3>
-            <div class="visualization-content">
-                <iframe class="visualization-iframe preview-mode" src="assets/visualizations/diet_sleep/ironman_weight_and_calories_over_time_20241024_130557.html"></iframe>
-            </div>
-            <div class="expanded-content">
-                <p>Correlation between weight changes and calorie intake over time</p>
-
-                <p>My weight decreased steadily over time and my calories remained pretty much the same - only thing to notehere was that the days leading up to the event I started to carbo load which was a massive uptick in carbohydrates<p>
-
-            </div>
-        </div>
-
-        <div class="visualization-container expandable-viz">
-            <h3 class="visualization-title">Sleep Analysis</h3>
-            <div class="visualization-content">
-                <iframe class="visualization-iframe preview-mode" src="assets/visualizations/diet_sleep/sleep_data_analysis_20241024_130520.html"></iframe>
-            </div>
-            <div class="expanded-content">
-                <p>Detailed analysis of sleep patterns (going all the way back to 2020</p>
-
-                <p>1. Sleep Quality vs. Duration: Sleep quality peaks around 8 or 9 hours, but there is diminishing return beyond that - There are a few outliers with low sleep quality even at longer durations, possibly due to disturbances like snoring or movement </p>
-
-                <p>2. Sleep Patterns Over Time: Graph suggests steady improvement or consistency in sleep patterns since 2020 - some improvements I made were using black out curtains to get rid of excess light</p>
-
-                <p>3. Movements per Hour vs. Sleep Duration: Movement per hour remains low for most durations, with a few extreme outliers showing very high movement (>400 movements per hour) - likely just restless nights where I was actually awake</p>
-
-                <p>4. Snore Time vs. Sleep Duration: Snore time is highest in the 6 to 8 hour duration range, indicating a possible pattern of snoring during optimal sleep durations - didn't even know I snored this much, crazy.</p>
-
-                <p>5. Sleep Quality Distribution: There are some nights with low sleep quality (less than 0.5), which are less frequent but good to keep aware of </p>
-
-                <p>6. Bedtime vs. Sleep Quality: Sleep quality is highest for bedtimes between 10 PM and 12 AM - Bedtimes after 12 AM show a slight decline in quality, likely due to shorter sleep durations or disruptions to circadian rhythms </p>
-
-            </div>
-        </div>
-    </div>
-</div>
-
-<!-- Final Thoughts Section -->
-<div id="final_thoughts" class="content active">
-    <h2 class="section-title">Final Thoughts</h2>
-    
-    <!-- Personal Journey Overview -->
-    <div class="description-box">
-        <h3 style="color: #1D3557; margin-bottom: 15px;">My Ironman Journey</h3>
-        <p>Looking back on training the data reflects a story of gradual progress and adaptation - understanding the process will be key in my future races - Thanks for joining across all the different segments - I'm hoping to replicate these analyses in the future with improvements </p>
-    </div>
-
-    <!-- Key Stats -->
-    <div class="stat-container">
-        <div class="stat-box">
-            <h3>Final Swim Time</h3>
-            <p><span class="animate-number" data-value="01:38:16">0</span></p>
-            <small></small>
-        </div>
-        <div class="stat-box">
-            <h3>Final Bike Time</h3>
-            <p><span class="animate-number" data-value="08:05:38">0</span></p>
-            <small></small>
-        </div>
-        <div class="stat-box">
-            <h3>Final Run Time</h3>
-            <p><span class="animate-number" data-value="05:02:01">0</span></p>
-            <small></small>
-        </div>
-        <div class="stat-box">
-            <h3>Final Finish Time</h3>
-            <p><span class="animate-number" data-value="15:08:56">0</span></p>
-            <small></small>
         </div>
     </div>
 
@@ -1781,131 +797,563 @@
     </footer>
 
     <script>
-        // Lazy load iframes using Intersection Observer
-        const observerOptions = {
-            root: null,
-            rootMargin: '50px',
-            threshold: 0.1
-        };
-        
-        const iframeObserver = new IntersectionObserver((entries, observer) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    const iframe = entry.target;
-                    if (iframe.dataset.src) {
-                        iframe.src = iframe.dataset.src;
-                        iframe.removeAttribute('data-src');
-                        iframe.classList.add('loaded');
+        // Navigation functions
+        function openNav() {
+            document.getElementById("mySidebar").classList.add("show");
+            document.getElementById("main").classList.add("active");
+        }
+
+        function closeNav() {
+            document.getElementById("mySidebar").classList.remove("show");
+            document.getElementById("main").classList.remove("active");
+        }
+
+        function openTab(evt, tabName) {
+            var i, content;
+            
+            // Hide all content
+            content = document.getElementsByClassName("content");
+            for (i = 0; i < content.length; i++) {
+                content[i].classList.remove("active");
+            }
+            
+            // Show selected content
+            document.getElementById(tabName).classList.add("active");
+            
+            // Load content if needed
+            loadSectionContent(tabName);
+            
+            // Animate numbers if visible
+            animateNumbers();
+            
+            // Close nav on mobile after selection
+            if (isMobile()) {
+                setTimeout(closeNav, 300);
+            }
+        }
+
+        // Number animation
+        function animateNumbers() {
+            const numbers = document.querySelectorAll('.animate-number:not(.animated)');
+            
+            numbers.forEach(number => {
+                const target = number.getAttribute('data-value');
+                if (!target) return;
+                
+                number.classList.add('animated');
+                
+                // Handle time format
+                if (target.includes(':')) {
+                    number.textContent = target;
+                    return;
+                }
+                
+                // Handle regular numbers
+                const finalValue = parseInt(target.replace(/,/g, ''));
+                const duration = 2000;
+                const steps = 60;
+                const stepValue = finalValue / steps;
+                let current = 0;
+                let step = 0;
+                
+                const timer = setInterval(() => {
+                    step++;
+                    current += stepValue;
+                    
+                    if (step >= steps) {
+                        current = finalValue;
+                        clearInterval(timer);
                     }
-                    observer.unobserve(iframe);
+                    
+                    number.textContent = Math.round(current).toLocaleString();
+                }, duration / steps);
+            });
+        }
+
+        // Progress bar
+        window.addEventListener('scroll', function() {
+            const winScroll = document.body.scrollTop || document.documentElement.scrollTop;
+            const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+            const scrolled = (winScroll / height) * 100;
+            document.getElementById("progressBar").style.width = scrolled + "%";
+        });
+
+        // Lazy loading for sections
+        const loadedSections = new Set();
+        
+        function loadSectionContent(sectionName) {
+            if (loadedSections.has(sectionName)) return;
+            
+            // Define content for each section
+            const sectionContent = {
+                'genetic_analysis': {
+                    description: 'This section delves into my genetic makeup based off SNP genotyping. I created an in-house SNP database based on specific genetic markers that influence athletic performance.',
+                    visualizations: [
+                        { 
+                            title: 'Genetic Performance Report', 
+                            src: 'assets/visualizations/genetic_analysis/genetic_performance_report.html',
+                            description: 'Scores were calculated by taking 20 known gene variations associated with athletic performance via scientific literature and comparing my own SNP data through normalized scoring.'
+                        },
+                        { 
+                            title: 'Athletic Genetics Overview', 
+                            src: 'assets/visualizations/genetic_analysis/athletic_genetics_overview_20241024_132540.html',
+                            description: 'This detailed overview analyzes key genetic markers that influence athletic performance, including ACTN3 and ACE genes.'
+                        }
+                    ]
+                },
+                'body_composition': {
+                    description: 'This section explores how my body composition evolved throughout my Ironman training.',
+                    visualizations: [
+                        { 
+                            title: 'Body Fat Percentage Trends', 
+                            src: 'assets/visualizations/body_composition/body_fat_percentage_over_time_20241024_134949.html',
+                            description: 'Trend analysis of body fat percentage - clear rebound after the event but cleaned up in the following weeks.'
+                        },
+                        {
+                            title: 'Body Mass Evolution',
+                            src: 'assets/visualizations/body_composition/body_mass_over_time_20241024_134949.html',
+                            description: 'Trend analysis of body mass with added target weight - identical trend but nice to see weight in pounds'
+                        },
+                        {
+                            title: 'Body Mass vs Body Fat',
+                            src: 'assets/visualizations/body_composition/comparison_body_mass_body_fat_20241024_134949.html',
+                            description: 'Comparative analysis of body mass and body fat percentage relationships. Nothing out of order here.'
+                        },
+                        {
+                            title: 'Lean Body Mass Trends',
+                            src: 'assets/visualizations/body_composition/lean_body_mass_over_time_20241024_134949.html',
+                            description: 'I noticed the loss of bodyfat but also the loss of muscle mass - I was considerably weaker throughout my lifts'
+                        },
+                        {
+                            title: 'Pro Height Distribution',
+                            src: 'assets/visualizations/body_composition/height_distribution_20241024_135255.html',
+                            description: 'Height Distribution of pro triathletes'
+                        },
+                        {
+                            title: 'Pro Body Mass Distribution',
+                            src: 'assets/visualizations/body_composition/weight_distribution_20241024_135255.html',
+                            description: 'Weight Distribution of pro triathletes'
+                        },
+                        {
+                            title: 'Pro Height vs Weight Analysis',
+                            src: 'assets/visualizations/body_composition/height_weight_regression_20241024_135255.html',
+                            description: 'Comparison between PRO and Rio 2016 Olympian triathletes showing moderate correlation (R²=0.59)'
+                        },
+                        { 
+                            title: 'Heart Rate by Activity', 
+                            src: 'assets/visualizations/body_composition/heart_rate_vs_activity_type_20241024_135605.html',
+                            description: 'Even though I was super out of breath during swimming, my heart rate was super low - optimal fat burning range'
+                        },
+                        {
+                            title: 'Base Heart Rate Zones',
+                            src: 'assets/visualizations/body_composition/heart_rate_zones_20241024_140507.html',
+                            description: 'Distribution of training time across base heart rate zones'
+                        },
+                        {
+                            title: 'Karvonen Heart Rate Zones',
+                            src: 'assets/visualizations/body_composition/heart_rate_zones_Karvonen_20241024_140347.html',
+                            description: 'Based on the Karvonen method I spent 76.8% of my time in Zone 1!'
+                        },
+                        {
+                            title: 'MHR Heart Rate Zones',
+                            src: 'assets/visualizations/body_composition/heart_rate_zones_MHR_20241024_140347.html',
+                            description: 'Maximum heart rate zones used during training'
+                        },
+                        {
+                            title: 'Time in Zones Analysis',
+                            src: 'assets/visualizations/body_composition/time_spent_in_zones_all_20241024_140347.html',
+                            description: 'You can zoom in week by week and see how long you were in each heart rate zone'
+                        },
+                        {
+                            title: 'HRV Trends',
+                            src: 'assets/visualizations/body_composition/hrv_trend_20241024_141310.html',
+                            description: 'Heart rate variability with sharp ups and downs during training - peaks for recovery, troughs for hard days'
+                        },
+                        { 
+                            title: 'VO2 Max Trends', 
+                            src: 'assets/visualizations/body_composition/vo2_max_trend_20241024_141609.html',
+                            description: 'VO2 max showing the classic "train-adapt-improve" cycle from 55 to 49 then gradual improvement'
+                        }
+                    ]
+                },
+                'swim': {
+                    description: 'An analysis of my swim performance during the Ironman training, focusing on improvements in pace, distance, and technique.',
+                    visualizations: [
+                        { 
+                            title: 'Performance Metrics', 
+                            src: 'assets/visualizations/swim/metrics_comparison.html',
+                            description: 'Pro stroke rate was 74.6 vs my 94.0 - much more efficient. Pro body angle was 162.8° vs my 129.7°'
+                        },
+                        { 
+                            title: 'Body Angle Analysis', 
+                            src: 'assets/visualizations/swim/body_angle_analysis.html',
+                            description: 'My body angle is consistently too low - pro is much more stable keeping hips and shoulders in line'
+                        },
+                        {
+                            title: 'Wrist Angle Analysis',
+                            src: 'assets/visualizations/swim/wrist_position_analysis.html',
+                            description: 'Pro wrist angle looks like a heartbeat while mine is inconsistent - focus area for technique'
+                        },
+                        { 
+                            title: 'DPS and SWOLF Trends', 
+                            src: 'assets/visualizations/swim/avg_dps_swolf_over_time.html',
+                            description: 'Clear upward trend in Distance Per Stroke and downward SWOLF showing improved efficiency'
+                        },
+                        {
+                            title: 'Energy Expenditure',
+                            src: 'assets/visualizations/swim/calories_burned_total_distance.html',
+                            description: 'Correlation of calories burned with total swimming distance'
+                        },
+                        {
+                            title: 'Stroke Analysis',
+                            src: 'assets/visualizations/swim/duration_avg_stroke_count_over_time.html',
+                            description: 'Longer durations sometimes correspond to lower stroke efficiency'
+                        },
+                        {
+                            title: 'Interval Analysis',
+                            src: 'assets/visualizations/swim/interval_distance_stroke_count_over_time.html',
+                            description: 'Breakdown of swim intervals by distance and stroke count'
+                        },
+                        {
+                            title: 'Form Analysis Sessions',
+                            src: 'swim_viz_handler.html',
+                            description: 'Click to view detailed frame-by-frame form analysis (large files - opens in new page)'
+                        }
+                    ]
+                },
+                'bike': {
+                    description: 'A deep dive into my biking sessions, covering distance, power, and cadence trends throughout training.',
+                    visualizations: [
+                        {
+                            title: 'Activity Distribution',
+                            src: 'assets/visualizations/bike/activity_counts.html',
+                            description: 'Specific Wahoo workouts - I liked testing power metrics with the 4DP test frequently'
+                        },
+                        { 
+                            title: 'Power Analysis', 
+                            src: 'assets/visualizations/bike/avg_power.html',
+                            description: 'Steady increase suggests improvements in power output from consistent training'
+                        },
+                        {
+                            title: 'Correlation Analysis',
+                            src: 'assets/visualizations/bike/corr_matrix.html',
+                            description: 'Normalized power is more relevant to track than average power'
+                        },
+                        { 
+                            title: 'Training Stress Score', 
+                            src: 'assets/visualizations/bike/cumulative_tss.html',
+                            description: 'TSS helped me know when to ease back - better than just feeling fatigued'
+                        },
+                        {
+                            title: 'Metric Distribution',
+                            src: 'assets/visualizations/bike/distribution.html',
+                            description: 'Distribution of various biking metrics - speed, power, and cadence'
+                        },
+                        {
+                            title: 'Duration Analysis',
+                            src: 'assets/visualizations/bike/duration_distribution.html',
+                            description: 'Session duration distributions across different biking workouts'
+                        },
+                        {
+                            title: 'Training Intensity',
+                            src: 'assets/visualizations/bike/if_progression.html',
+                            description: 'IF clustered around 0.7-0.9 suggesting moderate-intensity zone training'
+                        },
+                        {
+                            title: 'TSS Distribution',
+                            src: 'assets/visualizations/bike/tss_distribution.html',
+                            description: 'Training Stress Score distribution across different sessions'
+                        },
+                        {
+                            title: 'TSS Over Time',
+                            src: 'assets/visualizations/bike/tss_if_over_time.html',
+                            description: 'Stable TSS over time with peaks on harder training days'
+                        },
+                        { 
+                            title: 'Weekly Training Load', 
+                            src: 'assets/visualizations/bike/weekly_training_load.html',
+                            description: 'Nice to see increasing training load as weeks progressed'
+                        },
+                        {
+                            title: 'Workout Comparison',
+                            src: 'assets/visualizations/bike/workout_comparison.html',
+                            description: 'Apple Watch vs Wahoo tracking - Wahoo is better for bike data'
+                        }
+                    ]
+                },
+                'run': {
+                    description: 'This section focuses on my running performance, showcasing my progress in speed, endurance, and pacing strategies.',
+                    visualizations: [
+                        { 
+                            title: 'Running Analysis', 
+                            src: 'assets/visualizations/run/enhanced_running_data_analysis.html',
+                            description: 'Faster paces correlate with lower calories/mile. Higher elevation gains significantly increase calorie burn'
+                        },
+                        {
+                            title: 'Heart Rate and Cadence',
+                            src: 'assets/visualizations/run/heart_rate_cadence_over_time.html',
+                            description: 'My cadence is 130-140s but was advised 180 is better - tried it once and it felt wrong'
+                        },
+                        { 
+                            title: 'Pace Analysis', 
+                            src: 'assets/visualizations/run/pace_distance_over_time.html',
+                            description: 'Two outliers: long 50k race at ~11min pace and short run trying 180 steps/min'
+                        },
+                        {
+                            title: 'Weekly Distance',
+                            src: 'assets/visualizations/run/weekly_mileage_before_feb_25_2023.html',
+                            description: 'Weekly mileage progression leading up to the event'
+                        }
+                    ]
+                },
+                'diet_sleep': {
+                    description: 'This section covers the impact of my diet and sleep on my overall training performance and recovery.',
+                    visualizations: [
+                        { 
+                            title: 'Macronutrient Distribution', 
+                            src: 'assets/visualizations/diet_sleep/ironman_macronutrient_distribution_20241024_130557.html',
+                            description: 'Similar diet during training as normal life - Chipotle was my go-to after brutal days'
+                        },
+                        {
+                            title: 'Weight and Calories',
+                            src: 'assets/visualizations/diet_sleep/ironman_weight_and_calories_over_time_20241024_130557.html',
+                            description: 'Weight decreased steadily while calories stayed same - carb loading before event'
+                        },
+                        { 
+                            title: 'Sleep Analysis', 
+                            src: 'assets/visualizations/diet_sleep/sleep_data_analysis_20241024_130520.html',
+                            description: 'Sleep quality peaks at 8-9 hours. Best quality for bedtimes between 10 PM and 12 AM'
+                        }
+                    ]
+                }
+            };
+            
+            const content = sectionContent[sectionName];
+            if (!content) return;
+            
+            // Update description
+            const section = document.getElementById(sectionName);
+            const descBox = section.querySelector('.description-box');
+            if (descBox) {
+                descBox.innerHTML = `<p>${content.description}</p>`;
+            }
+            
+            // Load visualizations
+            const grid = section.querySelector('.visualization-grid');
+            if (grid && content.visualizations) {
+                grid.innerHTML = '';
+                content.visualizations.forEach(viz => {
+                    const container = document.createElement('div');
+                    container.className = 'visualization-container expandable-viz';
+                    container.innerHTML = `
+                        <h3 class="visualization-title">${viz.title}</h3>
+                        <div class="visualization-content">
+                            <div class="viz-placeholder">
+                                <div class="loading-spinner"></div>
+                                <p>Click to load visualization</p>
+                            </div>
+                        </div>
+                        <div class="expanded-content">
+                            <p>${viz.description || 'Click to view detailed analysis'}</p>
+                        </div>
+                    `;
+                    
+                    // Load iframe on first click
+                    let loaded = false;
+                    container.addEventListener('click', function(e) {
+                        if (!loaded) {
+                            const content = this.querySelector('.visualization-content');
+                            content.innerHTML = `<iframe class="visualization-iframe" src="${viz.src}" loading="lazy"></iframe>`;
+                            loaded = true;
+                        }
+                    });
+                    
+                    grid.appendChild(container);
+                });
+                
+                // Re-initialize expandable functionality for new elements
+                setupExpandableVizs();
+            }
+            
+            loadedSections.add(sectionName);
+        }
+
+        // Modal functionality for expandable visualizations
+        function setupExpandableVizs() {
+            const expandableVizs = document.querySelectorAll('.expandable-viz');
+            
+            expandableVizs.forEach(viz => {
+                viz.addEventListener('click', function(e) {
+                    // Don't trigger on links inside
+                    if (e.target.tagName === 'A') return;
+                    
+                    const modal = document.createElement('div');
+                    modal.className = 'visualization-modal fade-in';
+                    
+                    const title = this.querySelector('.visualization-title');
+                    const content = this.querySelector('.visualization-content');
+                    const description = this.querySelector('.expanded-content');
+                    
+                    // Clone and prepare content
+                    const modalContent = content.cloneNode(true);
+                    const modalIframe = modalContent.querySelector('iframe');
+                    if (modalIframe) {
+                        modalIframe.style.width = '100%';
+                        modalIframe.style.height = '100%';
+                        modalIframe.classList.remove('preview-mode');
+                    }
+                    
+                    modal.innerHTML = `
+                        <div class="modal-content">
+                            <span class="close-modal">&times;</span>
+                            ${title ? title.outerHTML : ''}
+                            ${modalContent.outerHTML}
+                            ${description ? `<div class="expanded-content" style="display: block;">${description.innerHTML}</div>` : ''}
+                        </div>
+                    `;
+                    
+                    document.body.appendChild(modal);
+                    modal.style.display = 'block';
+                    document.body.style.overflow = 'hidden';
+                    
+                    const closeBtn = modal.querySelector('.close-modal');
+                    closeBtn.onclick = function() {
+                        modal.classList.remove('fade-in');
+                        setTimeout(() => {
+                            modal.remove();
+                            document.body.style.overflow = 'auto';
+                        }, 300);
+                    };
+                    
+                    modal.onclick = function(e) {
+                        if (e.target === modal) {
+                            closeBtn.click();
+                        }
+                    };
+                });
+            });
+        }
+
+        // Mobile detection
+        function isMobile() {
+            return window.innerWidth <= 768 || ('ontouchstart' in window);
+        }
+        
+        // Touch swipe support for navigation
+        function addSwipeSupport() {
+            let touchStartX = 0;
+            let touchEndX = 0;
+            
+            document.addEventListener('touchstart', function(e) {
+                touchStartX = e.changedTouches[0].screenX;
+            }, { passive: true });
+            
+            document.addEventListener('touchend', function(e) {
+                touchEndX = e.changedTouches[0].screenX;
+                handleSwipe();
+            }, { passive: true });
+            
+            function handleSwipe() {
+                const swipeThreshold = 50;
+                const diff = touchEndX - touchStartX;
+                
+                if (Math.abs(diff) > swipeThreshold) {
+                    if (diff > 0) {
+                        // Swipe right - open menu
+                        if (!document.getElementById('mySidebar').classList.contains('show')) {
+                            openNav();
+                        }
+                    } else {
+                        // Swipe left - close menu
+                        if (document.getElementById('mySidebar').classList.contains('show')) {
+                            closeNav();
+                        }
+                    }
+                }
+            }
+        }
+        
+        // Optimize images for mobile
+        function optimizeImagesForMobile() {
+            if (isMobile()) {
+                const images = document.querySelectorAll('img');
+                images.forEach(img => {
+                    // Add loading lazy for all images on mobile
+                    img.loading = 'lazy';
+                    
+                    // Reduce quality for mobile if needed
+                    if (img.src.includes('.webp')) {
+                        img.style.imageRendering = 'auto';
+                    }
+                });
+            }
+        }
+        
+        // Mobile-friendly modal closing
+        function setupMobileModalClose() {
+            document.addEventListener('keydown', function(e) {
+                if (e.key === 'Escape') {
+                    const modals = document.querySelectorAll('.visualization-modal');
+                    modals.forEach(modal => modal.remove());
+                    document.body.style.overflow = 'auto';
                 }
             });
-        }, observerOptions);
+        }
         
-        // Convert existing iframes to lazy load
-        document.querySelectorAll('.visualization-iframe').forEach(iframe => {
-            const currentSrc = iframe.src;
-            if (currentSrc) {
-                iframe.dataset.src = currentSrc;
-                iframe.removeAttribute('src');
-                iframeObserver.observe(iframe);
-            }
+        // Viewport height fix for mobile browsers
+        function setViewportHeight() {
+            const vh = window.innerHeight * 0.01;
+            document.documentElement.style.setProperty('--vh', `${vh}px`);
+        }
+        
+        // Handle orientation changes
+        window.addEventListener('orientationchange', function() {
+            setTimeout(() => {
+                setViewportHeight();
+                // Recalculate grid layouts
+                const grids = document.querySelectorAll('.visualization-grid');
+                grids.forEach(grid => {
+                    grid.style.opacity = '0.5';
+                    setTimeout(() => {
+                        grid.style.opacity = '1';
+                    }, 100);
+                });
+            }, 100);
         });
         
-        // Optimize animations with RequestAnimationFrame
-        function optimizedAnimateNumbers() {
-            const numbers = document.querySelectorAll('.animate-number:not(.animated)');
-            numbers.forEach(num => {
-                num.classList.add('animated');
-                const finalValue = parseInt(num.dataset.value);
-                const duration = 1000;
-                const startTime = performance.now();
-                
-                const updateNumber = (currentTime) => {
-                    const elapsed = currentTime - startTime;
-                    const progress = Math.min(elapsed / duration, 1);
-                    
-                    if (progress < 1) {
-                        num.textContent = Math.floor(finalValue * progress).toLocaleString();
-                        requestAnimationFrame(updateNumber);
-                    } else {
-                        num.textContent = finalValue.toLocaleString();
-                    }
-                };
-                
-                requestAnimationFrame(updateNumber);
-            });
-        }
-        
-        // Optimize scroll handling
-        let scrollTimeout;
-        const progressBar = document.getElementById('progressBar');
-        window.addEventListener('scroll', () => {
-            if (scrollTimeout) {
-                window.cancelAnimationFrame(scrollTimeout);
+        // Initialize on load
+        document.addEventListener('DOMContentLoaded', function() {
+            animateNumbers();
+            setupExpandableVizs();
+            
+            // Mobile-specific initializations
+            if (isMobile()) {
+                addSwipeSupport();
+                optimizeImagesForMobile();
+                setViewportHeight();
             }
             
-            scrollTimeout = window.requestAnimationFrame(() => {
-                const winScroll = window.pageYOffset;
-                const height = document.documentElement.scrollHeight - window.innerHeight;
-                const scrolled = (winScroll / height) * 100;
-                progressBar.style.width = `${scrolled}%`;
-            });
-        }, { passive: true });
-        
-        // Optimize tab switching
-        function optimizedOpenTab(evt, tabName) {
-            requestAnimationFrame(() => {
-                document.querySelectorAll('.content').forEach(content => {
-                    content.classList.remove('active');
-                });
-                
-                const targetTab = document.getElementById(tabName);
-                targetTab.classList.add('active');
-                
-                // Lazy load iframes in the new tab
-                targetTab.querySelectorAll('.visualization-iframe').forEach(iframe => {
-                    if (!iframe.src && iframe.dataset.src) {
-                        iframeObserver.observe(iframe);
-                    }
-                });
-                
-                optimizedAnimateNumbers();
-                closeNav();
-            });
-        }
-        
-        // Replace original openTab function
-        window.openTab = optimizedOpenTab;
-        
-        // Optimize sidebar
-        const sidebar = document.getElementById('mySidebar');
-        const main = document.getElementById('main');
-        
-        function optimizedToggleNav() {
-            requestAnimationFrame(() => {
-                sidebar.classList.toggle('show');
-                main.classList.toggle('active');
-            });
-        }
-        
-        // Replace original nav functions
-        window.openNav = optimizedToggleNav;
-        window.closeNav = optimizedToggleNav;
-        
-        // Initialize on page load
-        document.addEventListener('DOMContentLoaded', () => {
-            // Defer GSAP animations
-            setTimeout(() => {
-                if (typeof gsap !== 'undefined') {
-                    gsap.from(".content h2", {duration: 0.5, opacity: 0, y: -30});
-                    gsap.from(".description-box", {duration: 0.5, opacity: 0, y: 30, delay: 0.2});
-                    gsap.from(".stat-box", {duration: 0.5, opacity: 0, y: 20, stagger: 0.1, delay: 0.3});
-                }
-            }, 100);
+            setupMobileModalClose();
             
-            optimizedAnimateNumbers();
-        }, { passive: true });
-        </script>
+            // Defer loading of heavy libraries
+            setTimeout(() => {
+                if (!isMobile()) {  // Only load GSAP on desktop
+                    const gsap = document.createElement('script');
+                    gsap.src = 'https://cdnjs.cloudflare.com/ajax/libs/gsap/3.9.1/gsap.min.js';
+                    gsap.defer = true;
+                    document.head.appendChild(gsap);
+                }
+            }, 1000);
+        });
+        
+        // Handle resize events
+        let resizeTimeout;
+        window.addEventListener('resize', function() {
+            clearTimeout(resizeTimeout);
+            resizeTimeout = setTimeout(() => {
+                setViewportHeight();
+            }, 250);
+        });
+    </script>
 </body>
-</html>    
+</html>
